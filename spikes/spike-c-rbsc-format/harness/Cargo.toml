@@ -1,0 +1,17 @@
+[package]
+name = "spike-c-harness"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = "Spike (c): harness do formato .rbsc (SQLite WAL). Experimento; nunca vai para produção."
+
+[workspace]
+
+[dependencies]
+rusqlite = { version = "0.43", features = ["bundled"] }
+zstd = "0.14"
+lz4_flex = "0.14"
+blake3 = "1.8"
+
+[profile.release]
+debug = false

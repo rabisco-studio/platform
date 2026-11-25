@@ -1,0 +1,1 @@
+fill: 34.1s | tile_refs=4380 tiles_unicos=4179 (dedup 201) | bruto=1095 MiB comprimido(zstd3)=230 MiB | arquivo=238 MiB

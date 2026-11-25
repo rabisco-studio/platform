@@ -1,0 +1,12 @@
+== ra
+open: conexao=3 ms | arvore pronta=4 ms (31 nos, 4380 refs) | viewport pronto=47 ms (50 tiles, 12.5 MiB) | resto em segundo plano=3049 ms (4179 tiles) | quick_check=236 ms (ok) | integrity_check=434 ms (ok)
+open: conexao=2 ms | arvore pronta=5 ms (31 nos, 4380 refs) | viewport pronto=47 ms (50 tiles, 12.5 MiB) | resto em segundo plano=3074 ms (4179 tiles) | quick_check=227 ms (ok) | integrity_check=415 ms (ok)
+open: conexao=2 ms | arvore pronta=4 ms (31 nos, 4380 refs) | viewport pronto=48 ms (50 tiles, 12.5 MiB) | resto em segundo plano=3081 ms (4179 tiles) | quick_check=239 ms (ok) | integrity_check=429 ms (ok)
+open: conexao=2 ms | arvore pronta=4 ms (31 nos, 4380 refs) | viewport pronto=45 ms (50 tiles, 12.5 MiB) | resto em segundo plano=3168 ms (4179 tiles) | quick_check=234 ms (ok) | integrity_check=439 ms (ok)
+open: conexao=2 ms | arvore pronta=4 ms (31 nos, 4380 refs) | viewport pronto=48 ms (50 tiles, 12.5 MiB) | resto em segundo plano=3108 ms (4179 tiles) | quick_check=225 ms (ok) | integrity_check=445 ms (ok)
+== ra-dense
+open: conexao=2 ms | arvore pronta=5 ms (31 nos, 7680 refs) | viewport pronto=48 ms (50 tiles, 12.5 MiB) | resto em segundo plano=5381 ms (7341 tiles) | quick_check=400 ms (ok) | integrity_check=787 ms (ok)
+open: conexao=2 ms | arvore pronta=5 ms (31 nos, 7680 refs) | viewport pronto=47 ms (50 tiles, 12.5 MiB) | resto em segundo plano=5286 ms (7341 tiles) | quick_check=401 ms (ok) | integrity_check=776 ms (ok)
+open: conexao=2 ms | arvore pronta=5 ms (31 nos, 7680 refs) | viewport pronto=48 ms (50 tiles, 12.5 MiB) | resto em segundo plano=5522 ms (7341 tiles) | quick_check=405 ms (ok) | integrity_check=860 ms (ok)
+open: conexao=2 ms | arvore pronta=6 ms (31 nos, 7680 refs) | viewport pronto=65 ms (50 tiles, 12.5 MiB) | resto em segundo plano=5562 ms (7341 tiles) | quick_check=414 ms (ok) | integrity_check=860 ms (ok)
+open: conexao=2 ms | arvore pronta=5 ms (31 nos, 7680 refs) | viewport pronto=53 ms (50 tiles, 12.5 MiB) | resto em segundo plano=5638 ms (7341 tiles) | quick_check=382 ms (ok) | integrity_check=1071 ms (ok)
