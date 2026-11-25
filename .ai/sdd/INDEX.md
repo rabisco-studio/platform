@@ -7,7 +7,7 @@ Fonte: `docs/requirements/spec-catalog.csv` e arquivos `.status`. Este índice �
 | Spec | Título | Release | Fase | Rigor | Estado | Gate atual |
 |---|---|---|---|---|---|---|
 | [SPEC-001](specs/001-scene-graph/requirements.md) | Scene Graph | R1 | 1 | anchored | escrita | requirements:draft |
-| [SPEC-002](specs/002-hybrid-format/requirements.md) | Formato .hybrid e ciclo de vida do documento | R1 | 1 | anchored | escrita | requirements:draft |
+| [SPEC-002](specs/002-rbsc-format/requirements.md) | Formato .rbsc e ciclo de vida do documento | R1 | 1 | anchored | escrita | requirements:draft |
 | [SPEC-003](specs/003-operations-undo/requirements.md) | Modelo de operações e Undo/Redo | R1 | 1 | anchored | escrita | requirements:draft |
 | SPEC-004 | Render de camadas raster e vetor no mesmo canvas | R1 | 1 | anchored | planejada | não iniciada |
 | [SPEC-005](specs/005-brush-painting/requirements.md) | Pincéis e pintura raster | R1 | 2 | anchored | escrita | requirements:draft |

@@ -9,7 +9,7 @@ Cada tipo, tabela, contrato e crate tem **um** dono. Quem precisa de mudança fa
 
 | Artefato | Dono (spec) | Observação |
 |---|---|---|
-| `hybrid-schema-v1.sql` (DDL único) | SPEC-002 | Nenhuma outra spec define tabelas |
+| `rbsc-schema-v1.sql` (DDL único) | SPEC-002 | Nenhuma outra spec define tabelas |
 | `scene.json`, tipos de nó, `NodeRecord`, `TileRefRecord`, `DocumentMetaRecord` | SPEC-001 | Records vivem em `core-domain` |
 | `operation.json`, `OpRecord`, HLC, `apply_operation` | SPEC-003 | `OpRecord` é DTO de `core-domain` |
 | `TileHash`, `TileStore` (trait), tipos de tile | SPEC-001 (tipos) / SPEC-006 (memória) | Em `core-domain` |

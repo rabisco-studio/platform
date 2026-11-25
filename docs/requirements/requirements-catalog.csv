@@ -124,7 +124,7 @@ RNF-07.2,RNF,Manutenibilidade,Evolução independente dos módulos,Must,R1,GOV,V
 RNF-07.3,RNF,Manutenibilidade,Testes automatizados,Must,R1,GOV,`make verify`,proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-07.4,RNF,Manutenibilidade,Documentar contratos entre componentes,Must,R1,SPEC-001,Fonte única em `contracts/` com conformance suite (P-06),proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-07.5,RNF,Manutenibilidade,Adicionar ferramentas e extensões sem reescrever o núcleo,Should,R5,SPEC-029,"API de plugins desenhada na Fase 4, entregue na Fase 8 (ADR-012)",proposta (revisão 2026-11-25; aprovar com o PO)
-RNF-07.6,RNF,Manutenibilidade,Compatibilidade entre versões do formato nativo,Must,R1,SPEC-002,Abrir todas as versões anteriores do `.hybrid` (corpus em `tests/compat/`),proposta (revisão 2026-11-25; aprovar com o PO)
+RNF-07.6,RNF,Manutenibilidade,Compatibilidade entre versões do formato nativo,Must,R1,SPEC-002,Abrir todas as versões anteriores do `.rbsc` (corpus em `tests/compat/`),proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-08.1,RNF,Internacionalização,Múltiplos idiomas,Should,R4,SPEC-037,,proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-08.2,RNF,Internacionalização,Convenções regionais,Could,R4,SPEC-037,,proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-08.3,RNF,Internacionalização,Unidades de medida configuráveis,Could,R4,SPEC-037,,proposta (revisão 2026-11-25; aprovar com o PO)

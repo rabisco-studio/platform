@@ -9,7 +9,7 @@ Esta pasta é a **fonte única** das interfaces legíveis por máquina (P-06). C
 
 | Pasta | Conteúdo | Dono |
 |---|---|---|
-| `document-format/` | `scene.json`, `operation.json`, `bundle-manifest.json`, `hybrid-schema-v1.sql` | SPEC-001, 003, 002 (ver [ownership-matrix](../docs/architecture/ownership-matrix.md)) |
+| `document-format/` | `scene.json`, `operation.json`, `bundle-manifest.json`, `rbsc-schema-v1.sql` | SPEC-001, 003, 002 (ver [ownership-matrix](../docs/architecture/ownership-matrix.md)) |
 | `brush-definition/` | `brush.json` | SPEC-005 |
 | `conformance/` | Casos de teste compartilhados entre implementações | dono do contrato correspondente |
 | `api/`, `events/`, `plugin-api/` | Reservadas para as fases 5 e 8 (vazias de propósito) | SPEC-021/022, SPEC-029 |

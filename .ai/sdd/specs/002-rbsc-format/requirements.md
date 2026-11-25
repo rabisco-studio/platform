@@ -1,4 +1,4 @@
-# SPEC-002: Formato `.hybrid` e Ciclo de Vida do Documento — Criação, Abertura, Salvamento, Recuperação e Migração
+# SPEC-002: Formato `.rbsc` e Ciclo de Vida do Documento — Criação, Abertura, Salvamento, Recuperação e Migração
 
 **Status:** requirements:draft
 **Área:** core
@@ -12,14 +12,14 @@
 
 ## 1. Visão Geral
 
-Esta spec define como o usuário cria, abre, salva e recupera documentos no formato `.hybrid`. Abrange o autosave, a proteção contra queda abrupta e o ciclo completo de persistência local — sem nuvem (Fase 5).
+Esta spec define como o usuário cria, abre, salva e recupera documentos no formato `.rbsc`. Abrange o autosave, a proteção contra queda abrupta e o ciclo completo de persistência local — sem nuvem (Fase 5).
 
 ## 2. Goals
 
 - Garantir que nenhum trabalho confirmado seja perdido, mesmo com queda abrupta (kill -9, falta de energia).
 - Autosave transparente: o usuário nunca precisa "salvar" manualmente durante a edição.
 - Abertura rápida: primeiro quadro visível de R-A ≤ 2 s.
-- Suportar o formato `.hybrid` como SQLite (edição) e ZIP bundle (compartilhamento).
+- Suportar o formato `.rbsc` como SQLite (edição) e ZIP bundle (compartilhamento).
 
 ## 3. Non-Goals
 
@@ -38,11 +38,11 @@ Mesmas de SPEC-001.
 
 ### US-001 — Criar documento novo
 **Como** artista, **quero** criar um documento com dimensões, DPI e perfil de cor, **para** começar a trabalhar.
-- **AC-001 [BEH]:** Arquivo `.hybrid` é criado no sistema de arquivos com schema válido.
+- **AC-001 [BEH]:** Arquivo `.rbsc` é criado no sistema de arquivos com schema válido.
 - **AC-002 [BEH]:** Documento abre imediatamente após criação com uma camada raster vazia.
 
 ### US-002 — Abrir documento existente
-**Como** artista, **quero** abrir um arquivo `.hybrid` previamente salvo, **para** continuar a edição.
+**Como** artista, **quero** abrir um arquivo `.rbsc` previamente salvo, **para** continuar a edição.
 - **AC-003 [PERF]:** Primeiro quadro de R-A visível em ≤ 2 s no desktop de referência.
 - **AC-004 [BEH]:** Schema version verificada. Documento com versão futura exibe erro legível.
 
@@ -56,7 +56,7 @@ Mesmas de SPEC-001.
 - **AC-007 [BEH]:** 0 corrupções em 1.000 interrupções forçadas (kill -9 durante escrita).
 - **AC-008 [BEH]:** Ao reabrir, documento está na última transação confirmada.
 
-### US-005 — Exportar como bundle (.hybrid.zip)
+### US-005 — Exportar como bundle (.rbsc.zip)
 **Como** artista, **quero** exportar meu documento como um pacote para enviar a alguém, **para** compartilhar offline.
 - **AC-009 [BEH]:** Bundle contém SQLite + tiles + manifesto. Destinatário abre sem erro.
 - **AC-010 [BEH]:** Importar bundle recria o SQLite localmente.
@@ -69,11 +69,11 @@ Mesmas de SPEC-001.
 
 ### FR-001 (Must) [BEH]
 **Cobre:** RF-02.1
-O SISTEMA DEVE criar um arquivo SQLite em modo WAL com o schema de `contracts/document-format/hybrid-schema-v1.sql` (tabelas `file_meta`, `document_meta`, `nodes`, `tiles`, `tile_refs`, `assets`, `oplog`) ao criar um documento novo.
+O SISTEMA DEVE criar um arquivo SQLite em modo WAL com o schema de `contracts/document-format/rbsc-schema-v1.sql` (tabelas `file_meta`, `document_meta`, `nodes`, `tiles`, `tile_refs`, `assets`, `oplog`) ao criar um documento novo.
 
 ### FR-002 (Must) [BEH]
 **Cobre:** RF-02.4, RNF-02.6
-QUANDO o usuário abrir um arquivo `.hybrid`, O SISTEMA DEVE verificar `schema_version` e `PRAGMA integrity_check` antes de exibir o conteúdo.
+QUANDO o usuário abrir um arquivo `.rbsc`, O SISTEMA DEVE verificar `schema_version` e `PRAGMA integrity_check` antes de exibir o conteúdo.
 
 ### FR-003 (Must) [BEH]
 **Cobre:** RNF-02.2, RNF-02.6
@@ -117,7 +117,7 @@ Importação de bundle: O SISTEMA DEVE extrair o ZIP, validar a integridade e ab
 
 ### FR-013 (Must) [BEH]
 **Cobre:** RNF-07.6
-QUANDO o usuário abrir um `.hybrid` cuja `schema_version` for anterior à atual, O SISTEMA DEVE criar uma cópia de segurança do arquivo original, executar as migrações registradas em sequência dentro de uma única transação e só então abrir o documento. SE qualquer migração falhar, O SISTEMA DEVE manter o arquivo original intacto e informar o erro.
+QUANDO o usuário abrir um `.rbsc` cuja `schema_version` for anterior à atual, O SISTEMA DEVE criar uma cópia de segurança do arquivo original, executar as migrações registradas em sequência dentro de uma única transação e só então abrir o documento. SE qualquer migração falhar, O SISTEMA DEVE manter o arquivo original intacto e informar o erro.
 
 ## 7. Requisitos Não Funcionais
 
@@ -131,7 +131,7 @@ Memória de trabalho para R-A ≤ 1,5 GB com remoção de tiles sob pressão (a 
 
 ### NFR-003 [BEH]
 **Cobre:** RNF-07.6
-Compatibilidade retroativa: todo `.hybrid` de versão anterior DEVE abrir na versão atual.
+Compatibilidade retroativa: todo `.rbsc` de versão anterior DEVE abrir na versão atual.
 
 ## 8. Restrições
 
@@ -142,7 +142,7 @@ Compatibilidade retroativa: todo `.hybrid` de versão anterior DEVE abrir na ver
 ## 9. Decisões de Produto
 
 - **D-001:** Sem prompt "deseja salvar?" — autosave sempre.
-- **D-002:** Bundle = ZIP com extensão `.hybrid.zip`.
+- **D-002:** Bundle = ZIP com extensão `.rbsc.zip`.
 - **D-003:** Backup local desligado por padrão. Ativável nas preferências.
 
 ## 10. Implementation FAQ
@@ -152,7 +152,7 @@ Compatibilidade retroativa: todo `.hybrid` de versão anterior DEVE abrir na ver
 - **Q-003:** Qual compressor para tiles? **R:** zstd level 3 (balanço velocidade/tamanho). Avaliado no spike (c).
 - **Q-004:** E na web (WASM + OPFS)? **R:** SQLite compilado para WASM via sqlite-wasm com OPFS backend. Validado no spike (c).
 - **Q-005:** O formato prevê mipmaps de tiles? **R:** Não no R1. `tile_refs` já inclui a coluna `mip` (sempre 0 no R1), para que mipmaps não exijam migração destrutiva (ADR-007).
-- **Q-006:** Quem é dono do DDL? **R:** Somente esta spec. Outras specs definem registros em memória (`NodeRecord`, `OpRecord`) e referenciam o arquivo `hybrid-schema-v1.sql`.
+- **Q-006:** Quem é dono do DDL? **R:** Somente esta spec. Outras specs definem registros em memória (`NodeRecord`, `OpRecord`) e referenciam o arquivo `rbsc-schema-v1.sql`.
 
 ## 11. Métricas de Sucesso
 

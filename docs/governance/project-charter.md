@@ -14,7 +14,7 @@ Desenvolvimento **waterfall por fases com portões formais**, executado via Spec
 ## 3. Escopo por release
 | Release | Fases | Entrega |
 |---|---|---|
-| R1 Local Studio | 1–4 | Editor híbrido desktop, offline, formato `.hybrid`, undo, import/export |
+| R1 Local Studio | 1–4 | Editor híbrido desktop, offline, formato `.rbsc`, undo, import/export |
 | R2 Cloud | 5 | Contas, biblioteca, versões, sincronização |
 | R3 Collab | 6 | Compartilhamento, colaboração em tempo real, comentários |
 | R4 Everywhere | 7 | Mobile, web, acessibilidade, i18n |

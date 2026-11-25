@@ -7,7 +7,7 @@ body:
     id: spike
     attributes:
       label: Spike
-      options: ["a Rust + wgpu", "b Flutter + wgpu + caneta", "c Formato .hybrid", "d Pipeline de cor", "e UI web"]
+      options: ["a Rust + wgpu", "b Flutter + wgpu + caneta", "c Formato .rbsc", "d Pipeline de cor", "e UI web"]
     validations: {required: true}
   - type: textarea
     id: hyp

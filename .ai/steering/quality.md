@@ -40,7 +40,7 @@
 | Sync online | Propagação p95 ≤ 500 ms na mesma região | Teste de integração |
 | Sync offline | Reconciliação de 1.000 operações ≤ 10 s | Teste de integração |
 | Consistência visual | Dentro das tolerâncias acima | Golden images |
-| Compatibilidade | Todas as versões anteriores do `.hybrid` abrem | Corpus em `tests/compat/` |
+| Compatibilidade | Todas as versões anteriores do `.rbsc` abrem | Corpus em `tests/compat/` |
 | Recuperação na nuvem | RPO ≤ 5 min, RTO ≤ 4 h | Exercício de restauração |
 
 ## Golden images

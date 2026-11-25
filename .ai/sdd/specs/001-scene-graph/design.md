@@ -107,7 +107,7 @@ Conjunto R1 (decisão D-003, 19 valores): Normal, Multiply, Screen, Overlay, Dar
 
 ## 4. Modelo de Dados
 
-Esta spec define **estruturas em memória e registros de persistência**, não DDL. O esquema SQLite (tabelas, índices, pragmas) pertence exclusivamente à SPEC-002 e está em `contracts/document-format/hybrid-schema-v1.sql`.
+Esta spec define **estruturas em memória e registros de persistência**, não DDL. O esquema SQLite (tabelas, índices, pragmas) pertence exclusivamente à SPEC-002 e está em `contracts/document-format/rbsc-schema-v1.sql`.
 
 Registros definidos aqui (módulo `scene_engine::records`), consumidos pela SPEC-002:
 

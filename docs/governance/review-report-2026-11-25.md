@@ -8,7 +8,7 @@ Auditoria completa do repositório antes do compartilhamento. Resultado final: `
 | 1 | PLAN com fases/releases errados em relação à fonte | PLAN reescrito; catálogo de specs como fonte única |
 | 2 | Numeração de specs divergente do cânone da fonte | Specs renumeradas (005 = pincéis); 37 specs catalogadas |
 | 3 | Ciclo de dependência SPEC-002 ↔ SPEC-003 | `CommitBatch`/`OpRecord` como DTOs em `core-domain`; `document-engine` orquestra |
-| 4 | Dois DDLs possíveis do formato | DDL único `hybrid-schema-v1.sql`, dono SPEC-002 |
+| 4 | Dois DDLs possíveis do formato | DDL único `rbsc-schema-v1.sql`, dono SPEC-002 |
 | 5 | Seleção (RF-03.7, Must) sem dono | SPEC-007; removida da SPEC-005 |
 | 6 | FR sem cobertura (SPEC-003 FR-008, SPEC-001 FR-012) e NFR sem tarefa | Mapeados no design e nas tarefas |
 | 7 | Afirmação não verificada "27 blend modes ORA 0.0.6" | Conjunto próprio de 19 valores; ORA na SPEC-013 |
