@@ -19,7 +19,7 @@ jobs:
       - name: Arquivos gerados em dia
         run: |
           python3 tools/sdd/generate.py --check || {
-            echo '::error title=Arquivos gerados desatualizados::rode `make docs` e faça commit'
+            echo "::error title=Arquivos gerados desatualizados::rode \`make docs\` e faça commit"
             exit 1
           }
       - name: Verificar especificações (mesmo comando do dev)
