@@ -60,4 +60,6 @@ python3 tools/github/tasks_to_issues.py 001 --apply          # cria (só se o .s
 python3 tools/github/baseline_notes.py --notes baseline-R1-v1  # imprime as notas, sem criar tag nem release
 ```
 
+`tasks_to_issues.py --apply` é idempotente (marcador `<!-- task:SPEC-NNN:T-NNN -->`), mas a listagem de issues do GitHub é eventualmente consistente: depois de criar, o script espera até 60 s as issues novas aparecerem e avisa se alguma ainda não aparece. Se o aviso surgir, aguarde alguns minutos antes de rodar `--apply` de novo (a segunda rodada logo em seguida duplicou 2 issues no teste do sandbox).
+
 Tabela de todas as automações da Camada 3 (gatilho, flag, o que fazer se der errado): [team-workflow.md](../../docs/governance/team-workflow.md), seção 8. Em `tools/sdd/`: `new_spec.py`, `build_site.py` e `check_crate_deps.py`, também com testes (`tools/sdd/tests`).
