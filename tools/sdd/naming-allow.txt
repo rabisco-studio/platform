@@ -1,0 +1,5 @@
+# Exceções da guarda de nomenclatura (DEC-016). Formato: arquivo: padrão: motivo
+# O padrão é o texto exato de NAMING_FORBIDDEN em sdd_check.py.
+docs/governance/decision-log.md: \.hybrid\b: DEC-016 registra a extensão antiga que foi substituída
+docs/adr/ADR-007-rbsc-format.md: \.hybrid\b: histórico de mudanças explica a renomeação
+.ai/sdd/specs/002-rbsc-format/requirements.md: \.hybrid\b: histórico de mudanças explica a renomeação

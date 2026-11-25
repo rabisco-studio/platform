@@ -388,6 +388,54 @@ def check_governance():
                     err('decision-log.md', f'linha sem padrão recomendado: {cells[0]}')
 
 
+# --------------------------------------------------------------------- nomenclatura
+# DEC-016: o produto é "Rabisco" e a extensão é `.rbsc`. "Hybrid" não pode voltar como NOME.
+# O conceito "híbrido" (raster + vetor) e o HLC (Hybrid Logical Clock) são permitidos.
+NAMING_FORBIDDEN = (
+    r'\.hybrid\b', r'hybrid-schema', r'HybridError', r'hybrid-platform',
+    r'com\.hybrid', r'Hybrid Digital Art', r'hybrid-format',
+)
+NAMING_EXTS = {'.md', '.csv', '.json', '.sql', '.yml', '.yaml', '.py', '.toml', '.txt'}
+NAMING_SKIP_DIRS = {'.git', '__pycache__', 'node_modules', '_site'}
+NAMING_SELF = {'tools/sdd/sdd_check.py', 'tools/sdd/naming-allow.txt'}
+
+
+def load_naming_allow():
+    allow = set()
+    p = L.ROOT / 'tools/sdd/naming-allow.txt'
+    if not p.exists():
+        err('tools/sdd/naming-allow.txt', 'arquivo ausente')
+        return allow
+    for n, line in enumerate(L.read(p).splitlines(), 1):
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+        parts = [x.strip() for x in line.split(': ', 2)]
+        if len(parts) < 3 or not all(parts):
+            err(f'tools/sdd/naming-allow.txt:{n}', 'formato esperado "arquivo: padrão: motivo"')
+            continue
+        allow.add((parts[0], parts[1]))
+    return allow
+
+
+def check_naming():
+    allow = load_naming_allow()
+    for f in sorted(L.ROOT.rglob('*')):
+        if not f.is_file() or f.suffix.lower() not in NAMING_EXTS:
+            continue
+        r = f.relative_to(L.ROOT).as_posix()
+        if r in NAMING_SELF or any(part in NAMING_SKIP_DIRS for part in f.relative_to(L.ROOT).parts):
+            continue
+        try:
+            lines = L.read(f).splitlines()
+        except UnicodeDecodeError:
+            continue
+        for n, line in enumerate(lines, 1):
+            for pat in NAMING_FORBIDDEN:
+                if re.search(pat, line) and (r, pat) not in allow:
+                    err(f'{r}:{n}', f'nomenclatura proibida /{pat}/ (DEC-016: produto Rabisco, extensão .rbsc); corrija ou justifique em tools/sdd/naming-allow.txt')
+
+
 def check_generated_fresh():
     import subprocess
     r = subprocess.run([sys.executable, str(L.ROOT / 'tools/sdd/generate.py'), '--check'], capture_output=True, text=True, encoding='utf-8')
@@ -404,6 +452,7 @@ def main():
     check_adrs()
     check_links()
     check_governance()
+    check_naming()
     check_generated_fresh()
     if not summary:
         for e in ERR:
