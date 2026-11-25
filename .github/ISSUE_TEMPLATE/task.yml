@@ -1,0 +1,40 @@
+name: Tarefa de implementação (T-xxx)
+description: Criar só depois do gate G3 da spec. Uma issue por tarefa do tasks.md.
+title: "[SPEC-NNN T-NNN] "
+labels: ["task"]
+body:
+  - type: input
+    id: spec
+    attributes: {label: Spec, placeholder: "SPEC-001"}
+    validations: {required: true}
+  - type: input
+    id: task
+    attributes: {label: ID da tarefa (igual ao tasks.md), placeholder: "T-004"}
+    validations: {required: true}
+  - type: input
+    id: req
+    attributes: {label: Requisitos (FR/NFR), placeholder: "FR-004, NFR-001"}
+    validations: {required: true}
+  - type: dropdown
+    id: est
+    attributes:
+      label: Estimativa
+      description: Tarefas maiores que 4 h devem ser quebradas na spec (CR classe C2).
+      options: ["1 h", "2 h", "3 h", "4 h"]
+    validations: {required: true}
+  - type: input
+    id: deps
+    attributes: {label: Dependências, placeholder: "T-001, SPEC-002 T-004 (ou Nenhuma)"}
+    validations: {required: true}
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Copiar do tasks.md. Não alterar o escopo aqui; mudou o escopo, abra uma CR.
+    validations: {required: true}
+  - type: textarea
+    id: verify
+    attributes:
+      label: Verificação
+      description: Como a tarefa é considerada concluída (copiar do tasks.md).
+    validations: {required: true}

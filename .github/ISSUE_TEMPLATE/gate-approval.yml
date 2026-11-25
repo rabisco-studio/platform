@@ -1,0 +1,43 @@
+name: Pedido de aprovação de gate (G1 a G5)
+description: O dono da spec pede a aprovação de um portão. Quem aprova nunca é o autor.
+title: "[SPEC-NNN] G?: pedido de aprovação"
+labels: ["gate"]
+body:
+  - type: input
+    id: spec
+    attributes:
+      label: Spec
+      placeholder: "SPEC-001"
+    validations: {required: true}
+  - type: dropdown
+    id: gate
+    attributes:
+      label: Portão
+      options:
+        - "G1 Requisitos"
+        - "G2 Design"
+        - "G3 Tarefas"
+        - "G4 Implementação"
+        - "G5 Revisão"
+    validations: {required: true}
+  - type: input
+    id: pr
+    attributes:
+      label: PR que altera o .status
+      placeholder: "#123"
+    validations: {required: true}
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist do autor
+      options:
+        - {label: "make verify passou", required: true}
+        - {label: "Sem perguntas (Q-) abertas e sem TBD", required: true}
+        - {label: "Todo FR tem Cobre:, linha no design e tarefa na cobertura", required: true}
+        - {label: "Aprovador indicado é diferente do autor", required: true}
+  - type: input
+    id: approver
+    attributes:
+      label: Aprovador
+      description: Conforme docs/governance/raci.md
+    validations: {required: true}

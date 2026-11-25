@@ -1,0 +1,26 @@
+name: Spike (experimento da Fase 0)
+description: Experimento limitado que produz decisão e números, nunca código de produto.
+title: "[SPIKE-x] "
+labels: ["spike"]
+body:
+  - type: dropdown
+    id: spike
+    attributes:
+      label: Spike
+      options: ["a Rust + wgpu", "b Flutter + wgpu + caneta", "c Formato .hybrid", "d Pipeline de cor", "e UI web"]
+    validations: {required: true}
+  - type: textarea
+    id: hyp
+    attributes: {label: Hipótese e critério de aprovação, description: Copiar de spikes/<spike>/README.md}
+    validations: {required: true}
+  - type: input
+    id: hw
+    attributes: {label: Hardware de referência usado, description: Ver DEC-004}
+    validations: {required: true}
+  - type: textarea
+    id: result
+    attributes: {label: Resultado e números medidos, description: Preencher ao concluir}
+  - type: input
+    id: adrs
+    attributes: {label: ADRs a atualizar, placeholder: "ADR-001, ADR-002"}
+    validations: {required: true}

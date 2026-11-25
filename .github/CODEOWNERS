@@ -1,0 +1,21 @@
+# Dono/aprovador por caminho. A ÚLTIMA regra que casa vence.
+# Equipes da organização rabisco-studio; criar as equipes e adicionar as pessoas (DEC-002). Exigir "Require review from Code Owners" na branch main.
+# Autor não aprova o próprio PR (proteção de branch: "Require approval of the most recent push").
+
+*                         @rabisco-studio/pmo
+/docs/governance/         @rabisco-studio/pmo @rabisco-studio/architects
+/.github/                 @rabisco-studio/pmo @rabisco-studio/architects
+/tools/                   @rabisco-studio/pmo
+/Makefile                 @rabisco-studio/pmo
+/docs/constitution.md     @rabisco-studio/architects @rabisco-studio/product
+/.ai/steering/            @rabisco-studio/architects
+/docs/adr/                @rabisco-studio/architects
+/docs/architecture/       @rabisco-studio/architects
+/contracts/               @rabisco-studio/architects @rabisco-studio/tech-leads
+/.ai/sdd/specs/           @rabisco-studio/tech-leads
+/docs/requirements/       @rabisco-studio/product
+/spikes/                  @rabisco-studio/architects
+/core/                    @rabisco-studio/core-leads
+/backend/                 @rabisco-studio/backend-leads
+/clients/                 @rabisco-studio/client-leads
+/tests/                   @rabisco-studio/qa

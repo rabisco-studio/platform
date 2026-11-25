@@ -1,0 +1,25 @@
+name: Pergunta aberta (Q-xxx) ou decisão pendente
+description: Uma pergunta que bloqueia um gate ou uma decisão do projeto (DEC-xxx).
+title: "[Q] "
+labels: ["question"]
+body:
+  - type: input
+    id: where
+    attributes: {label: Onde nasceu, placeholder: "SPEC-001 Q-005, ou DEC-004"}
+    validations: {required: true}
+  - type: textarea
+    id: q
+    attributes: {label: Pergunta}
+    validations: {required: true}
+  - type: textarea
+    id: opts
+    attributes: {label: Opções e padrão recomendado, description: Todo item aberto deve ter um padrão recomendado}
+    validations: {required: true}
+  - type: input
+    id: owner
+    attributes: {label: Quem decide}
+    validations: {required: true}
+  - type: input
+    id: due
+    attributes: {label: Prazo, description: Se ninguém decidir até aqui, vale o padrão recomendado}
+    validations: {required: true}

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Convenções de issues e fluxo da equipe
+    url: https://github.com/rabisco-studio/platform/blob/main/docs/governance/issue-conventions.md
+    about: Leia antes de abrir uma issue.

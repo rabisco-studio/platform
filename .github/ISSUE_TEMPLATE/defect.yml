@@ -1,0 +1,22 @@
+name: Defeito (em documento ou código)
+description: Inconsistência entre documentos, erro em spec/contrato ou bug em código.
+title: "[BUG] "
+labels: ["defect"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Onde está o defeito
+      options: ["Spec (requirements/design/tasks)", "ADR", "Contrato", "Governança ou tooling", "Código (somente após G3)"]
+    validations: {required: true}
+  - type: input
+    id: loc
+    attributes: {label: Arquivo ou componente, placeholder: ".ai/sdd/specs/003-operations-undo/design.md"}
+    validations: {required: true}
+  - type: textarea
+    id: what
+    attributes: {label: O que está errado e o que era esperado}
+    validations: {required: true}
+  - type: textarea
+    id: repro
+    attributes: {label: Como reproduzir ou evidência, description: Saída do make verify, passos, versão}

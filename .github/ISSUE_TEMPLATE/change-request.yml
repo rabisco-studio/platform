@@ -1,0 +1,36 @@
+name: Change Request (mudança em documento aprovado, contrato ou arquitetura)
+description: Obrigatório antes de alterar algo já aprovado. Ver docs/governance/change-control.md.
+title: "[CR] "
+labels: ["change-request"]
+body:
+  - type: input
+    id: docs
+    attributes:
+      label: Documento(s) afetado(s)
+      placeholder: ".ai/sdd/specs/001-scene-graph/requirements.md, contracts/document-format/scene.json"
+    validations: {required: true}
+  - type: dropdown
+    id: class
+    attributes:
+      label: Classe da mudança
+      options:
+        - "C0 Editorial (typo, link)"
+        - "C1 Esclarecimento (sem mudar o sentido)"
+        - "C2 Requisito ou design (reabre o gate)"
+        - "C3 Contrato ou arquitetura (reabre o gate nas specs dependentes)"
+        - "C4 Escopo ou cronograma"
+    validations: {required: true}
+  - type: textarea
+    id: why
+    attributes: {label: Motivo}
+    validations: {required: true}
+  - type: textarea
+    id: change
+    attributes: {label: Mudança proposta}
+    validations: {required: true}
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto
+      description: Requisitos (use docs/requirements/traceability.csv), specs dependentes, contratos, cronograma.
+    validations: {required: true}
