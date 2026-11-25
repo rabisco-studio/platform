@@ -536,7 +536,7 @@ O glossário completo está em [docs/governance/glossary.md](docs/governance/glo
 ## 19. Licença, atribuição e segurança
 
 - **Visibilidade:** o repositório é **público**: qualquer pessoa na internet pode ler, clonar e fazer fork. O convite à organização controla só **quem escreve e aprova**.
-- **Licença:** ainda não definida (**DEC-003**). Enquanto não houver arquivo `LICENSE`, todos os direitos continuam reservados.
+- **Licença:** proprietária, todos os direitos reservados (arquivo [LICENSE](LICENSE), **DEC-003**). O repositório é público só para consulta; não é open source. Atenção: o GitHub **não permite desativar fork** em repositório público, e a licença não remove esse direito previsto nos Termos de Serviço; ela proíbe copiar, redistribuir e usar comercialmente. As partes derivadas do método SDD seguem a CC BY-NC-SA 4.0 (veja ATTRIBUTION.md).
 - **Atribuição:** o método SDD é adaptado do material de Felipe Fontoura (CC BY-NC-SA 4.0); veja [ATTRIBUTION.md](ATTRIBUTION.md). O conteúdo derivado do método não pode ser usado comercialmente por terceiros.
 - **Segurança:** nunca publique segredos ou dados pessoais. Se algo sensível for commitado por engano, avise o PMO e os arquitetos **imediatamente**; apagar o commit depois não basta, a chave precisa ser trocada.
 - **Marca:** o nome "Rabisco" ainda precisa de busca de anterioridade no INPI (veja o risco RSK-12).
