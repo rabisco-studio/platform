@@ -1,0 +1,46 @@
+# Registro de crates do core Rust e arestas de dependência PERMITIDAS.
+# Fonte única para: (a) o `sdd-check` (nomes de crates citados nas specs) e
+# (b) a verificação de P-01 no CI do código (`cargo deny`/script lê este arquivo).
+# Mudança neste arquivo = mudança de arquitetura: exige PR com aprovação dos arquitetos de core.
+# Nenhum crate pode depender de UI, backend ou provedor de nuvem (P-01).
+
+[core-domain]
+deps = []
+
+[color-engine]
+deps = ["core-domain"]
+
+[input-engine]
+deps = ["core-domain"]
+
+[scene-engine]
+deps = ["core-domain"]
+
+[history-engine]
+deps = ["core-domain", "scene-engine"]
+
+[raster-engine]
+deps = ["core-domain", "scene-engine", "color-engine"]
+
+[vector-engine]
+deps = ["core-domain", "scene-engine"]
+
+[brush-engine]
+deps = ["core-domain", "color-engine", "input-engine", "raster-engine"]
+
+[render-engine]
+deps = ["core-domain", "scene-engine", "color-engine", "raster-engine", "vector-engine", "brush-engine"]
+
+[file-engine]
+deps = ["core-domain", "scene-engine"]
+
+[document-engine]
+deps = ["core-domain", "scene-engine", "history-engine", "raster-engine", "vector-engine", "brush-engine", "color-engine", "input-engine", "render-engine", "file-engine"]
+
+[sync-engine]
+fase = "5"
+deps = ["core-domain", "scene-engine", "history-engine", "file-engine"]
+
+[plugin-engine]
+fase = "8"
+deps = ["core-domain"]
