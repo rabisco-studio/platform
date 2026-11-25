@@ -8,6 +8,7 @@ Uso:
 
 Somente biblioteca padrão. Veja docs/governance/team-workflow.md para as regras.
 """
+import datetime
 import re
 import sys
 import pathlib
@@ -346,7 +347,7 @@ def check_links():
 
 
 def check_governance():
-    for need in ('.github/CODEOWNERS', '.github/workflows/sdd-check.yml', '.github/rulesets/main-protection.json', '.github/ISSUE_TEMPLATE/config.yml', '.github/ISSUE_TEMPLATE/change-request.yml', '.github/ISSUE_TEMPLATE/gate-approval.yml', '.github/ISSUE_TEMPLATE/task.yml', '.github/ISSUE_TEMPLATE/spike.yml', '.github/ISSUE_TEMPLATE/open-question.yml', '.github/ISSUE_TEMPLATE/defect.yml', 'docs/governance/issue-conventions.md', 'docs/templates/README.md', 'docs/templates/spec-requirements-template.md', 'docs/templates/spec-design-template.md', 'docs/templates/spec-tasks-template.md', 'docs/templates/adr-template.md', 'docs/templates/spike-plan-template.md', 'docs/templates/spike-report-template.md', 'docs/templates/gate-review-template.md', 'docs/templates/test-plan-template.md', 'docs/templates/privacy-impact-template.md', 'docs/templates/decision-entry-template.md', 'docs/templates/risk-entry-template.md', 'docs/templates/release-baseline-template.md', 'docs/templates/status-report-template.md', 'docs/templates/meeting-minutes-template.md', 'docs/templates/onboarding-checklist-template.md', 'docs/templates/handover-template.md', '.github/PULL_REQUEST_TEMPLATE/spec.md', '.github/PULL_REQUEST_TEMPLATE/gate.md', '.github/PULL_REQUEST_TEMPLATE/adr.md', '.github/PULL_REQUEST_TEMPLATE/contract.md', '.github/PULL_REQUEST_TEMPLATE/governance.md', '.github/PULL_REQUEST_TEMPLATE/code.md', '.github/pull_request_template.md', 'tools/github/setup-labels-milestones.py', 'tools/github/README.md', 'tools/github/ghlib.py', 'tools/github/check_pr_title.py', 'tools/github/check_gate.py', 'tools/github/impact_comment.py', 'tools/github/move_card.py', 'tools/github/overdue.py', 'tools/github/weekly_report.py', 'tools/github/nudge_blocked.py', 'tools/github/tests/support.py', '.github/labeler.yml', '.github/workflows/labeler.yml', '.github/workflows/pr-title.yml', '.github/workflows/gate-check.yml', '.github/workflows/impact-comment.yml', '.github/workflows/move-card.yml', '.github/workflows/weekly.yml', '.github/workflows/baseline-release.yml', '.github/workflows/pages.yml', '.github/workflows/code-ci.yml', 'tools/sdd/new_spec.py', 'tools/sdd/build_site.py', 'tools/sdd/check_crate_deps.py', 'tools/github/tasks_to_issues.py', 'tools/github/baseline_notes.py', 'tools/sdd/tests/support.py', 'tools/sdd/tests/test_new_spec.py', 'tools/sdd/tests/test_crate_deps_and_site.py', 'tools/github/tests/test_tasks_and_baseline.py',
+    for need in ('.github/CODEOWNERS', '.github/workflows/sdd-check.yml', '.github/rulesets/main-protection.json', '.github/ISSUE_TEMPLATE/config.yml', '.github/ISSUE_TEMPLATE/change-request.yml', '.github/ISSUE_TEMPLATE/gate-approval.yml', '.github/ISSUE_TEMPLATE/task.yml', '.github/ISSUE_TEMPLATE/spike.yml', '.github/ISSUE_TEMPLATE/open-question.yml', '.github/ISSUE_TEMPLATE/defect.yml', 'docs/governance/issue-conventions.md', 'docs/templates/README.md', 'docs/templates/spec-requirements-template.md', 'docs/templates/spec-design-template.md', 'docs/templates/spec-tasks-template.md', 'docs/templates/adr-template.md', 'docs/templates/spike-plan-template.md', 'docs/templates/spike-report-template.md', 'docs/templates/gate-review-template.md', 'docs/templates/test-plan-template.md', 'docs/templates/privacy-impact-template.md', 'docs/templates/decision-entry-template.md', 'docs/templates/risk-entry-template.md', 'docs/templates/release-baseline-template.md', 'docs/templates/status-report-template.md', 'docs/templates/meeting-minutes-template.md', 'docs/templates/onboarding-checklist-template.md', 'docs/templates/handover-template.md', '.github/PULL_REQUEST_TEMPLATE/spec.md', '.github/PULL_REQUEST_TEMPLATE/gate.md', '.github/PULL_REQUEST_TEMPLATE/adr.md', '.github/PULL_REQUEST_TEMPLATE/contract.md', '.github/PULL_REQUEST_TEMPLATE/governance.md', '.github/PULL_REQUEST_TEMPLATE/code.md', '.github/pull_request_template.md', 'tools/github/setup-labels-milestones.py', 'tools/github/README.md', 'tools/github/ghlib.py', 'tools/github/check_pr_title.py', 'tools/github/check_gate.py', 'tools/github/impact_comment.py', 'tools/github/move_card.py', 'tools/github/overdue.py', 'tools/github/weekly_report.py', 'tools/github/nudge_blocked.py', 'tools/github/tests/support.py', '.github/labeler.yml', '.github/workflows/labeler.yml', '.github/workflows/pr-title.yml', '.github/workflows/gate-check.yml', '.github/workflows/impact-comment.yml', '.github/workflows/move-card.yml', '.github/workflows/weekly.yml', 'journal/README.md', 'docs/templates/journal-entry-template.md', 'tools/sdd/tests/test_journal.py', '.github/workflows/baseline-release.yml', '.github/workflows/pages.yml', '.github/workflows/code-ci.yml', 'tools/sdd/new_spec.py', 'tools/sdd/build_site.py', 'tools/sdd/check_crate_deps.py', 'tools/github/tasks_to_issues.py', 'tools/github/baseline_notes.py', 'tools/sdd/tests/support.py', 'tools/sdd/tests/test_new_spec.py', 'tools/sdd/tests/test_crate_deps_and_site.py', 'tools/github/tests/test_tasks_and_baseline.py',
                  'Makefile', 'README.md', 'docs/governance/team-workflow.md', 'docs/governance/raci.md',
                  'docs/governance/change-control.md', 'docs/governance/risk-register.md',
                  'docs/governance/decision-log.md', 'docs/governance/project-charter.md',
@@ -388,6 +389,37 @@ def check_governance():
                     err('decision-log.md', f'linha sem padrão recomendado: {cells[0]}')
 
 
+JOURNAL_ENTRY = re.compile(r'journal/([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)/(\d{4}-\d{2}-\d{2})/entry\.md')
+
+
+def check_journal():
+    """journal/ só aceita README.md e journal/<usuario-github>/<AAAA-MM-DD>/entry.md com cabeçalho coerente."""
+    base = L.ROOT / 'journal'
+    if not base.exists():
+        return
+    for p in sorted(base.rglob('*')):
+        if p.is_dir() or '__pycache__' in p.parts:
+            continue
+        where = p.relative_to(L.ROOT).as_posix()
+        if where == 'journal/README.md':
+            continue
+        m = JOURNAL_ENTRY.fullmatch(where)
+        if not m:
+            err(where, 'fora do padrão journal/<usuario-github>/<AAAA-MM-DD>/entry.md')
+            continue
+        user, date = m.groups()
+        try:
+            datetime.date.fromisoformat(date)
+        except ValueError:
+            err(where, f'data inválida na pasta: {date}')
+            continue
+        text = L.read(p)
+        if L.header_field(text, 'Data') != date:
+            err(where, f'**Data:** deve ser {date} (igual à pasta)')
+        if L.header_field(text, 'Autor') != user:
+            err(where, f'**Autor:** deve ser {user} (igual à pasta)')
+
+
 def check_generated_fresh():
     import subprocess
     r = subprocess.run([sys.executable, str(L.ROOT / 'tools/sdd/generate.py'), '--check'], capture_output=True, text=True, encoding='utf-8')
@@ -403,6 +435,7 @@ def main():
     check_specs(reqs, specs)
     check_adrs()
     check_links()
+    check_journal()
     check_governance()
     check_generated_fresh()
     if not summary:

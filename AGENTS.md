@@ -35,6 +35,7 @@ contracts/        → schemas e conformance (fonte única)
 docs/adr/         → decisões arquiteturais transversais
 docs/constitution.md → princípios inegociáveis (P-01 a P-11)
 spikes/           → experimentos rotulados; nunca produção
+journal/          → diário do projeto (journal/<usuario-github>/<AAAA-MM-DD>/entry.md); não é fonte da verdade
 ```
 
 ## Convenções
