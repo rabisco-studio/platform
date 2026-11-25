@@ -81,11 +81,18 @@ Um card representa **uma spec** (não uma tarefa) e fica na coluna da fase **em 
 | **Dono** | Pessoa (Assignee) | membro da organização | Responsável por escrever a spec. Autor ≠ aprovador |
 
 ### 4.3 Automações embutidas (Workflows do projeto)
-| Workflow | Configuração | Efeito |
-|---|---|---|
-| Item added to project | Status = **Ideia** | Todo card novo começa em Ideia |
-| Item closed | Status = **Feito** | Fechar o card o leva a Feito (use só em specs concluídas) |
-| Item reopened | Status = **Requisitos** | Reabertura obriga a revisitar os requisitos; ajuste depois para a fase correta |
+**Só podem ser configuradas na interface:** a API do GitHub não expõe os workflows embutidos de um Project, então nenhum script do repositório as ativa. Quem for administrador da organização faz isto uma vez, no quadro **"Rabisco Platform"**.
+
+Caminho comum: organização `rabisco-studio` → **Projects** → **Rabisco Platform** → menu **⋯** (canto superior direito) → **Settings** → **Workflows** (barra lateral esquerda). Clique no workflow, ajuste e use **Save and turn on workflow**.
+
+- [ ] **Item added to project** — Workflows → *Item added to project* → em *Set*, escolha **Status = Ideia** → *Save and turn on workflow*. Todo card ou issue novo entra em Ideia.
+- [ ] **Item closed** — Workflows → *Item closed* → *Set* **Status = Feito** → *Save and turn on workflow*. Atenção: vale para todo item fechado, inclusive issues de pergunta e defeito.
+- [ ] **Pull request merged** — Workflows → *Pull request merged* → *Set* **Status = Feito**. Restrinja o filtro do workflow aos itens de **tarefa** (label `task`), se a interface oferecer o filtro; confira o escopo na tela antes de salvar. → *Save and turn on workflow*.
+- [ ] **Auto-add to project** — Workflows → *Auto-add to project* → **Edit** → *Repository*: `rabisco-studio/platform` → filtro `is:issue,pr is:open` (issues e PRs novos) → **Save** → *Turn on workflow*. Combinado com o primeiro item, tudo que for aberto no repositório aparece em Ideia.
+
+Já existente neste guia e mantido: *Item reopened* → **Status = Requisitos** (a reabertura obriga a revisitar os requisitos; ajuste depois para a fase correta).
+
+Depois de ativar, confira em *Workflows* que os quatro aparecem com o indicador de ativo. O estado atual **não está registrado aqui**: este checklist descreve o que fazer, não o que já foi feito.
 
 ### 4.4 Carga inicial
 Criar 1 card por spec do [catálogo](../requirements/spec-catalog.csv) (37). As 4 já escritas (001, 002, 003 e 005) entram direto em **Requisitos**; as outras 33 ficam em **Ideia**. Preencher Spec, Release, Fase e Rigor conforme o catálogo.
@@ -96,8 +103,22 @@ Criar 1 card por spec do [catálogo](../requirements/spec-catalog.csv) (37). As 
 - **Gates pendentes:** filtro nas colunas Requisitos, Design e Tarefas com label `gate`.
 
 ## 5. Milestones e labels (2 min)
-- Milestones: `R1 Local Studio`, `R2 Cloud`, `R3 Collab`, `R4 Everywhere`, `R5 Pro`, `Fase 0 Spikes`.
+- Milestones: `Fase 0 Spikes`, `R1 Local Studio`, `R2 Cloud`, `R3 Collab`, `R4 Everywhere`, `R5 Pro` (sem data de entrega).
 - Labels: `task`, `gate`, `spike`, `question`, `defect`, `change-request`, `adr`, `area:core`, `area:backend`, `area:clients`, `area:platform`, `rigor:anchored`, `rigor:spec-first`, `bloqueado` (detalhes em [issue-conventions](issue-conventions.md)). Os formulários de issue usam esses labels; crie-os antes de abrir a primeira issue.
+
+### 5.1 Criar tudo por script
+Em vez de criar à mão, rode [`tools/github/setup-labels-milestones.py`](../../tools/github/setup-labels-milestones.py). Requer Python 3 e a CLI `gh` autenticada (`gh auth login`) por uma conta com permissão de triagem ou escrita no repositório.
+
+```bash
+python3 tools/github/setup-labels-milestones.py            # ENSAIO (padrão): só lê e mostra o plano
+python3 tools/github/setup-labels-milestones.py --apply    # executa
+python3 tools/github/setup-labels-milestones.py --repo ORG/REPO
+```
+
+- O **ensaio** lista o que seria criado (`+`), atualizado (`~`) e ignorado (`=`), sem escrever nada.
+- É **idempotente**: o que já está igual é ignorado; descrição ou cor diferentes são **atualizadas** e relatadas. **Nunca apaga** nada (labels e milestones fora da lista só são contados).
+- Sai com código **3** se faltar permissão (e **2** se o `gh` faltar ou não estiver autenticado).
+- Depois do `--apply`, rode o ensaio de novo: deve mostrar **0 mudanças**.
 
 ## 6. Convite e primeiro uso (1 min)
 1. Convidar as pessoas **pelas equipes**, nunca individualmente.
