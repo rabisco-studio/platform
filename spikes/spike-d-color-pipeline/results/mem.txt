@@ -1,0 +1,9 @@
+Custo de memória (tile 256x256): RGBA8 = 256 KiB | RGBA16 = 512 KiB
+  R-A (4096x4096, 30 camadas): 7680 tiles se 100% preenchido | 8 bits = 1920 MiB | 16 bits = 3840 MiB
+  R-B (8192x8192, 10 camadas): 10240 tiles se 100% preenchido | 8 bits = 2560 MiB | 16 bits = 5120 MiB
+Conjunto de trabalho de um viewport de tablet (2048x1536 px = 8x6 = 48 tiles) com N camadas visíveis:
+   5 camadas visíveis: 240 tiles | 8 bits = 60 MiB | 16 bits = 120 MiB
+  10 camadas visíveis: 480 tiles | 8 bits = 120 MiB | 16 bits = 240 MiB
+  30 camadas visíveis: 1440 tiles | 8 bits = 360 MiB | 16 bits = 720 MiB
+Orçamento de cache de tiles em tablet (design da SPEC-002): 256 MiB = 1024 tiles RGBA8 ou 512 tiles RGBA16
+Observação: o 'iPad de referência' ainda não existe (DEC-004 está Aberta); os números acima são aritmética, não medição em um aparelho.

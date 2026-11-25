@@ -1,0 +1,18 @@
+[package]
+name = "spike-d-harness"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = "Spike (d): pipeline de cor e 16 bits. Experimento; nunca vai para produção."
+
+[workspace]
+
+[dependencies]
+moxcms = "0.9"
+lcms2 = "6.3"
+png = "0.18"
+rusqlite = { version = "0.43", features = ["bundled"] }
+zstd = "0.14"
+
+[profile.release]
+debug = false

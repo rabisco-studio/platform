@@ -1,0 +1,20 @@
+[package]
+name = "spike-d-crosscheck"
+version = "0.0.0"
+edition = "2021"
+publish = false
+description = "Spike (d): verifica se a biblioteca de cor compila para WASM, iOS e Android. Experimento."
+
+[workspace]
+
+[lib]
+crate-type = ["rlib"]
+
+[features]
+default = ["moxcms"]
+moxcms = ["dep:moxcms"]
+lcms2 = ["dep:lcms2"]
+
+[dependencies]
+moxcms = { version = "0.9", optional = true }
+lcms2 = { version = "6.3", optional = true }

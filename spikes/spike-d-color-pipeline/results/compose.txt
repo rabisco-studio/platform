@@ -1,0 +1,4 @@
+Composição em CPU de 30 camadas, viewport 2048x1536 (alfa pré-multiplicado, 'normal'); 12 threads lógicas. Mediana de 7 execuções:
+   1 thread(s): RGBA8 perceptual = 847.8 ms | RGBA16 perceptual = 977.6 ms | RGBA16 linear (LUT) = 1328.1 ms
+  12 thread(s): RGBA8 perceptual = 120.3 ms | RGBA16 perceptual = 125.5 ms | RGBA16 linear (LUT) = 356.3 ms
+Atenção: é CPU escalar. O custo real virá da GPU (spike a); isto só compara 8 e 16 bits sob as mesmas condições.

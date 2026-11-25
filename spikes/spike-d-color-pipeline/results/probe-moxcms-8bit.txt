@@ -1,0 +1,8 @@
+TransformOptions::default() = TransformOptions { rendering_intent: Perceptual, allow_use_cicp_transfer: true, prefer_fixed_point: true, interpolation_method: Linear, barycentric_weight_scale: Low }
+moxcms 8 bits com ΔE00 > 0,95 (varredura de 256x86x86): 39 casos; piores:
+  P3 [29, 24, 18] -> sRGB obtido [30, 23, 18] | ΔE00 = 1.298
+  P3 [10, 18, 24] -> sRGB obtido [7, 19, 24] | ΔE00 = 1.231
+  P3 [30, 24, 18] -> sRGB obtido [31, 23, 18] | ΔE00 = 1.161
+  P3 [9, 18, 24] -> sRGB obtido [6, 19, 24] | ΔE00 = 1.148
+  P3 [13, 21, 24] -> sRGB obtido [10, 22, 24] | ΔE00 = 1.141
+  P3 [29, 24, 21] -> sRGB obtido [30, 23, 21] | ΔE00 = 1.114
