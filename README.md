@@ -115,6 +115,7 @@ docs/
 contracts/                 Contratos legíveis por máquina: a fonte única das interfaces
 spikes/                    Planos dos experimentos da Fase 0
 tests/                     Reservada para testes (compat, e2e, graphics, integration, performance)
+journal/                   Diário do projeto: journal/<usuario-github>/<AAAA-MM-DD>/entry.md
 tools/sdd/                 sdd-check e o gerador de arquivos derivados
 
 .github/
@@ -396,7 +397,7 @@ Documento **aprovado** é congelado. Mudar exige uma **Change Request (CR)** apr
 
 | Grupo         | Onde                                        | Quantos       | O que há                                                                                                                                                                                        |
 | ------------- | ------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Documentos    | [docs/templates/](docs/templates/README.md) | 16            | Spec (requisitos, design, tarefas), ADR, spike (plano e relatório), revisão de gate, plano de testes, privacidade (DPIA), decisão, risco, baseline, status, ata, onboarding, passagem de bastão |
+| Documentos    | [docs/templates/](docs/templates/README.md) | 17            | Spec (requisitos, design, tarefas), ADR, spike (plano e relatório), revisão de gate, plano de testes, privacidade (DPIA), decisão, risco, baseline, status, ata, onboarding, passagem de bastão, diário |
 | Issues        | `.github/ISSUE_TEMPLATE/`                   | 6 formulários | Change Request, gate, tarefa, spike, pergunta, defeito                                                                                                                                          |
 | Pull requests | `.github/PULL_REQUEST_TEMPLATE/`            | 6 + 1 geral   | spec, gate, adr, contract, governance, code                                                                                                                                                     |
 

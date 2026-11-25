@@ -26,6 +26,7 @@
 | [meeting-minutes-template.md](meeting-minutes-template.md) | Ata de reunião | Redator | Facilitador | Issue ou discussão da reunião |
 | [onboarding-checklist-template.md](onboarding-checklist-template.md) | Entrada de uma pessoa nova | Responsável pelo onboarding | PMO | Issue da pessoa |
 | [handover-template.md](handover-template.md) | Troca de dono de spec, área ou atividade | Quem sai | Quem recebe + PMO | Issue ou PR |
+| [journal-entry-template.md](journal-entry-template.md) | Diário do dia (o que foi feito, decisões, problemas, pendências) | Cada pessoa do projeto | PMO (CODEOWNERS) | journal/<usuario-github>/<AAAA-MM-DD>/entry.md |
 
 ## Issues (formulários em .github/ISSUE_TEMPLATE/)
 | Formulário | Quando usar |
