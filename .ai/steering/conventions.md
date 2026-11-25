@@ -1,4 +1,4 @@
-# Conventions — Hybrid Digital Art Platform
+# Conventions — Rabisco
 
 ## Idioma
 
@@ -15,7 +15,7 @@
 - Erros como enums tipados, nunca strings soltas.
 
 ### Módulos Java (backend)
-- Packages em `com.hybrid.platform.<modulo>`.
+- Packages em `com.rbsc.platform.<modulo>`.
 - Classes em `PascalCase`, métodos em `camelCase`.
 - DTOs gerados a partir dos contratos em `contracts/api/`.
 

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://hybrid-platform.dev/schemas/document-format/operation.json",
+  "$id": "https://raw.githubusercontent.com/rabisco-studio/platform/main/contracts/document-format/operation.json",
   "title": "Operation Envelope Schema",
-  "description": "Schema do envelope de operação do .hybrid",
+  "description": "Schema do envelope de operação do .rbsc",
   "type": "object",
   "required": ["op_id", "author_id", "device_id", "hlc", "base_seq", "schema_version", "op_type", "targets", "payload", "inverse"],
   "properties": {

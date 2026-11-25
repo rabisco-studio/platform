@@ -1,4 +1,4 @@
-# Tech Stack — Hybrid Digital Art Platform
+# Tech Stack — Rabisco
 
 > Toda escolha é uma hipótese até a ADR correspondente ser aprovada com evidência de spike.
 > Leia o motivo antes de propor troca. Se o motivo não se sustenta mais, abra o processo de ADR.

@@ -1,6 +1,6 @@
 spec_id,slug,titulo,area,fase,release,rigor,estado
 001,scene-graph,Scene Graph,core,1,R1,anchored,escrita
-002,hybrid-format,Formato .hybrid e ciclo de vida do documento,core,1,R1,anchored,escrita
+002,rbsc-format,Formato .rbsc e ciclo de vida do documento,core,1,R1,anchored,escrita
 003,operations-undo,Modelo de operações e Undo/Redo,core,1,R1,anchored,escrita
 004,hybrid-render,"Render de camadas raster e vetor no mesmo canvas (GpuContext, composição, blend modes)",core,1,R1,anchored,planejada
 005,brush-painting,Pincéis e pintura raster,core,2,R1,anchored,escrita

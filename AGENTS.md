@@ -1,4 +1,4 @@
-# Hybrid Digital Art Platform
+# Rabisco
 
 Editor gráfico híbrido (raster + vetor), offline-first, multiplataforma.
 Contexto completo: @.ai/steering/product.md

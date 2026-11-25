@@ -11,7 +11,7 @@ Probabilidade (P) e Impacto (I): 1 baixo – 5 alto. Exposição = P × I. Revis
 |---|---|---|---|---|---|---|---|
 | RSK-01 | Latência de caneta acima da meta no Flutter com wgpu (ADR-003) | 3 | 5 | 15 | Spike B antes de fixar a arquitetura; plano B nativo por plataforma | ARQ | Spike B > 30 ms p95 |
 | RSK-02 | Rust + wgpu inviável em algum alvo (ADR-001/002) | 2 | 5 | 10 | Spike A em Windows/macOS primeiro; web depois | ARQ | Spike A falha |
-| RSK-03 | Formato `.hybrid` sofre corrupção sob queda de energia | 2 | 5 | 10 | WAL, CommitBatch atômico, teste de 1.000 kills (spike C) | TL core | > 0 corrupções |
+| RSK-03 | Formato `.rbsc` sofre corrupção sob queda de energia | 2 | 5 | 10 | WAL, CommitBatch atômico, teste de 1.000 kills (spike C) | TL core | > 0 corrupções |
 | RSK-04 | Explosão de escopo: ~37 specs previstas, só 4 escritas | 4 | 4 | 16 | Cobertura medida em `coverage.md`; escrever specs por fase; gate por release | PMO | Spec atrasada > 2 semanas |
 | RSK-05 | Merge conflicts em documentos compartilhados | 3 | 3 | 9 | CODEOWNERS, arquivos gerados, uma spec por PR, `sdd-check` | PMO | Conflito recorrente |
 | RSK-06 | Metas numéricas sem hardware de referência | 4 | 3 | 12 | DEC-004 no início da Fase 0 | ARQ | Spike sem baseline |

@@ -39,7 +39,7 @@
 **Dependências:** Nenhuma
 **Checklist:**
 - [ ] Declarar `NodeKind` como `#[non_exhaustive]` (reserva para adjustment layers, FR-012)
-- [ ] Criar o workspace Cargo (`core/Cargo.toml`) e o crate `core-domain` (IDs `NodeId`, trait de erro `HybridError`) conforme `docs/architecture/crates.toml`
+- [ ] Criar o workspace Cargo (`core/Cargo.toml`) e o crate `core-domain` (IDs `NodeId`, trait de erro `RabiscoError`) conforme `docs/architecture/crates.toml`
 - [ ] Criar crate `scene-engine` em `core/scene-engine/`
 - [ ] Implementar `SceneGraph` com arena (`Vec<NodeSlot>`) e `HashMap<NodeId, NodeIndex>`
 - [ ] Implementar `NodeSlot`, `NodeData`, `NodeKind` enum (6 variantes)

@@ -12,7 +12,7 @@ Todas as ADRs estão **Proposta** até aprovação formal (ver `docs/governance/
 | [ADR-004](ADR-004-react-web.md) | — React + WebAssembly para web | Proposta | Spike (e) |
 | [ADR-005](ADR-005-modular-monolith.md) | — Arquitetura modular para o backend | Proposta | Baixo risco |
 | [ADR-006](ADR-006-scene-graph.md) | — Scene Graph como representação documental | Proposta | SPEC-001 |
-| [ADR-007](ADR-007-hybrid-format.md) | — Formato nativo `.hybrid` (SQLite + bundle ZIP) | Proposta | Spike (c) |
+| [ADR-007](ADR-007-rbsc-format.md) | — Formato nativo `.rbsc` (SQLite + bundle ZIP) | Proposta | Spike (c) |
 | [ADR-008](ADR-008-offline-first.md) | — Persistência local e estratégia offline-first | Proposta | SPEC-003 |
 | [ADR-009](ADR-009-operations-sync.md) | — Sincronização baseada em operações | Proposta | SPEC-003 |
 | [ADR-010](ADR-010-concurrent-collaboration.md) | — Estratégia de colaboração concorrente | Proposta | Spike da Fase 6 |

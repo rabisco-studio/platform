@@ -1,4 +1,4 @@
-# ADR-007 — Formato nativo `.hybrid` (SQLite + bundle ZIP)
+# ADR-007 — Formato nativo `.rbsc` (SQLite + bundle ZIP)
 
 **Status:** Proposta
 **Origem:** Revisada na v2
@@ -28,10 +28,10 @@ O formato nativo precisa de atomicidade (interrupção durante salvamento não c
 **Formato de trabalho local:** SQLite em modo WAL.
 **Bundle de troca:** ZIP com o SQLite (sem WAL), um manifesto e a mesma estrutura lógica.
 
-Estrutura lógica (DDL em `contracts/document-format/hybrid-schema-v1.sql`, dono: SPEC-002):
+Estrutura lógica (DDL em `contracts/document-format/rbsc-schema-v1.sql`, dono: SPEC-002):
 
 ```
-project.hybrid (SQLite)
+project.rbsc (SQLite)
 ├── file_meta      schema_version, doc_id, timestamps, versão do app
 ├── document_meta  dimensões, DPI, perfil ICC, profundidade, espaço de mesclagem
 ├── nodes          estado materializado da árvore (SPEC-001)
@@ -64,8 +64,8 @@ Atomicidade do SQLite resolve o cenário de interrupção. Carga parcial resolve
 
 ## 7. Referências
 
-- Spike (c): `spikes/spike-c-hybrid-format/README.md`
-- DDL: `contracts/document-format/hybrid-schema-v1.sql`
+- Spike (c): `spikes/spike-c-rbsc-format/README.md`
+- DDL: `contracts/document-format/rbsc-schema-v1.sql`
 - Specs: SPEC-002 (formato e ciclo de vida), SPEC-003 (oplog)
 
 ## Registro de alterações
@@ -73,3 +73,4 @@ Atomicidade do SQLite resolve o cenário de interrupção. Carga parcial resolve
 | Data | Alteração |
 |------|-----------|
 | 2026-11-25 | Estrutura lógica alinhada ao schema da SPEC-002: `nodes`/`tile_refs` como estado materializado; `snapshots`, `thumbnails` e `manifest` adiados ou renomeados (`file_meta`); coluna `mip` reservada; compressão zstd. |
+| 2026-11-25 | Renomeação (DEC-016): extensão `.hybrid` → `.rbsc` e `.hybrid.zip` → `.rbsc.zip`; arquivos e pastas relacionados renomeados. Sem mudança de decisão técnica. |

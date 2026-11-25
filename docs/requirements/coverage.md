@@ -25,7 +25,7 @@ Gerado a partir de `requirements-catalog.csv`, `spec-catalog.csv` e das specs es
 | Spec | Título | Fase | Release | Rigor | Estado | `.status` | FRs | Tarefas | Horas |
 |---|---|---|---|---|---|---|---|---|---|
 | SPEC-001 | Scene Graph | 1 | R1 | anchored | escrita | requirements:draft | 12 | 10 | 29 |
-| SPEC-002 | Formato .hybrid e ciclo de vida do documento | 1 | R1 | anchored | escrita | requirements:draft | 13 | 10 | 34 |
+| SPEC-002 | Formato .rbsc e ciclo de vida do documento | 1 | R1 | anchored | escrita | requirements:draft | 13 | 10 | 34 |
 | SPEC-003 | Modelo de operações e Undo/Redo | 1 | R1 | anchored | escrita | requirements:draft | 11 | 9 | 30 |
 | SPEC-004 | Render de camadas raster e vetor no mesmo canvas | 1 | R1 | anchored | planejada | - | - | - | - |
 | SPEC-005 | Pincéis e pintura raster | 2 | R1 | anchored | escrita | requirements:draft | 12 | 9 | 28 |

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://hybrid-platform.dev/schemas/document-format/bundle-manifest.json",
+  "$id": "https://raw.githubusercontent.com/rabisco-studio/platform/main/contracts/document-format/bundle-manifest.json",
   "title": "Bundle Manifest Schema",
-  "description": "Manifesto do bundle .hybrid.zip",
+  "description": "Manifesto do bundle .rbsc.zip",
   "type": "object",
   "required": [
     "schema_version",
