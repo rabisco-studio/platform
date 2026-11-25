@@ -414,6 +414,8 @@ O [índice de templates](docs/templates/README.md) diz, para cada um, **quando u
 | `make check`  | Só valida (erros falham, avisos não)                                                                   |
 | `make strict` | Valida e falha também com avisos (padrão para criar uma baseline)                                      |
 | `make new-spec N=018` | Cria a pasta de uma spec planejada a partir dos templates (veja a seção 15)                          |
+| `make new-entry` | Cria a entrada do diário de hoje (`journal/<usuario>/<data>/entry.md`) a partir do template; `D=AAAA-MM-DD` e `U=usuario` são opcionais |
+| `make lint-workflows` | Valida os workflows com o `actionlint` (precisa estar instalado; não faz parte do `make verify`) |
 | `make test-tools` | Roda os testes dos scripts de automação (`tools/github/tests`); já faz parte do `make verify` |
 
 Requer apenas **Python 3** (e `git`, para os testes dos scripts). O CI (workflow `sdd-check`, job `verify`) roda em todo PR e em todo push na `main`. Se um arquivo gerado estiver desatualizado, a falha diz: **rode `make docs` e faça commit**.

@@ -11,6 +11,7 @@ Roteador de `tools/`: **uma linha por script**. Todos usam só a biblioteca padr
 | [generate.py](sdd/generate.py) | Gera os arquivos derivados: `INDEX.md`, `coverage.md`, `traceability.csv` e o índice de ADRs | `make docs` |
 | [sddlib.py](sdd/sddlib.py) | Biblioteca comum: estágios (`STAGES`), leitura de catálogos e tarefas | importada pelos outros |
 | [new_spec.py](sdd/new_spec.py) | Cria a pasta de uma spec planejada a partir dos templates | `make new-spec N=018` |
+| [new_entry.py](sdd/new_entry.py) | Cria a entrada do diário do dia a partir do template | `make new-entry` |
 | [build_site.py](sdd/build_site.py) | Gera a página estática de pré-visualização | workflow `pages` |
 | [check_crate_deps.py](sdd/check_crate_deps.py) | Confere as dependências dos crates do core contra `crates.toml` (P-01) | workflow `code-ci` |
 

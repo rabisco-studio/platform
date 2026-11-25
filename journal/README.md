@@ -11,7 +11,7 @@ journal/<usuario-github>/<AAAA-MM-DD>/entry.md
 Exemplo: `journal/maria-brito15/2026-11-25/entry.md`. Uma entrada por pessoa por dia, sempre com o nome `entry.md`. O `<usuario-github>` é o login da pessoa no GitHub, e a data usa o formato ISO (AAAA-MM-DD).
 
 ## Como escrever
-1. Copie o [template](../docs/templates/journal-entry-template.md) para o caminho acima.
+1. Rode `make new-entry` (cria a entrada de hoje a partir do [template](../docs/templates/journal-entry-template.md), com data e autor preenchidos; `D=AAAA-MM-DD` e `U=usuario` são opcionais), ou copie o template para o caminho acima.
 2. Preencha o cabeçalho (`**Data:**` e `**Autor:**` precisam bater com a pasta; o `make verify` confere).
 3. Conte o que aconteceu, com fatos: PRs, issues, decisões (`DEC-nnn`, `ADR-nnn`), problemas e o que ficou pendente.
 4. Abra um PR de governança (`?template=governance.md`) com título `GOV: diário de <usuário> em <data>`.
