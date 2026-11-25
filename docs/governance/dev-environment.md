@@ -26,8 +26,8 @@ Todos usam só a biblioteca padrão do Python; não há `pip install`.
 ## 2. Core e spikes (Rust)
 | Ferramenta | Versão | Para quê | Instalar |
 |---|---|---|---|
-| Rust (via `rustup`) | rustup 1.29; toolchain *stable*, a definir | Core, motor gráfico, spikes a, c e d | `winget install Rustlang.Rustup` · [rustup.rs](https://rustup.rs) |
-| Compilador C/C++ | a definir | O Rust precisa de um *linker* | **Windows:** Visual Studio Build Tools 2022 com a carga "Desenvolvimento para desktop com C++" (`winget install Microsoft.VisualStudio.2022.BuildTools --override "--passive --wait --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"`). **macOS:** `xcode-select --install`. **Linux:** `build-essential` |
+| Rust (via `rustup`) | rustc/cargo 1.100 (*stable*, host `x86_64-pc-windows-msvc`); rustup 1.29; mínimo a definir | Core, motor gráfico, spikes a, c e d | `winget install Rustlang.Rustup` · [rustup.rs](https://rustup.rs) |
+| Compilador C/C++ | MSVC 14.44 (Build Tools 2022) | O Rust precisa de um *linker* | **Windows:** Visual Studio Build Tools 2022 com a carga "Desenvolvimento para desktop com C++" (`winget install Microsoft.VisualStudio.2022.BuildTools --override "--passive --wait --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"`). **macOS:** `xcode-select --install`. **Linux:** `build-essential` |
 | GPU com driver recente | — | Spike a (wgpu): DX12 e Vulkan no Windows, Metal no macOS | Atualize o driver do fabricante |
 | Navegador com WebGPU | Chrome 158 usado | Spikes a, c (SQLite WASM com OPFS) e e | [google.com/chrome](https://www.google.com/chrome) |
 
