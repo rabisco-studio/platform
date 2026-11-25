@@ -4,4 +4,4 @@ O método de Desenvolvimento Orientado a Especificações (SDD) usado neste repo
 
 - Adaptações: tradução e ajuste ao produto, nomes de pastas, catálogos e ferramentas de verificação próprios.
 - Os documentos derivados do material permanecem sob a mesma licença (CompartilhaIgual) e **não podem ser usados comercialmente** sem observar essa licença (ver DEC-003 e RSK-11).
-- O conteúdo específico do produto (requisitos, arquitetura, specs) é do projeto e segue a licença definida em DEC-003.
+- O conteúdo específico do produto (requisitos, arquitetura, specs) é do projeto e segue a licença definida em DEC-003 (arquivo [LICENSE](LICENSE): proprietária, todos os direitos reservados).

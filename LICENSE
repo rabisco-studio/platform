@@ -1,0 +1,64 @@
+Copyright (c) 2026 Rabisco Studio. Todos os direitos reservados.
+Copyright (c) 2026 Rabisco Studio. All rights reserved.
+
+LICENÇA PROPRIETÁRIA (PORTUGUÊS)
+
+Este repositório é público apenas para consulta. Não é software livre nem de
+código aberto (open source). Nenhuma licença é concedida sobre o seu conteúdo
+(código, especificações, documentos, contratos, templates e demais arquivos),
+exceto o que está expressamente permitido abaixo.
+
+1. Permitido: ler e visualizar o conteúdo, e exercer os direitos que os Termos
+   de Serviço do GitHub concedem a outros usuários do GitHub (visualizar e criar
+   forks dentro da plataforma), exclusivamente para essa finalidade. Esses
+   direitos decorrem dos Termos de Serviço do GitHub e não podem ser retirados
+   por este arquivo enquanto o repositório for público.
+
+2. Proibido, sem autorização prévia e por escrito do titular: copiar, modificar,
+   distribuir, publicar, sublicenciar, vender, usar comercialmente, criar obras
+   derivadas, usar o conteúdo para treinar modelos de inteligência artificial ou
+   usar o nome "Rabisco" e a marca associada. Um fork não transfere nenhum
+   desses direitos.
+
+3. Exceção: as partes deste repositório derivadas do método de Desenvolvimento
+   Orientado a Especificações (SDD) de Felipe Fontoura continuam sob a licença
+   Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 (CC BY-NC-SA 4.0),
+   conforme descrito em ATTRIBUTION.md. Para essas partes, prevalecem os termos
+   daquela licença.
+
+4. O conteúdo é fornecido "no estado em que se encontra", sem garantia de
+   qualquer tipo. O titular não responde por danos decorrentes do seu uso.
+
+5. Para pedir autorização, entre em contato com os mantenedores da organização
+   rabisco-studio no GitHub.
+
+PROPRIETARY LICENSE (ENGLISH)
+
+This repository is public for reading only. It is not free or open-source
+software. No license is granted to its contents (code, specifications,
+documents, contracts, templates and any other files), except as expressly
+permitted below.
+
+1. Permitted: reading and viewing the contents, and exercising the rights that
+   the GitHub Terms of Service grant to other GitHub users (viewing and forking
+   within the platform), solely for that purpose. Those rights come from the
+   GitHub Terms of Service and cannot be withdrawn by this file while the
+   repository is public.
+
+2. Prohibited without the owner's prior written permission: copying, modifying,
+   distributing, publishing, sublicensing, selling, using commercially, creating
+   derivative works, using the contents to train artificial intelligence models,
+   or using the name "Rabisco" and its associated brand. A fork does not
+   transfer any of these rights.
+
+3. Exception: the parts of this repository derived from Felipe Fontoura's
+   Spec-Driven Development (SDD) method remain under the Creative Commons
+   Attribution-NonCommercial-ShareAlike 4.0 license (CC BY-NC-SA 4.0), as
+   described in ATTRIBUTION.md. For those parts, the terms of that license
+   prevail.
+
+4. The contents are provided "as is", without warranty of any kind. The owner
+   is not liable for damages arising from their use.
+
+5. To request permission, contact the maintainers of the rabisco-studio
+   organization on GitHub.
