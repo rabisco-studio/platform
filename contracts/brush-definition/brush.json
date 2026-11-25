@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybrid-platform.dev/schemas/brush-definition/brush.json",
+  "title": "Brush Definition Schema",
+  "description": "Definição de pincel versionada",
+  "type": "object",
+  "required": ["schema_version", "name", "id", "tip", "spacing", "size", "opacity", "flow", "blend_mode"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "name": { "type": "string" },
+    "id": { "type": "string" },
+    "tip": {
+      "type": "object",
+      "required": ["shape"],
+      "properties": {
+        "shape": { "type": "string", "enum": ["round", "square", "custom"] },
+        "hardness": { "type": "number", "minimum": 0, "maximum": 1 },
+        "texture": { "type": ["string", "null"] }
+      }
+    },
+    "spacing": { "type": "number", "exclusiveMinimum": 0, "maximum": 5 },
+    "size": { "$ref": "#/$defs/RangeParam" },
+    "opacity": { "$ref": "#/$defs/RangeParam" },
+    "flow": { "$ref": "#/$defs/RangeParam" },
+    "rotation": { "$ref": "#/$defs/RangeParam" },
+    "scatter": { "$ref": "#/$defs/RangeParam" },
+    "blend_mode": { "type": "string" },
+    "smoothing": { "type": "number", "minimum": 0, "maximum": 1 },
+    "paper_texture": { "type": ["string", "null"] },
+    "dynamics": { "$ref": "#/$defs/DynamicsMap" }
+  },
+  "$defs": {
+    "RangeParam": {
+      "type": "object",
+      "required": ["base"],
+      "properties": {
+        "base": { "type": "number" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "unit": { "type": "string" }
+      }
+    },
+    "DynamicsMap": {
+      "type": "object",
+      "properties": {
+        "pressure": { "$ref": "#/$defs/DynamicTargetMap" },
+        "tilt": { "$ref": "#/$defs/DynamicTargetMap" },
+        "azimuth": { "$ref": "#/$defs/DynamicTargetMap" },
+        "velocity": { "$ref": "#/$defs/DynamicTargetMap" }
+      }
+    },
+    "DynamicTargetMap": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/DynamicCurve" }
+    },
+    "DynamicCurve": {
+      "type": "object",
+      "required": ["curve", "min", "max"],
+      "properties": {
+        "curve": { "type": "string", "enum": ["linear", "ease_in", "ease_out", "custom"] },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["x", "y"],
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

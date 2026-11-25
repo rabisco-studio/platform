@@ -1,0 +1,369 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybrid-platform.dev/schemas/document-format/scene.json",
+  "title": "Scene Graph Schema",
+  "description": "Schema do scene graph do documento .hybrid",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "document"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "document": {
+      "$ref": "#/$defs/DocumentNode"
+    }
+  },
+  "$defs": {
+    "NodeId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID v7"
+    },
+    "FractionalIndex": {
+      "type": "string",
+      "pattern": "^[0-9A-Za-z]+$",
+      "description": "Índice fracionário lexicograficamente ordenável"
+    },
+    "AffineTransform": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 6,
+      "maxItems": 6,
+      "description": "[a, b, c, d, tx, ty]"
+    },
+    "BlendMode": {
+      "type": "string",
+      "enum": [
+        "Normal",
+        "Multiply",
+        "Screen",
+        "Overlay",
+        "Darken",
+        "Lighten",
+        "ColorDodge",
+        "ColorBurn",
+        "HardLight",
+        "SoftLight",
+        "Difference",
+        "Exclusion",
+        "Hue",
+        "Saturation",
+        "Color",
+        "Luminosity",
+        "DestinationIn",
+        "DestinationOut",
+        "PassThrough"
+      ]
+    },
+    "BaseNodeProperties": {
+      "type": "object",
+      "required": [
+        "node_id",
+        "name",
+        "order",
+        "visible",
+        "locked",
+        "opacity",
+        "blend_mode",
+        "transform"
+      ],
+      "properties": {
+        "node_id": {
+          "$ref": "#/$defs/NodeId"
+        },
+        "name": {
+          "type": "string"
+        },
+        "order": {
+          "$ref": "#/$defs/FractionalIndex"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "blend_mode": {
+          "$ref": "#/$defs/BlendMode"
+        },
+        "transform": {
+          "$ref": "#/$defs/AffineTransform"
+        },
+        "clip_path": {
+          "description": "Optional clipping path"
+        },
+        "mask": {
+          "$ref": "#/$defs/MaskData"
+        }
+      }
+    },
+    "DocumentNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseNodeProperties"
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "width",
+            "height",
+            "dpi",
+            "color_profile",
+            "bit_depth",
+            "blend_space",
+            "children"
+          ],
+          "properties": {
+            "type": {
+              "const": "Document"
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65536
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65536
+            },
+            "dpi": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "color_profile": {
+              "type": "string"
+            },
+            "bit_depth": {
+              "type": "integer",
+              "enum": [
+                8,
+                16
+              ]
+            },
+            "blend_space": {
+              "type": "string",
+              "enum": [
+                "perceptual",
+                "linear"
+              ]
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ChildNode"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ChildNode": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ArtboardNode"
+        },
+        {
+          "$ref": "#/$defs/GroupNode"
+        },
+        {
+          "$ref": "#/$defs/RasterLayerNode"
+        },
+        {
+          "$ref": "#/$defs/VectorLayerNode"
+        },
+        {
+          "$ref": "#/$defs/EmbeddedImageNode"
+        }
+      ]
+    },
+    "ArtboardNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseNodeProperties"
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "children"
+          ],
+          "properties": {
+            "type": {
+              "const": "Artboard"
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ChildNode"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "GroupNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseNodeProperties"
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "children"
+          ],
+          "properties": {
+            "type": {
+              "const": "Group"
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ChildNode"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "RasterLayerNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseNodeProperties"
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "tiles"
+          ],
+          "properties": {
+            "type": {
+              "const": "RasterLayer"
+            },
+            "tiles": {
+              "type": "object",
+              "description": "Map de 'col,row' para tile hash",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "VectorLayerNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseNodeProperties"
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "objects"
+          ],
+          "properties": {
+            "type": {
+              "const": "VectorLayer"
+            },
+            "objects": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/VectorObject"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "EmbeddedImageNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseNodeProperties"
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "hash",
+            "width",
+            "height"
+          ],
+          "properties": {
+            "type": {
+              "const": "EmbeddedImage"
+            },
+            "hash": {
+              "type": "string"
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "format": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "VectorObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "shape",
+        "transform"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/NodeId"
+        },
+        "shape": {
+          "type": "object"
+        },
+        "fill": {
+          "type": "object"
+        },
+        "stroke": {
+          "type": "object"
+        },
+        "transform": {
+          "$ref": "#/$defs/AffineTransform"
+        }
+      }
+    },
+    "MaskData": {
+      "type": "object",
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "Raster",
+            "Vector"
+          ]
+        }
+      }
+    }
+  }
+}

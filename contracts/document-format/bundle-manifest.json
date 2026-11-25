@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybrid-platform.dev/schemas/document-format/bundle-manifest.json",
+  "title": "Bundle Manifest Schema",
+  "description": "Manifesto do bundle .hybrid.zip",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "created_at",
+    "tile_count",
+    "checksum"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tile_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "checksum": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": [
+            "blake3"
+          ]
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

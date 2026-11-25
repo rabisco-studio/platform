@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "document": {
+    "type": "Document",
+    "node_id": "019374a1-0000-7000-8000-000000000001",
+    "name": "Test Document",
+    "order": "a0",
+    "visible": true,
+    "locked": false,
+    "opacity": 1.0,
+    "blend_mode": "Normal",
+    "transform": [1, 0, 0, 1, 0, 0],
+    "width": 4096,
+    "height": 4096,
+    "dpi": 300,
+    "color_profile": "sRGB IEC61966-2.1",
+    "bit_depth": 8,
+    "blend_space": "perceptual",
+    "children": [
+      {
+        "type": "Artboard",
+        "node_id": "019374a1-0000-7000-8000-000000000002",
+        "name": "Prancheta 1",
+        "order": "a0",
+        "visible": true,
+        "locked": false,
+        "opacity": 1.0,
+        "blend_mode": "PassThrough",
+        "transform": [1, 0, 0, 1, 0, 0],
+        "children": [
+          {
+            "type": "RasterLayer",
+            "node_id": "019374a1-0000-7000-8000-000000000003",
+            "name": "Background",
+            "order": "a0",
+            "visible": true,
+            "locked": false,
+            "opacity": 1.0,
+            "blend_mode": "Normal",
+            "transform": [1, 0, 0, 1, 0, 0],
+            "tiles": {}
+          }
+        ]
+      }
+    ]
+  }
+}

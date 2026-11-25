@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hybrid-platform.dev/schemas/document-format/operation.json",
+  "title": "Operation Envelope Schema",
+  "description": "Schema do envelope de operação do .hybrid",
+  "type": "object",
+  "required": ["op_id", "author_id", "device_id", "hlc", "base_seq", "schema_version", "op_type", "targets", "payload", "inverse"],
+  "properties": {
+    "op_id": { "type": "string", "format": "uuid" },
+    "author_id": { "type": "string", "format": "uuid" },
+    "device_id": { "type": "string", "format": "uuid" },
+    "hlc": {
+      "type": "object",
+      "required": ["timestamp_ms", "counter"],
+      "properties": {
+        "timestamp_ms": { "type": "integer", "minimum": 0 },
+        "counter": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "base_seq": { "type": "integer", "minimum": 0 },
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "op_type": {
+      "type": "string",
+      "enum": [
+        "node.add", "node.remove", "node.move", "node.set_property",
+        "raster.stroke", "raster.fill",
+        "vector.add_object", "vector.remove_object", "vector.modify_object",
+        "mask.set", "mask.remove",
+        "document.set_meta",
+        "compound"
+      ]
+    },
+    "targets": {
+      "type": "array",
+      "items": { "type": "string", "format": "uuid" }
+    },
+    "payload": { "type": "object" },
+    "inverse": { "type": "object" }
+  }
+}
