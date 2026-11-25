@@ -34,7 +34,8 @@ Todos usam só a biblioteca padrão do Python; não há `pip install`.
 ## 3. Clientes (Flutter) e web
 | Ferramenta | Versão | Para quê | Instalar |
 |---|---|---|---|
-| Flutter SDK | a definir pelo spike b | UI desktop e mobile | [docs.flutter.dev](https://docs.flutter.dev/get-started/install) |
+| Flutter SDK | 3.50.1 stable (Dart 3.14); mínimo a definir pelo spike b | UI desktop e mobile | Não há pacote oficial no `winget`: `git clone --depth 1 -b stable https://github.com/flutter/flutter.git` numa pasta **sem espaços e fora do OneDrive** (ex.: `C:\Users\<você>\dev\flutter`), com a pasta `bin` no PATH; depois `flutter doctor`. Guia: [docs.flutter.dev](https://docs.flutter.dev/get-started/install) |
+| Android SDK / Android Studio | só no R4 (tablets Android) | Alvo Android do Flutter; **não é necessário** para desktop, web e spike b | [developer.android.com/studio](https://developer.android.com/studio) |
 | Mesa digitalizadora ou tablet com caneta | — | Spike b (latência de caneta) | Hardware; sem ele o spike b não fecha |
 | Node.js | 24 (LTS em uso) | Spike e e, futura UI web (React + TypeScript) | `winget install OpenJS.NodeJS.LTS` · [nodejs.org](https://nodejs.org) |
 
