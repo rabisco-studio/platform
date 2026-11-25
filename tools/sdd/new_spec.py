@@ -23,6 +23,7 @@ import sys
 
 DEFAULT_ROOT = pathlib.Path(__file__).resolve().parents[2]
 CATALOG = 'docs/requirements/spec-catalog.csv'
+SUMMARY = '.ai/sdd/specs/spec-summary.md'
 REQ_CATALOG = 'docs/requirements/requirements-catalog.csv'
 TEMPLATES = {
     'requirements.md': 'docs/templates/spec-requirements-template.md',
@@ -126,6 +127,25 @@ def mark_written(root, sid):
     raise NewSpecError(f'SPEC-{sid} não encontrada no catálogo')
 
 
+def link_in_summary(root, sid, folder_name):
+    """Liga a coluna Documentos da linha da spec no spec-summary. Devolve False se a linha não existir."""
+    path = root / SUMMARY
+    if not path.exists():
+        return False
+    raw = path.read_bytes().decode('utf-8')
+    lines = raw.split('\n')
+    docs = ' · '.join(f'[{d}]({folder_name}/{d}.md)' for d in ('requirements', 'design', 'tasks'))
+    for i, line in enumerate(lines):
+        if line.startswith(f'| SPEC-{sid} |'):
+            end = '\r' if line.endswith('\r') else ''
+            cells = line.rstrip('\r').strip().strip('|').split('|')
+            cells[-1] = f' {docs} '
+            lines[i] = '|' + '|'.join(cells) + '|' + end
+            path.write_bytes('\n'.join(lines).encode('utf-8'))
+            return True
+    return False
+
+
 def create(root, n, generate=True):
     """Cria a spec. Devolve a pasta criada. Levanta NewSpecError em qualquer recusa."""
     root = pathlib.Path(root)
@@ -144,11 +164,14 @@ def create(root, n, generate=True):
         for name, text in files.items():
             (folder / name).write_text(text, encoding='utf-8', newline='\n')
         mark_written(root, sid)
+        linked = link_in_summary(root, sid, folder.name)
     except Exception:
         for p in folder.glob('*'):
             p.unlink()
         folder.rmdir()
         raise
+    if not linked:
+        print(f'AVISO: sem linha de SPEC-{sid} no spec-summary.md; acrescente uma (o sdd-check vai cobrar).', file=sys.stderr)
     if generate:
         r = subprocess.run([sys.executable, str(root / 'tools/sdd/generate.py')], cwd=str(root),
                            capture_output=True, text=True, encoding='utf-8')

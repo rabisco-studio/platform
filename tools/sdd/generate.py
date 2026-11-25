@@ -111,7 +111,7 @@ emit('.ai/sdd/INDEX.md', '\n'.join(idx) + '\n')
 
 # ---- ADR README
 adrs = []
-for f in sorted((L.ROOT / 'docs/adr').glob('ADR-*.md')):
+for f in sorted(p for p in (L.ROOT / 'docs/adr').glob('ADR-*.md') if p.name.startswith('ADR-')):
     t = L.read(f)
     title = re.search(r'^# (.*)$', t, flags=re.M).group(1)
     adrs.append((f.name, title, L.header_field(t, 'Status') or '?', L.header_field(t, 'Resolvida por') or '-'))

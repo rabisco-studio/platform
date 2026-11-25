@@ -34,6 +34,7 @@ Este projeto usa **Spec-Driven Development**.
 contracts/        → schemas e conformance (fonte única)
 docs/adr/         → decisões arquiteturais transversais
 docs/constitution.md → princípios inegociáveis (P-01 a P-11)
+docs/README.md    → mapa da documentação (resumos de uma linha por documento)
 spikes/           → experimentos rotulados; nunca produção
 journal/          → diário do projeto (journal/<usuario-github>/<AAAA-MM-DD>/entry.md); não é fonte da verdade
 ```
