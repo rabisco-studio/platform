@@ -41,7 +41,7 @@ class NewSpecError(Exception):
 
 
 def read_csv(root, rel):
-    text = (root / rel).read_text(encoding='utf-8', newline='')
+    text = (root / rel).read_bytes().decode('utf-8')
     return list(csv.DictReader(io.StringIO(text)))
 
 
