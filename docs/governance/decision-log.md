@@ -1,0 +1,24 @@
+# Registro de Decisões
+
+**Versão:** 0.1
+**Data:** 2026-11-25
+**Status:** Rascunho para aprovação
+**Dono:** PMO
+
+Decisões do projeto, abertas e tomadas. Toda decisão **aberta** tem um **padrão recomendado**: se ninguém decidir até o prazo, vale o padrão (registrar a aplicação). Decisões de arquitetura formais ficam nas [ADRs](../adr/README.md).
+
+| ID | Decisão | Opções | Padrão recomendado | Dono | Prazo | Status |
+|---|---|---|---|---|---|---|
+| DEC-001 | Aprovar as prioridades MoSCoW propostas para os RNF (a fonte só fixa RF) | aprovar / ajustar | Aprovar como em `requirements-catalog.csv` | PO | Antes do gate de requisitos da SPEC-001 | Aberta |
+| DEC-002 | Nomear pessoas para os papéis do RACI e substituir os handles de exemplo no CODEOWNERS | — | Mínimo 2 pessoas por área (nunca autor = aprovador) | PMO | Antes do compartilhamento do repositório | Aberta |
+| DEC-003 | Visibilidade e licença do repositório | visibilidade: pública / privada; licença: todos os direitos reservados / aberta | Visibilidade **pública** (decidida em 2026-11-25; só convidados escrevem). Licença: todos os direitos reservados até decisão do PO; manter atribuição do método | PO | Antes de tornar público | Aberta (licença) |
+| DEC-004 | Dispositivos e GPUs de referência para as metas de desempenho | lista fechada | Definir 1 desktop, 1 notebook e 1 tablet de referência antes do spike A | ARQ | Início da Fase 0 | Aberta |
+| DEC-005 | Provedor de nuvem e objeto/CDN do R2 | AWS / GCP / Azure / outro | Adiar até a Fase 5; manter agnóstico (P-01) | ARQ | Início da Fase 5 | Aberta |
+| DEC-006 | Login Google/Apple: confirmar exigências de política das lojas | — | Confirmar com pesquisa antes da SPEC-018 | TL backend | Início da SPEC-018 | Aberta |
+| DEC-007 | Tiles 256×256, blake3, zstd | manter / alterar | Manter como hipótese; confirmar no spike C | ARQ | Fim da Fase 0 | Aberta (hipótese) |
+| DEC-008 | Mapeamento exato de blend modes para ORA | — | Resolver na SPEC-013; núcleo usa o conjunto de 19 valores (SPEC-001 D-003) | TL core | Spec 013 | Aberta |
+| DEC-009 | Numeração das specs: adotar a ordem canônica da fonte (001 Scene Graph … 005/006 pincéis) | — | Adotada; catálogo é a fonte única | ARQ | — | Decidida |
+| DEC-010 | Seleção/transformação de regiões é requisito Must (RF-03.7) | spec própria / dentro de pincéis | Spec própria (SPEC-007) | ARQ | — | Decidida |
+| DEC-011 | Linux no R1 | Tier 1 / melhor esforço | Melhor esforço; Windows e macOS são Tier 1 | PO | Fase 0 | Aberta |
+| DEC-012 | DDL único do formato pertence à SPEC-002 | — | Decidida; `contracts/document-format/hybrid-schema-v1.sql` | ARQ | — | Decidida |
+| DEC-013 | Interface `Tool` e tipos de tile/op pertencem ao `core-domain` | — | Decidida (ver ownership-matrix) | ARQ | — | Decidida |
