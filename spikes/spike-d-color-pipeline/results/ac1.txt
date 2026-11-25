@@ -1,0 +1,8 @@
+AC-1 caminho A (alfa direto, 8 bits, sem conversão): pixels diferentes = 0 | erro máx = 0
+AC-1 caminho B (pré-multiplicado, 8 bits): pixels diferentes = 363275 (34.64%) | erro máx = 255
+    entre os pixels com alfa = 255: diferentes = 0
+    cor sob alfa 0 perdida em 131606 pixels (esperado: pré-multiplicar descarta)
+AC-1 caminho C (pré-multiplicado, 16 bits interno, volta a 8): pixels diferentes = 131606 (12.55%) | erro máx = 255
+    entre os pixels com alfa = 255: diferentes = 0
+AC-1 ida e volta completa (PNG -> tiles direto -> PNG -> leitura): idêntico bit a bit = true
+AC-1 moxcms sRGB->sRGB 8 bits (65536 cores): pixels alterados = 0 | erro máx = 0

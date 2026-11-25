@@ -1,0 +1,1 @@
+deltae-selftest: par 1 = 2.0425 (esperado 2.0425) | par 2 = 2.8615 (esperado 2.8615)

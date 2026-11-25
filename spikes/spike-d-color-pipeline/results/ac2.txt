@@ -1,0 +1,11 @@
+AC-2: 235937 cores P3 amostradas; 121111 (51.3%) caem DENTRO do gamut sRGB e 114826 fora
+ΔE00 da conversão P3 -> sRGB contra a referência matemática em ponto flutuante (f64):
+  moxcms 8 bits RelCol+ponto fixo    n=121138   ΔE00 médio=0.1276 p99=0.4195 p99,9=0.6179 máx=1.2570 | acima de 1: 5
+  moxcms 16 bits RelCol              n=121112   ΔE00 médio=0.0025 p99=0.0068 p99,9=0.0154 máx=0.0505 | acima de 1: 0
+  lcms2 8 bits (dentro do gamut)     n=121138   ΔE00 médio=0.1254 p99=0.4078 p99,9=0.5941 máx=0.9165 | acima de 1: 0
+  lcms2 16 bits (dentro do gamut)    n=121112   ΔE00 médio=0.0213 p99=0.3079 p99,9=0.5320 máx=0.9218 | acima de 1: 0
+  quantização 8 bits ideal (piso)    n=121138   ΔE00 médio=0.1252 p99=0.4065 p99,9=0.5880 máx=0.8366 | acima de 1: 0
+  moxcms 8 bits FORA do gamut (recorte) n=114799   ΔE00 médio=0.0897 p99=0.2866 p99,9=0.4238 máx=0.9510 | acima de 1: 0
+  moxcms 8 bits RelCol+ponto flutuante n=121138   ΔE00 médio=0.1265 p99=0.4137 p99,9=0.6039 máx=1.0933 | acima de 1: 3
+  moxcms 8 bits padrão (Perceptual)  n=121138   ΔE00 médio=0.1276 p99=0.4195 p99,9=0.6179 máx=1.2570 | acima de 1: 5
+  (a linha 'FORA do gamut' compara o resultado recortado da biblioteca com o recorte ideal; cores P3 fora do sRGB não têm representação exata)

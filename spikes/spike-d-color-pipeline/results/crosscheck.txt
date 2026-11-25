@@ -1,0 +1,7 @@
+moxcms | x86_64-pc-windows-msvc | COMPILA
+moxcms | wasm32-unknown-unknown | COMPILA
+moxcms | aarch64-apple-ios | COMPILA
+moxcms | aarch64-linux-android | COMPILA
+lcms2  | wasm32-unknown-unknown | FALHOU: warning: lcms2-sys@4.2.0: Compiler family detection failed due to error: ToolNotFound: failed to find tool "clang": program not found (see https://docs.rs/cc/latest/cc/#compile-time-requirements for help) error: failed to run custom build command for `lcms2-sy
+lcms2  | aarch64-apple-ios | FALHOU: warning: lcms2-sys@4.2.0: Compiler family detection failed due to error: ToolNotFound: failed to find tool "clang": program not found (see https://docs.rs/cc/latest/cc/#compile-time-requirements for help) error: failed to run custom build command for `lcms2-sy
+lcms2  | aarch64-linux-android | FALHOU: warning: lcms2-sys@4.2.0: Compiler family detection failed due to error: ToolNotFound: failed to find tool "aarch64-linux-android-clang": program not found (see https://docs.rs/cc/latest/cc/#compile-time-requirements for help) error: failed to run custom build

@@ -1,0 +1,3 @@
+AC-4: perfil ICC (600 bytes) idêntico = true | profundidade = 16 | espaço de mesclagem = linear | tile RGBA16 (512 KiB) idêntico = true
+      perfil relido é aceito pela biblioteca e é RGB = true
+      o schema recusa bit_depth=12: true | blend_space='hsl': true
