@@ -81,18 +81,31 @@ Um card representa **uma spec** (não uma tarefa) e fica na coluna da fase **em 
 | **Dono** | Pessoa (Assignee) | membro da organização | Responsável por escrever a spec. Autor ≠ aprovador |
 
 ### 4.3 Automações embutidas (Workflows do projeto)
+**O que entra no quadro (decisão de desenho):**
+- **Cards de rascunho das specs** (37, um por spec): são criados pelo script de carga e acompanham as colunas do pipeline.
+- **Issues de tarefa** (label `task`, só após o G3): entram sozinhas, já na coluna **Implementação**.
+- **Não entram no quadro:** perguntas, defeitos, Change Requests e pedidos de gate. Elas são acompanhadas na aba **Issues** do repositório (por exemplo, `is:open label:gate`).
+
 **Só podem ser configuradas na interface:** a API do GitHub não expõe os workflows embutidos de um Project, então nenhum script do repositório as ativa. Quem for administrador da organização faz isto uma vez, no quadro **"Rabisco Platform"**.
 
 Caminho comum: organização `rabisco-studio` → **Projects** → **Rabisco Platform** → menu **⋯** (canto superior direito) → **Settings** → **Workflows** (barra lateral esquerda). Clique no workflow, ajuste e use **Save and turn on workflow**.
 
-- [ ] **Item added to project** — Workflows → *Item added to project* → em *Set*, escolha **Status = Ideia** → *Save and turn on workflow*. Todo card ou issue novo entra em Ideia.
-- [ ] **Item closed** — Workflows → *Item closed* → *Set* **Status = Feito** → *Save and turn on workflow*. Atenção: vale para todo item fechado, inclusive issues de pergunta e defeito.
-- [ ] **Pull request merged** — Workflows → *Pull request merged* → *Set* **Status = Feito**. Restrinja o filtro do workflow aos itens de **tarefa** (label `task`), se a interface oferecer o filtro; confira o escopo na tela antes de salvar. → *Save and turn on workflow*.
-- [ ] **Auto-add to project** — Workflows → *Auto-add to project* → **Edit** → *Repository*: `rabisco-studio/platform` → filtro `is:issue,pr is:open` (issues e PRs novos) → **Save** → *Turn on workflow*. Combinado com o primeiro item, tudo que for aberto no repositório aparece em Ideia.
+| Workflow | Configuração | Efeito |
+|---|---|---|
+| Auto-add to project | Repositório `rabisco-studio/platform`, filtro `is:issue label:task` | Só issues com label `task` entram no quadro |
+| Item added to project | Status = **Implementação** para o que o Auto-add trouxe; Status = **Ideia** só para cards de rascunho | A issue de tarefa nasce em Implementação; o rascunho de spec nasce em Ideia |
+| Item closed | Status = **Feito** | Fechar a issue de tarefa a leva para Feito |
+| Pull request merged (opcional) | Status = **Feito**, só se houver filtro por label | Ver a nota abaixo |
+
+Checklist (feito na interface, nesta ordem):
+- [ ] **Auto-add to project** — Workflows → *Auto-add to project* → **Edit** → *Repository*: `rabisco-studio/platform` → filtro `is:issue label:task` → **Save** → *Turn on workflow*.
+- [ ] **Item added to project** — Workflows → *Item added to project* → *Set* **Status = Implementação** → *Save and turn on workflow*. O workflow vale para todo item adicionado. Se a interface permitir filtro por tipo ou label, restrinja-o a `is:issue label:task`. O **Ideia** dos rascunhos de spec é definido explicitamente pela carga inicial (4.4); se houver filtro para rascunhos, pode-se também criar um segundo workflow *Item added* com **Status = Ideia**.
+- [ ] **Item closed** — Workflows → *Item closed* → *Set* **Status = Feito** → *Save and turn on workflow*.
+- [ ] **Pull request merged** (**opcional**) — Workflows → *Pull request merged* → *Set* **Status = Feito**. Ative **somente** se a interface oferecer filtro por label (`task`); sem esse filtro, **pule este workflow**, porque um PR de documentação mesclado não pode mover cards.
 
 Já existente neste guia e mantido: *Item reopened* → **Status = Requisitos** (a reabertura obriga a revisitar os requisitos; ajuste depois para a fase correta).
 
-Depois de ativar, confira em *Workflows* que os quatro aparecem com o indicador de ativo. O estado atual **não está registrado aqui**: este checklist descreve o que fazer, não o que já foi feito.
+Depois de ativar, confira em *Workflows* que cada um aparece com o indicador de ativo. O estado atual **não está registrado aqui**: este checklist descreve o que fazer, não o que já foi feito.
 
 ### 4.4 Carga inicial
 Criar 1 card por spec do [catálogo](../requirements/spec-catalog.csv) (37). As 4 já escritas (001, 002, 003 e 005) entram direto em **Requisitos**; as outras 33 ficam em **Ideia**. Preencher Spec, Release, Fase e Rigor conforme o catálogo.
@@ -100,7 +113,7 @@ Criar 1 card por spec do [catálogo](../requirements/spec-catalog.csv) (37). As 
 ### 4.5 Visões úteis (Views)
 - **Por release:** tabela agrupada por *Release*, ordenada por *Fase*.
 - **Meus cards:** filtro `assignee:@me`.
-- **Gates pendentes:** filtro nas colunas Requisitos, Design e Tarefas com label `gate`.
+- **Gates pendentes:** pedidos de gate não entram no quadro; use a aba **Issues** com o filtro `is:open label:gate`.
 
 ## 5. Milestones e labels (2 min)
 - Milestones: `Fase 0 Spikes`, `R1 Local Studio`, `R2 Cloud`, `R3 Collab`, `R4 Everywhere`, `R5 Pro` (sem data de entrega).
