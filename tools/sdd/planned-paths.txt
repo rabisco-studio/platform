@@ -1,0 +1,2 @@
+# Caminhos citados em specs que serão criados pelas tarefas. Um por linha.
+contracts/document-format/tile.json
