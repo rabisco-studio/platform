@@ -23,6 +23,7 @@ Primeiro dia de automação do repositório. Foram mescladas as Camadas 1, 2 e 3
 | #5 | 14:39:20 | 14:40:36 |
 | #7 | 16:03:34 | 16:03:46 |
 | #9 | 16:13:20 | 16:13:30 |
+| #10 | (ver o comentário no PR #10) | (ver o comentário no PR #10) |
 
 ## Decisões do dia
 - **DEC-003:** licença proprietária adotada; pendências de titular e de revisão jurídica.
