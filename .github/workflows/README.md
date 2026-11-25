@@ -16,6 +16,7 @@ O que cada workflow desta pasta faz, quando roda, o que precisa e o que fazer se
 | `baseline-release` | [baseline-release.yml](baseline-release.yml) | Push de tag `baseline-*` | Cria um pre-release com as notas da baseline |
 | `pages` | [pages.yml](pages.yml) | Push na `main` e manual | Publica o site de pré-visualização (desligado por padrão) |
 | `code-ci` | [code-ci.yml](code-ci.yml) | PR e push na `main` | CI do código de produto; hoje "sem código ainda" |
+| `actionlint` | [actionlint.yml](actionlint.yml) | PR e push na `main` que mudam `.github/workflows/` | Valida a sintaxe e as expressões dos workflows |
 
 Além dos workflows, [labeler.yml](../labeler.yml) (na pasta `.github/`) é a configuração de pastas e labels usada pelo `labeler`.
 
@@ -89,9 +90,17 @@ Além dos workflows, [labeler.yml](../labeler.yml) (na pasta `.github/`) é a co
 - **Permissões:** `contents: read`. **Segredos:** nenhum.
 - **Se falhar:** aresta não permitida: ajuste a dependência, ou, se a mudança for de arquitetura, abra PR em `crates.toml` (aprovação dos arquitetos).
 
+## actionlint
+- **Gatilho:** `pull_request` e `push` em `main`, só quando algo em `.github/workflows/` muda.
+- **O que faz:** baixa o binário do [actionlint](https://github.com/rhysd/actionlint) na versão fixada (`VERSION`), confere o SHA-256 fixado (`SHA256`) e roda `actionlint` em todos os workflows (sintaxe, expressões `${{ }}`, nomes de eventos e, se houver `shellcheck` no runner, os scripts `run:`).
+- **Permissões:** `contents: read`. **Segredos:** nenhum.
+- **Se falhar:** o texto aponta arquivo, linha e regra. Corrija o workflow, ou rode `make lint-workflows` localmente (instale: `winget install rhysd.actionlint` ou `brew install actionlint`).
+- **Atualizar a versão:** troque `VERSION` e `SHA256` (linha `linux_amd64` do arquivo `*_checksums.txt` do release) no mesmo PR.
+- **Observação:** não é check obrigatório do ruleset (só `verify` é); serve de aviso no PR.
+
 ---
 
 ## Como validar mudanças nestes arquivos
-- Sintaxe YAML (e `actionlint`, se instalado) antes de abrir o PR.
+- Sintaxe YAML e `actionlint` (`make lint-workflows`) antes de abrir o PR; o workflow `actionlint` repete a checagem no PR.
 - Toda mudança em `.github/` exige aprovação do PMO e dos arquitetos (CODEOWNERS).
 - Mantenha esta página em dia: o `sdd-check` confere que **todo `.yml` desta pasta é citado aqui**.

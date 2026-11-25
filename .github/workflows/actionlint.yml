@@ -1,0 +1,32 @@
+name: actionlint
+# Valida a sintaxe e as expressões dos workflows com o actionlint (https://github.com/rhysd/actionlint).
+# Só roda quando algo em .github/workflows/ muda. Binário fixado por versão e por SHA-256 (nada de "latest").
+# Para atualizar: troque VERSION e SHA256 (linha linux_amd64 do arquivo *_checksums.txt do release).
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+
+permissions: {}
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      VERSION: '1.7.12'
+      SHA256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Baixar o actionlint e conferir o SHA-256
+        run: |
+          curl -fsSL -o actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${VERSION}/actionlint_${VERSION}_linux_amd64.tar.gz"
+          echo "${SHA256}  actionlint.tar.gz" | sha256sum --check --strict
+          tar -xzf actionlint.tar.gz actionlint
+      - name: Validar os workflows
+        run: ./actionlint -color
