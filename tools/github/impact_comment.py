@@ -134,7 +134,7 @@ def render(res):
         L_.append('')
     L_ += ['### Requisitos afetados']
     if res['reqs']:
-        L_ += ['| Requisito | Spec |', '|---|---|']
+        L_ += ['| Requisito | Spec dona / que cobre |', '|---|---|']
         L_ += [f'| {r} | {", ".join(sorted(x for x in s if x)) or "—"} |' for r, s in sorted(res['reqs'].items())]
     else:
         L_.append('Nenhum requisito do catálogo aponta para estas specs.')

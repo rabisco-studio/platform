@@ -390,7 +390,7 @@ def check_governance():
 
 def check_generated_fresh():
     import subprocess
-    r = subprocess.run([sys.executable, str(L.ROOT / 'tools/sdd/generate.py'), '--check'], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, str(L.ROOT / 'tools/sdd/generate.py'), '--check'], capture_output=True, text=True, encoding='utf-8')
     if r.returncode != 0:
         err('arquivos gerados', (r.stdout + r.stderr).strip() or 'arquivos gerados desatualizados: rode `make docs` e faça commit')
 
