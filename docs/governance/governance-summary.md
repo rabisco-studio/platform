@@ -22,6 +22,7 @@ Roteador dos documentos de `docs/governance/`: **uma linha por documento**. Ao a
 | [schedule-wbs.md](schedule-wbs.md) | Cronograma e estrutura analítica (ainda sem datas) | Para planejar |
 | [glossary.md](glossary.md) | Glossário dos termos do projeto | Ao ler um termo desconhecido |
 | [github-setup.md](github-setup.md) | Guia de configuração do GitHub: repositório, equipes, ruleset da `main`, quadro, labels, segredos e Pages | Ao configurar ou auditar o GitHub |
+| [dev-environment.md](dev-environment.md) | Ambiente de desenvolvimento: o que instalar por papel, versões usadas e armadilhas de instalação | Ao preparar o computador ou receber uma pessoa nova |
 | [review-report-2026-11-25.md](review-report-2026-11-25.md) | Relatório da auditoria da baseline de 2026-11-25 (registro histórico) | Para entender o ponto de partida |
 
 Documentos vizinhos que fazem parte da governança, mas moram em outros lugares:
