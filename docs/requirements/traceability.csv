@@ -132,6 +132,7 @@ RNF-03.3,Must,R4,SPEC-027,planejada,,,pendente: spec ainda não escrita
 RNF-03.4,Must,R1,GOV,governança,SPEC-005/NFR-003,,especificado
 RNF-03.5,Must,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
 RNF-03.6,Must,R1,SPEC-005,escrita,,,lacuna: spec escrita sem cobertura
+RNF-03.7,Must,R1,SPEC-005,escrita,,,lacuna: spec escrita sem cobertura
 RNF-04.1,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
 RNF-04.2,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
 RNF-04.3,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita

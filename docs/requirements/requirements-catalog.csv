@@ -99,6 +99,7 @@ RNF-03.3,RNF,Multiplataforma,Aplicação web,Must,R4,SPEC-027,,proposta (revisã
 RNF-03.4,RNF,Multiplataforma,Compartilhar o máximo de lógica de negócio e do motor gráfico,Must,R1,GOV,Consistência visual entre GPUs: diferença máxima por canal ≤ 2/255 (sem pincel) e ≤ 4/255 (com pincel),proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-03.5,RNF,Multiplataforma,Adaptar a interface às características de cada dispositivo,Must,R1,SPEC-016,,proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-03.6,RNF,Multiplataforma,"Suportar mouse, touchscreen e canetas digitais",Must,R1,SPEC-005,,proposta (revisão 2026-11-25; aprovar com o PO)
+RNF-03.7,RNF,Multiplataforma,"Suportar mesas digitalizadoras e canetas das principais marcas pelas APIs de entrada nativas de cada sistema, com matriz de compatibilidade publicada","Must",R1,SPEC-005,"Windows Ink e WinTab (Windows) e NSEvent (macOS) no R1; todo modelo da matriz com pressão e inclinação verificadas; mesa de marca relevante que funcione em outro programa e não no Rabisco é defeito (docs/requirements/tablet-compatibility.md)",proposta (pedido da autora 2026-11-25; aprovar com o PO)
 RNF-04.1,RNF,Segurança,Comunicação HTTPS,Must,R2,SPEC-022,,proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-04.2,RNF,Segurança,Armazenar credenciais de maneira segura,Must,R2,SPEC-018,,proposta (revisão 2026-11-25; aprovar com o PO)
 RNF-04.3,RNF,Segurança,Autorização baseada em permissões,Must,R2,SPEC-018,,proposta (revisão 2026-11-25; aprovar com o PO)
