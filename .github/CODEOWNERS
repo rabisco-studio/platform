@@ -6,6 +6,7 @@
 /docs/governance/         @rabisco-studio/pmo @rabisco-studio/architects
 /.github/                 @rabisco-studio/pmo @rabisco-studio/architects
 /tools/                   @rabisco-studio/pmo
+/journal/                 @rabisco-studio/pmo
 /Makefile                 @rabisco-studio/pmo
 /docs/constitution.md     @rabisco-studio/architects @rabisco-studio/product
 /.ai/steering/            @rabisco-studio/architects
