@@ -57,6 +57,8 @@ Resumo; a matriz completa está em [ownership-matrix.md](../architecture/ownersh
 Catálogos válidos; specs bem-formadas; `.status` coerente com cabeçalhos; todo FR com `Cobre:`, mapeado no design e coberto por tarefa; tarefas de 1–4 h; dependências acíclicas; ADRs/P-/SPEC- citados existem; crates citados existem em `crates.toml`; caminhos citados existem; links; arquivos gerados atualizados; arquivos de governança presentes.
 
 ## 7. Automações
+O que cada workflow faz, com gatilho, permissões, segredos e o que fazer se falhar: [.github/workflows/README.md](../../.github/workflows/README.md).
+
 Os workflows ficam em [`.github/workflows/`](../../.github/workflows/) e os scripts em [`tools/github/`](../../tools/github/README.md) (só biblioteca padrão do Python 3; testados por `make test-tools`).
 
 | Workflow | Gatilho | O que faz | Segredo necessário | Sem o segredo ou sem permissão |

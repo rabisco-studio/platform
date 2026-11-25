@@ -310,7 +310,7 @@ def check_paths(d, text):
 # --------------------------------------------------------------------- ADRs
 def check_adrs():
     consts = L.read(L.ROOT / 'docs/constitution.md')
-    for f in sorted((L.ROOT / 'docs/adr').glob('ADR-*.md')):
+    for f in sorted(p for p in (L.ROOT / 'docs/adr').glob('ADR-*.md') if p.name.startswith('ADR-')):
         t = L.read(f)
         if not re.fullmatch(r'ADR-\d{3}-[a-z0-9-]+\.md', f.name):
             err(rel(f), 'nome fora do padrão')
@@ -347,7 +347,7 @@ def check_links():
 
 
 def check_governance():
-    for need in ('.github/CODEOWNERS', '.github/workflows/sdd-check.yml', '.github/rulesets/main-protection.json', '.github/ISSUE_TEMPLATE/config.yml', '.github/ISSUE_TEMPLATE/change-request.yml', '.github/ISSUE_TEMPLATE/gate-approval.yml', '.github/ISSUE_TEMPLATE/task.yml', '.github/ISSUE_TEMPLATE/spike.yml', '.github/ISSUE_TEMPLATE/open-question.yml', '.github/ISSUE_TEMPLATE/defect.yml', 'docs/governance/issue-conventions.md', 'docs/templates/README.md', 'docs/templates/spec-requirements-template.md', 'docs/templates/spec-design-template.md', 'docs/templates/spec-tasks-template.md', 'docs/templates/adr-template.md', 'docs/templates/spike-plan-template.md', 'docs/templates/spike-report-template.md', 'docs/templates/gate-review-template.md', 'docs/templates/test-plan-template.md', 'docs/templates/privacy-impact-template.md', 'docs/templates/decision-entry-template.md', 'docs/templates/risk-entry-template.md', 'docs/templates/release-baseline-template.md', 'docs/templates/status-report-template.md', 'docs/templates/meeting-minutes-template.md', 'docs/templates/onboarding-checklist-template.md', 'docs/templates/handover-template.md', '.github/PULL_REQUEST_TEMPLATE/spec.md', '.github/PULL_REQUEST_TEMPLATE/gate.md', '.github/PULL_REQUEST_TEMPLATE/adr.md', '.github/PULL_REQUEST_TEMPLATE/contract.md', '.github/PULL_REQUEST_TEMPLATE/governance.md', '.github/PULL_REQUEST_TEMPLATE/code.md', '.github/pull_request_template.md', 'tools/github/setup-labels-milestones.py', 'tools/github/README.md', 'tools/github/ghlib.py', 'tools/github/check_pr_title.py', 'tools/github/check_gate.py', 'tools/github/impact_comment.py', 'tools/github/move_card.py', 'tools/github/overdue.py', 'tools/github/weekly_report.py', 'tools/github/nudge_blocked.py', 'tools/github/tests/support.py', '.github/labeler.yml', '.github/workflows/labeler.yml', '.github/workflows/pr-title.yml', '.github/workflows/gate-check.yml', '.github/workflows/impact-comment.yml', '.github/workflows/move-card.yml', '.github/workflows/weekly.yml', 'journal/README.md', 'docs/templates/journal-entry-template.md', 'tools/sdd/tests/test_journal.py', '.github/workflows/baseline-release.yml', '.github/workflows/pages.yml', '.github/workflows/code-ci.yml', 'tools/sdd/new_spec.py', 'tools/sdd/build_site.py', 'tools/sdd/check_crate_deps.py', 'tools/github/tasks_to_issues.py', 'tools/github/baseline_notes.py', 'tools/sdd/tests/support.py', 'tools/sdd/tests/test_new_spec.py', 'tools/sdd/tests/test_crate_deps_and_site.py', 'tools/github/tests/test_tasks_and_baseline.py',
+    for need in ('.github/CODEOWNERS', '.github/workflows/sdd-check.yml', '.github/rulesets/main-protection.json', '.github/ISSUE_TEMPLATE/config.yml', '.github/ISSUE_TEMPLATE/change-request.yml', '.github/ISSUE_TEMPLATE/gate-approval.yml', '.github/ISSUE_TEMPLATE/task.yml', '.github/ISSUE_TEMPLATE/spike.yml', '.github/ISSUE_TEMPLATE/open-question.yml', '.github/ISSUE_TEMPLATE/defect.yml', 'docs/governance/issue-conventions.md', 'docs/templates/README.md', 'docs/templates/spec-requirements-template.md', 'docs/templates/spec-design-template.md', 'docs/templates/spec-tasks-template.md', 'docs/templates/adr-template.md', 'docs/templates/spike-plan-template.md', 'docs/templates/spike-report-template.md', 'docs/templates/gate-review-template.md', 'docs/templates/test-plan-template.md', 'docs/templates/privacy-impact-template.md', 'docs/templates/decision-entry-template.md', 'docs/templates/risk-entry-template.md', 'docs/templates/release-baseline-template.md', 'docs/templates/status-report-template.md', 'docs/templates/meeting-minutes-template.md', 'docs/templates/onboarding-checklist-template.md', 'docs/templates/handover-template.md', '.github/PULL_REQUEST_TEMPLATE/spec.md', '.github/PULL_REQUEST_TEMPLATE/gate.md', '.github/PULL_REQUEST_TEMPLATE/adr.md', '.github/PULL_REQUEST_TEMPLATE/contract.md', '.github/PULL_REQUEST_TEMPLATE/governance.md', '.github/PULL_REQUEST_TEMPLATE/code.md', '.github/pull_request_template.md', 'tools/github/setup-labels-milestones.py', 'tools/github/README.md', 'tools/github/ghlib.py', 'tools/github/check_pr_title.py', 'tools/github/check_gate.py', 'tools/github/impact_comment.py', 'tools/github/move_card.py', 'tools/github/overdue.py', 'tools/github/weekly_report.py', 'tools/github/nudge_blocked.py', 'tools/github/tests/support.py', '.github/labeler.yml', '.github/workflows/labeler.yml', '.github/workflows/pr-title.yml', '.github/workflows/gate-check.yml', '.github/workflows/impact-comment.yml', '.github/workflows/move-card.yml', '.github/workflows/weekly.yml', 'journal/README.md', '.ai/sdd/specs/spec-summary.md', 'docs/adr/adr-summary.md', 'docs/governance/governance-summary.md', '.ai/steering/steering-summary.md', 'docs/requirements/requirements-summary.md', 'spikes/spike-summary.md', 'tools/tools-summary.md', 'docs/README.md', '.github/workflows/README.md', 'tools/sdd/tests/test_summaries.py', 'docs/templates/journal-entry-template.md', 'tools/sdd/tests/test_journal.py', '.github/workflows/baseline-release.yml', '.github/workflows/pages.yml', '.github/workflows/code-ci.yml', 'tools/sdd/new_spec.py', 'tools/sdd/build_site.py', 'tools/sdd/check_crate_deps.py', 'tools/github/tasks_to_issues.py', 'tools/github/baseline_notes.py', 'tools/sdd/tests/support.py', 'tools/sdd/tests/test_new_spec.py', 'tools/sdd/tests/test_crate_deps_and_site.py', 'tools/github/tests/test_tasks_and_baseline.py',
                  'Makefile', 'README.md', 'docs/governance/team-workflow.md', 'docs/governance/raci.md',
                  'docs/governance/change-control.md', 'docs/governance/risk-register.md',
                  'docs/governance/decision-log.md', 'docs/governance/project-charter.md',
@@ -420,6 +420,66 @@ def check_journal():
             err(where, f'**Autor:** deve ser {user} (igual à pasta)')
 
 
+SUMMARIES = [
+    # (resumo, pasta, padrão dos itens que o resumo precisa citar, nomes ignorados)
+    ('docs/adr/adr-summary.md', 'docs/adr', 'ADR-*.md', ()),
+    ('docs/governance/governance-summary.md', 'docs/governance', '*.md', ('governance-summary.md',)),
+    ('.ai/steering/steering-summary.md', '.ai/steering', '*.md', ('steering-summary.md',)),
+    ('docs/requirements/requirements-summary.md', 'docs/requirements', '*', ('requirements-summary.md',)),
+    ('spikes/spike-summary.md', 'spikes', 'spike-*', ()),
+    ('.github/workflows/README.md', '.github/workflows', '*.yml', ()),
+    ('tools/tools-summary.md', 'tools/sdd', '*.py', ()),
+    ('tools/tools-summary.md', 'tools/github', '*.py', ()),
+    ('docs/README.md', '.', '', ()),  # mapa: cita todos os resumos (verificado abaixo)
+]
+
+
+def check_summaries(specs):
+    """Roteadores (*-summary.md): todo documento da pasta precisa ser citado; spec-summary confere o catálogo."""
+    texts = {}
+
+    def text(rel):
+        if rel not in texts:
+            p = L.ROOT / rel
+            texts[rel] = L.read(p) if p.exists() else None
+            if texts[rel] is None:
+                err(rel, 'resumo ausente')
+        return texts[rel]
+
+    for summary, folder, pattern, ignore in SUMMARIES:
+        if not pattern:
+            continue
+        t = text(summary)
+        d = L.ROOT / folder
+        if t is None or not d.exists():
+            continue
+        for p in sorted(d.glob(pattern)):
+            if p.name in ignore or p.name.startswith('.') or p.name == '__pycache__' or 'summary' in p.name or p.name == 'README.md':
+                continue
+            if p.name not in t:
+                err(summary, f'não cita {p.relative_to(L.ROOT).as_posix()}; acrescente uma linha para ele')
+    # spec-summary: uma linha por spec do catálogo e o link da pasta das specs escritas
+    sp = '.ai/sdd/specs/spec-summary.md'
+    t = text(sp)
+    if t is not None:
+        for sid, row in specs.items():
+            if not re.search(r'^\| SPEC-%s \|' % sid, t, flags=re.M):
+                err(sp, f'sem linha para SPEC-{sid}')
+            elif row['estado'] == 'escrita' and f'{sid}-{row["slug"]}/requirements.md' not in t:
+                err(sp, f'SPEC-{sid} está escrita: ligue a coluna Documentos à pasta {sid}-{row["slug"]}/')
+        for sid in set(re.findall(r'^\| SPEC-(\d{3}) \|', t, flags=re.M)):
+            if sid not in specs:
+                err(sp, f'linha de SPEC-{sid}, que não existe no catálogo')
+    # mapa da documentação cita todos os resumos
+    m = text('docs/README.md')
+    if m is not None:
+        for rel in ('.ai/sdd/specs/spec-summary.md', 'docs/adr/adr-summary.md', 'docs/governance/governance-summary.md',
+                    '.ai/steering/steering-summary.md', 'docs/requirements/requirements-summary.md',
+                    'spikes/spike-summary.md', 'tools/tools-summary.md', '.github/workflows/README.md'):
+            if pathlib.PurePosixPath(rel).name not in m:
+                err('docs/README.md', f'não cita {rel}')
+
+
 def check_generated_fresh():
     import subprocess
     r = subprocess.run([sys.executable, str(L.ROOT / 'tools/sdd/generate.py'), '--check'], capture_output=True, text=True, encoding='utf-8')
@@ -436,6 +496,7 @@ def main():
     check_adrs()
     check_links()
     check_journal()
+    check_summaries(specs)
     check_governance()
     check_generated_fresh()
     if not summary:

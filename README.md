@@ -126,7 +126,7 @@ tools/sdd/                 sdd-check e o gerador de arquivos derivados
   PULL_REQUEST_TEMPLATE/   Templates de PR por tipo
 ```
 
-**Onde acho…?**
+**Onde acho…?** Comece pelo [mapa da documentação](docs/README.md): cada pasta com muitos documentos tem um resumo de uma linha por documento (`*-summary.md`).
 
 | Procuro                               | Está em                                                                                                         |
 | ------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
