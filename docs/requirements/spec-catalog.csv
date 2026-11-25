@@ -1,0 +1,38 @@
+spec_id,slug,titulo,area,fase,release,rigor,estado
+001,scene-graph,Scene Graph,core,1,R1,anchored,escrita
+002,hybrid-format,Formato .hybrid e ciclo de vida do documento,core,1,R1,anchored,escrita
+003,operations-undo,Modelo de operações e Undo/Redo,core,1,R1,anchored,escrita
+004,hybrid-render,"Render de camadas raster e vetor no mesmo canvas (GpuContext, composição, blend modes)",core,1,R1,anchored,planejada
+005,brush-painting,Pincéis e pintura raster,core,2,R1,anchored,escrita
+006,raster-tiles-memory,Tiles e orçamento de memória,core,2,R1,anchored,planejada
+007,raster-selection,Seleção e transformação de regiões,core,2,R1,spec-first,planejada
+008,raster-masks-alpha,"Máscaras raster, transparência e máscaras de grupo",core,2,R1,spec-first,planejada
+009,vector-paths,"Paths, Bézier, preenchimentos e transformação",core,3,R1,spec-first,planejada
+010,vector-shapes,"Formas, contornos e operações booleanas",core,3,R1,spec-first,planejada
+011,vector-text,Texto vetorial editável,core,3,R1,spec-first,planejada
+012,hybrid-composition,"Composição híbrida: grupos, ordem, pranchetas, não destrutivo, vetor para raster",core,4,R1,anchored,planejada
+013,import-export,"Importação e exportação (PNG, JPEG, WebP, ORA, SVG, PDF)",core,4,R1,anchored,planejada
+014,basic-filters,Filtros e ajustes básicos,core,4,R1,spec-first,planejada
+015,color-pipeline,Pipeline de cor e perfis (ADR-013),core,1,R1,anchored,planejada
+016,desktop-ui,"Interface desktop (Flutter): painéis, atalhos, temas, tutoriais, biblioteca local",clients,4,R1,spec-first,planejada
+017,color-mixing,Mistura de cores básica (smudge),core,2,R1,spec-first,planejada
+018,identity,Identidade e autenticação,backend,5,R2,anchored,planejada
+019,documents-versions,"Documentos, biblioteca, versões, quotas e backup na nuvem",backend,5,R2,anchored,planejada
+020,presigned-upload,Upload e download por URLs pré-assinadas,backend,5,R2,anchored,planejada
+021,sync-protocol,"Protocolo de sincronização (ADR-008, ADR-009)",contracts,5,R2,anchored,planejada
+022,backend-foundation,"Fundação do backend: segurança, observabilidade, privacidade, escalabilidade",backend,5,R2,anchored,planejada
+023,sharing-permissions,Compartilhamento e permissões,backend,6,R3,anchored,planejada
+024,realtime-collab,Colaboração em tempo real (ADR-010),core,6,R3,anchored,planejada
+025,comments,Comentários e revisão,backend,6,R3,spec-first,planejada
+026,mobile-clients,iPadOS e Android; gestos multitouch,clients,7,R4,spec-first,planejada
+027,web-client,Cliente web (ADR-004),clients,7,R4,anchored,planejada
+028,responsive-ui,Interface responsiva entre dispositivos,clients,7,R4,spec-first,planejada
+029,plugins,Plugins WASM (ADR-012),core,8,R5,anchored,planejada
+030,psd-import,Importação de PSD (ADR-016),core,8,R5,anchored,planejada
+031,cmyk,CMYK,core,8,R5,anchored,planejada
+032,brush-editor,Editor de pincéis e mistura úmida,core,8,R5,spec-first,planejada
+033,advanced-filters,Filtros avançados,core,8,R5,spec-first,planejada
+034,vectorization,Vetorização de raster,core,8,R5,spec-first,planejada
+035,advanced-typography,Tipografia avançada,core,8,R5,spec-first,planejada
+036,custom-panels,Painéis personalizáveis,clients,7,R4,spec-first,planejada
+037,a11y-i18n,Acessibilidade e internacionalização,clients,7,R4,spec-first,planejada

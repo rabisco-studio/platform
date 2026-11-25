@@ -1,0 +1,169 @@
+requisito,prioridade,release,spec_dona,spec_estado,fr,tarefas,situacao
+RF-01.1,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RF-01.2,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RF-01.3,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RF-01.4,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RF-01.5,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RF-01.6,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RF-01.7,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RF-02.1,Must,R1,SPEC-002,escrita,SPEC-002/FR-001,T-001,especificado
+RF-02.2,Must,R1,SPEC-001,escrita,SPEC-001/FR-004,T-004,especificado
+RF-02.3,Must,R1,SPEC-015,planejada,SPEC-001/FR-004,T-004,especificado
+RF-02.3,Must,R1,SPEC-015,planejada,SPEC-005/FR-007,T-004,especificado
+RF-02.4,Must,R1,SPEC-002,escrita,SPEC-002/FR-002,T-002,especificado
+RF-02.5,Must,R1,SPEC-016,planejada,SPEC-002/FR-010,T-008,especificado
+RF-02.6,Should,R1,SPEC-012,planejada,,,pendente: spec ainda não escrita
+RF-02.7,Must,R1,SPEC-001,escrita,SPEC-001/FR-001,T-001 T-002 T-009,especificado
+RF-02.8,Must,R1,SPEC-002,escrita,SPEC-002/FR-005,T-005,especificado
+RF-02.8,Must,R1,SPEC-002,escrita,SPEC-002/FR-008,T-007,especificado
+RF-02.8,Must,R1,SPEC-002,escrita,SPEC-003/FR-008,T-005 T-005,especificado
+RF-03.1,Must,R1,SPEC-005,escrita,SPEC-005/FR-001,T-001,especificado
+RF-03.1,Must,R1,SPEC-005,escrita,SPEC-005/FR-004,T-004 T-006,especificado
+RF-03.1,Must,R1,SPEC-005,escrita,SPEC-005/FR-006,T-006,especificado
+RF-03.2,Must,R1,SPEC-005,escrita,SPEC-005/FR-002,T-002,especificado
+RF-03.2,Must,R1,SPEC-005,escrita,SPEC-005/FR-003,T-003,especificado
+RF-03.3,Could,R5,SPEC-032,planejada,,,pendente: spec ainda não escrita
+RF-03.4,Must,R1,SPEC-005,escrita,SPEC-005/FR-009,T-007,especificado
+RF-03.4,Must,R1,SPEC-005,escrita,SPEC-005/FR-010,T-003,especificado
+RF-03.5,Should,R1,SPEC-005,escrita,SPEC-005/FR-012,T-001,especificado
+RF-03.6,Should,R1,SPEC-017,planejada,,,pendente: spec ainda não escrita
+RF-03.7,Must,R1,SPEC-007,planejada,,,pendente: spec ainda não escrita
+RF-03.8,Must,R1,SPEC-008,planejada,SPEC-001/FR-007,T-007,especificado
+RF-03.9,Should,R1,SPEC-014,planejada,,,pendente: spec ainda não escrita
+RF-03.10,Must,R1,SPEC-008,planejada,SPEC-001/FR-005,T-005,especificado
+RF-04.1,Must,R1,SPEC-009,planejada,SPEC-001/FR-006,T-006,especificado
+RF-04.2,Must,R1,SPEC-009,planejada,,,pendente: spec ainda não escrita
+RF-04.3,Must,R1,SPEC-010,planejada,,,pendente: spec ainda não escrita
+RF-04.4,Must,R1,SPEC-009,planejada,,,pendente: spec ainda não escrita
+RF-04.5,Must,R1,SPEC-009,planejada,SPEC-001/FR-006,T-006,especificado
+RF-04.6,Should,R1,SPEC-010,planejada,,,pendente: spec ainda não escrita
+RF-04.7,Should,R1,SPEC-010,planejada,,,pendente: spec ainda não escrita
+RF-04.8,Should,R1,SPEC-011,planejada,,,pendente: spec ainda não escrita
+RF-04.9,Must,R1,SPEC-009,planejada,,,pendente: spec ainda não escrita
+RF-04.10,Should,R1,SPEC-013,planejada,,,pendente: spec ainda não escrita
+RF-05.1,Must,R1,SPEC-004,planejada,SPEC-001/FR-001,T-001 T-002 T-009,especificado
+RF-05.2,Must,R1,SPEC-012,planejada,SPEC-001/FR-001,T-001 T-002 T-009,especificado
+RF-05.2,Must,R1,SPEC-012,planejada,SPEC-001/FR-003,T-003,especificado
+RF-05.3,Must,R1,SPEC-012,planejada,SPEC-001/FR-002,T-002,especificado
+RF-05.4,Must,R1,SPEC-004,planejada,SPEC-001/FR-002,T-002,especificado
+RF-05.5,Should,R1,SPEC-008,planejada,SPEC-001/FR-007,T-007,especificado
+RF-05.5,Should,R1,SPEC-008,planejada,SPEC-001/FR-008,T-003,especificado
+RF-05.5,Should,R1,SPEC-008,planejada,SPEC-001/FR-010,T-002,especificado
+RF-05.6,Should,R1,SPEC-012,planejada,SPEC-001/FR-012,T-001,especificado
+RF-05.7,Should,R1,SPEC-012,planejada,,,pendente: spec ainda não escrita
+RF-05.8,Must,R1,SPEC-012,planejada,,,pendente: spec ainda não escrita
+RF-05.9,Must,R1,SPEC-012,planejada,SPEC-001/FR-002,T-002,especificado
+RF-06.1,Must,R1,SPEC-003,escrita,SPEC-003/FR-004,T-003,especificado
+RF-06.1,Must,R1,SPEC-003,escrita,SPEC-003/FR-005,T-003,especificado
+RF-06.1,Must,R1,SPEC-003,escrita,SPEC-003/NFR-003,,especificado
+RF-06.1,Must,R1,SPEC-003,escrita,SPEC-005/FR-006,T-006,especificado
+RF-06.2,Must,R1,SPEC-003,escrita,SPEC-003/FR-001,T-001 T-009,especificado
+RF-06.2,Must,R1,SPEC-003,escrita,SPEC-003/FR-002,T-002,especificado
+RF-06.2,Must,R1,SPEC-003,escrita,SPEC-005/FR-013,T-006,especificado
+RF-06.3,Must,R1,SPEC-003,escrita,SPEC-003/FR-007,T-001,especificado
+RF-06.3,Must,R1,SPEC-003,escrita,SPEC-003/FR-009,T-004,especificado
+RF-06.4,Must,R1,SPEC-002,escrita,SPEC-002/FR-004,T-004,especificado
+RF-06.4,Must,R1,SPEC-002,escrita,SPEC-003/FR-006,T-005,especificado
+RF-06.4,Must,R1,SPEC-002,escrita,SPEC-003/FR-008,T-005 T-005,especificado
+RF-06.5,Should,R1,SPEC-003,escrita,SPEC-003/FR-009,T-004,especificado
+RF-07.1,Must,R1,SPEC-013,planejada,,,pendente: spec ainda não escrita
+RF-07.2,Must,R1,SPEC-013,planejada,,,pendente: spec ainda não escrita
+RF-07.3,Must,R1,SPEC-013,planejada,SPEC-001/FR-011,T-006,especificado
+RF-07.4,Should,R1,SPEC-013,planejada,,,pendente: spec ainda não escrita
+RF-07.5,Must,R1,SPEC-013,planejada,,,pendente: spec ainda não escrita
+RF-07.6,Must,R1,SPEC-013,planejada,,,pendente: spec ainda não escrita
+RF-07.7,Must,R1,SPEC-002,escrita,SPEC-002/FR-011,T-009,especificado
+RF-07.7,Must,R1,SPEC-002,escrita,SPEC-002/FR-012,T-009,especificado
+RF-08.1,Must,R2,SPEC-019,planejada,,,pendente: spec ainda não escrita
+RF-08.2,Must,R2,SPEC-021,planejada,,,pendente: spec ainda não escrita
+RF-08.3,Must,R2,SPEC-019,planejada,,,pendente: spec ainda não escrita
+RF-08.4,Must,R2,SPEC-021,planejada,,,pendente: spec ainda não escrita
+RF-08.5,Must,R2,SPEC-021,planejada,,,pendente: spec ainda não escrita
+RF-08.6,Must,R2,SPEC-019,planejada,,,pendente: spec ainda não escrita
+RF-08.7,Must,R2,SPEC-019,planejada,,,pendente: spec ainda não escrita
+RF-08.8,Must,R2,SPEC-019,planejada,,,pendente: spec ainda não escrita
+RF-08.9,Must,R3,SPEC-023,planejada,,,pendente: spec ainda não escrita
+RF-08.10,Must,R3,SPEC-023,planejada,,,pendente: spec ainda não escrita
+RF-09.1,Must,R3,SPEC-024,planejada,,,pendente: spec ainda não escrita
+RF-09.2,Must,R3,SPEC-024,planejada,,,pendente: spec ainda não escrita
+RF-09.3,Must,R3,SPEC-024,planejada,,,pendente: spec ainda não escrita
+RF-09.4,Must,R3,SPEC-024,planejada,,,pendente: spec ainda não escrita
+RF-09.5,Must,R3,SPEC-025,planejada,,,pendente: spec ainda não escrita
+RF-09.6,Must,R3,SPEC-023,planejada,,,pendente: spec ainda não escrita
+RF-09.7,Must,R3,SPEC-024,planejada,,,pendente: spec ainda não escrita
+RF-09.8,Must,R3,SPEC-024,planejada,,,pendente: spec ainda não escrita
+RF-10.1,Must,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RF-10.2,Could,R4,SPEC-036,planejada,,,pendente: spec ainda não escrita
+RF-10.3,Must,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RF-10.4,Should,R4,SPEC-026,planejada,,,pendente: spec ainda não escrita
+RF-10.5,Must,R1,SPEC-005,escrita,SPEC-005/FR-002,T-002,especificado
+RF-10.6,Should,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RF-10.7,Should,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RNF-01.1,Must,R1,SPEC-004,planejada,SPEC-001/NFR-001,,especificado
+RNF-01.1,Must,R1,SPEC-004,planejada,SPEC-005/NFR-002,,especificado
+RNF-01.2,Should,R1,SPEC-004,planejada,,,pendente: spec ainda não escrita
+RNF-01.3,Must,R1,SPEC-005,escrita,SPEC-005/FR-005,T-005,especificado
+RNF-01.3,Must,R1,SPEC-005,escrita,SPEC-005/FR-008,T-009,especificado
+RNF-01.3,Must,R1,SPEC-005,escrita,SPEC-005/NFR-001,,especificado
+RNF-01.4,Must,R1,SPEC-004,planejada,,,pendente: spec ainda não escrita
+RNF-01.5,Must,R1,SPEC-002,escrita,SPEC-001/NFR-002,,especificado
+RNF-01.5,Must,R1,SPEC-002,escrita,SPEC-002/FR-006,T-002 T-006,especificado
+RNF-01.6,Must,R1,SPEC-006,planejada,SPEC-001/FR-005,T-005,especificado
+RNF-01.6,Must,R1,SPEC-006,planejada,SPEC-002/NFR-002,,especificado
+RNF-01.7,Should,R1,SPEC-004,planejada,,,pendente: spec ainda não escrita
+RNF-02.1,Must,R1,SPEC-002,escrita,SPEC-002/FR-004,T-004,especificado
+RNF-02.1,Must,R1,SPEC-002,escrita,SPEC-002/FR-007,T-004,especificado
+RNF-02.1,Must,R1,SPEC-002,escrita,SPEC-003/FR-006,T-005,especificado
+RNF-02.1,Must,R1,SPEC-002,escrita,SPEC-003/NFR-001,,especificado
+RNF-02.1,Must,R1,SPEC-002,escrita,SPEC-005/NFR-004,,especificado
+RNF-02.2,Must,R1,SPEC-002,escrita,SPEC-002/FR-003,T-003,especificado
+RNF-02.2,Must,R1,SPEC-002,escrita,SPEC-002/FR-005,T-005,especificado
+RNF-02.3,Must,R1,SPEC-002,escrita,,,lacuna: spec escrita sem cobertura
+RNF-02.4,Must,R2,SPEC-019,planejada,SPEC-002/FR-009,T-008,especificado
+RNF-02.5,Must,R1,SPEC-003,escrita,SPEC-002/NFR-001,,especificado
+RNF-02.5,Must,R1,SPEC-003,escrita,SPEC-003/FR-003,T-002,especificado
+RNF-02.5,Must,R1,SPEC-003,escrita,SPEC-003/FR-011,T-001,especificado
+RNF-02.5,Must,R1,SPEC-003,escrita,SPEC-003/NFR-002,,especificado
+RNF-02.6,Must,R1,SPEC-002,escrita,SPEC-002/FR-002,T-002,especificado
+RNF-02.6,Must,R1,SPEC-002,escrita,SPEC-002/FR-003,T-003,especificado
+RNF-03.1,Must,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RNF-03.2,Must,R4,SPEC-026,planejada,,,pendente: spec ainda não escrita
+RNF-03.3,Must,R4,SPEC-027,planejada,,,pendente: spec ainda não escrita
+RNF-03.4,Must,R1,GOV,governança,SPEC-005/NFR-003,,especificado
+RNF-03.5,Must,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RNF-03.6,Must,R1,SPEC-005,escrita,,,lacuna: spec escrita sem cobertura
+RNF-04.1,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-04.2,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RNF-04.3,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RNF-04.4,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-04.5,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-04.6,Must,R2,SPEC-018,planejada,,,pendente: spec ainda não escrita
+RNF-04.7,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-04.8,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-05.1,Should,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-05.2,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-05.3,Must,R2,SPEC-019,planejada,,,pendente: spec ainda não escrita
+RNF-05.4,Should,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-05.5,Should,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-05.6,Should,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-06.1,Must,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RNF-06.2,Should,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RNF-06.3,Must,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RNF-06.4,Should,R4,SPEC-037,planejada,,,pendente: spec ainda não escrita
+RNF-06.5,Should,R1,SPEC-016,planejada,,,pendente: spec ainda não escrita
+RNF-06.6,Could,R4,SPEC-036,planejada,,,pendente: spec ainda não escrita
+RNF-07.1,Must,R1,GOV,governança,,,governança
+RNF-07.2,Must,R1,GOV,governança,,,governança
+RNF-07.3,Must,R1,GOV,governança,,,governança
+RNF-07.4,Must,R1,SPEC-001,escrita,SPEC-001/FR-009,T-008,especificado
+RNF-07.4,Must,R1,SPEC-001,escrita,SPEC-003/FR-010,T-006,especificado
+RNF-07.5,Should,R5,SPEC-029,planejada,,,pendente: spec ainda não escrita
+RNF-07.6,Must,R1,SPEC-002,escrita,SPEC-001/NFR-003,,especificado
+RNF-07.6,Must,R1,SPEC-002,escrita,SPEC-002/FR-013,T-010,especificado
+RNF-07.6,Must,R1,SPEC-002,escrita,SPEC-002/NFR-003,,especificado
+RNF-08.1,Should,R4,SPEC-037,planejada,,,pendente: spec ainda não escrita
+RNF-08.2,Could,R4,SPEC-037,planejada,,,pendente: spec ainda não escrita
+RNF-08.3,Could,R4,SPEC-037,planejada,,,pendente: spec ainda não escrita
+RNF-08.4,Could,R4,SPEC-037,planejada,,,pendente: spec ainda não escrita
+RNF-09,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
+RNF-10,Must,R2,SPEC-022,planejada,,,pendente: spec ainda não escrita
