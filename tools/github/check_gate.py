@@ -96,6 +96,22 @@ def run_sdd_check(repo=None):
     return r.returncode, (r.stdout + r.stderr).strip()
 
 
+def base_status(base, spec_dir, rel, repo=None):
+    """.status da spec na base. Se a pasta foi renomeada (mesmo prefixo NNN), usa o da pasta antiga."""
+    old = G.git(['show', f'{base}:{rel}'], cwd=repo, check=False).strip()
+    if old:
+        return old
+    prefix = spec_dir.split('-', 1)[0] + '-'
+    tree = G.git(['ls-tree', '--name-only', base, '.ai/sdd/specs/'], cwd=repo, check=False).splitlines()
+    for d in tree:
+        name = d.rstrip('/').rsplit('/', 1)[-1]
+        if name.startswith(prefix) and name != spec_dir:
+            other = G.git(['show', f'{base}:{d.rstrip("/")}/.status'], cwd=repo, check=False).strip()
+            if other:
+                return other
+    return None
+
+
 def evaluate(env, repo=None, sdd_check=run_sdd_check, member=team_member):
     """Devolve (erros, avisos)."""
     errors, warns = [], []
@@ -106,17 +122,25 @@ def evaluate(env, repo=None, sdd_check=run_sdd_check, member=team_member):
     status_files = [f for f in changed if re.fullmatch(r'\.ai/sdd/specs/[^/]+/\.status', f)]
     if not status_files:
         return [], ['nenhum .status alterado: não é um PR de gate']
-    if '## Gate' not in body or '## Registro da revisão' not in body:
-        errors.append('(d) o corpo do PR deve usar o template gate (seções "## Gate" e "## Registro da revisão"): '
-                      'abra o PR com ?template=gate.md')
+    items = []
     for f in status_files:
         spec_dir = f.split('/')[3]
-        new = G.git(['show', f'{head}:{f}'], cwd=repo).strip()
-        old = G.git(['show', f'{base}:{f}'], cwd=repo, check=False).strip() or None
+        new = G.git(['show', f'{head}:{f}'], cwd=repo, check=False).strip()
+        if not new:  # .status apagado (spec removida ou pasta renomeada): não é um gate
+            continue
+        items.append((f, spec_dir, new, base_status(base, spec_dir, f, repo)))
+    if not items:
+        return [], ['nenhum .status alterado: não é um PR de gate']
+    # gate = .status que já existia (mesmo renomeado) e mudou de estágio; spec nova não é gate
+    if any(old is not None and old != new for _, _, new, old in items):
+        if '## Gate' not in body or '## Registro da revisão' not in body:
+            errors.append('(d) o corpo do PR deve usar o template gate (seções "## Gate" e "## Registro da revisão"): '
+                          'abra o PR com ?template=gate.md')
+    for f, spec_dir, new, old in items:
         e = check_transition(old, new)
         if e:
             errors.append(f'(a) {spec_dir}: {e}')
-        if old == new:
+        if old is None or old == new:
             continue
         for name, email, ref in doc_authors(spec_dir, base, repo):
             if author_matches(author, aliases, name, email):

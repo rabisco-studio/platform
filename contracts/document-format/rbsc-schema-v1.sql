@@ -1,5 +1,5 @@
--- hybrid-schema-v1.sql  |  schema_version 1.0.0
--- DONA: SPEC-002 (formato .hybrid). Nenhuma outra spec define DDL.
+-- rbsc-schema-v1.sql  |  schema_version 1.0.0
+-- DONA: SPEC-002 (formato .rbsc). Nenhuma outra spec define DDL.
 -- Conexão: PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA synchronous = NORMAL (WAL) - a validar no spike (c).
 
 CREATE TABLE file_meta (

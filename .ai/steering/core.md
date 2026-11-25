@@ -13,7 +13,7 @@
 | `brush-engine` | Pincéis, dabs, dinâmica de caneta e predição |
 | `input-engine` | Eventos de mouse, toque e caneta; filtro e estabilização |
 | `history-engine` | Modelo de operações, Undo/Redo e log |
-| `file-engine` | Formato `.hybrid`, serialização, migração e I/O |
+| `file-engine` | Formato `.rbsc`, serialização, migração e I/O |
 | `sync-engine` | Sincronização, reconciliação e protocolo (a partir da Fase 5) |
 | `plugin-engine` | Extensibilidade via WASM (esqueleto até Fase 4) |
 | `color-engine` | Pipeline de cor, conversão de perfis, espaço de trabalho |
@@ -44,13 +44,13 @@ Regras adicionais:
 ## Modelo de erro
 
 - Erros como `enum` tipados em cada crate: `RasterError`, `VectorError`, etc.
-- O crate de domínio define o trait `HybridError`.
+- O crate de domínio define o trait `RabiscoError`.
 - Na ponte para Dart (flutter_rust_bridge) e WASM (wasm-bindgen): conversão em códigos + mensagens serializadas.
 - Nunca `unwrap()` em código de produção. Usar `expect()` somente onde a invariante é provada pelo tipo.
 
 ## Tiles
 
-- Tamanho padrão: 256 × 256 pixels (hipótese; confirmada ou ajustada pelos spikes (a) e (c) antes da aprovação do `.hybrid` v1.0.0).
+- Tamanho padrão: 256 × 256 pixels (hipótese; confirmada ou ajustada pelos spikes (a) e (c) antes da aprovação do `.rbsc` v1.0.0).
 - Hash: blake3, 32 bytes (SPEC-001 TD-002).
 - Tipos primitivos de tile (`TileHash`, `TileRef`, `TileData`, trait `TileStore`) vivem em `core-domain`; política de cache e memória em `raster-engine` (SPEC-006).
 - Identificados pelo hash do conteúdo (content-addressable).
@@ -77,4 +77,4 @@ Regras adicionais:
 - **Golden images:** composição, cor, blend modes. Tolerância declarada por teste.
 - **Benchmarks:** frame time, latência de traço, uso de memória. Executados em runners dedicados.
 - **Conformance:** vetores de teste em `contracts/conformance/`.
-- **Compatibilidade:** corpus de arquivos `.hybrid` em `tests/compat/`.
+- **Compatibilidade:** corpus de arquivos `.rbsc` em `tests/compat/`.

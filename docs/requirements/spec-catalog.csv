@@ -1,8 +1,8 @@
 spec_id,slug,titulo,area,fase,release,rigor,estado
 001,scene-graph,Scene Graph,core,1,R1,anchored,escrita
-002,hybrid-format,Formato .hybrid e ciclo de vida do documento,core,1,R1,anchored,escrita
+002,rbsc-format,Formato .rbsc e ciclo de vida do documento,core,1,R1,anchored,escrita
 003,operations-undo,Modelo de operações e Undo/Redo,core,1,R1,anchored,escrita
-004,hybrid-render,"Render de camadas raster e vetor no mesmo canvas (GpuContext, composição, blend modes)",core,1,R1,anchored,planejada
+004,rabisco-render,"Render de camadas raster e vetor no mesmo canvas (GpuContext, composição, blend modes)",core,1,R1,anchored,planejada
 005,brush-painting,Pincéis e pintura raster,core,2,R1,anchored,escrita
 006,raster-tiles-memory,Tiles e orçamento de memória,core,2,R1,anchored,planejada
 007,raster-selection,Seleção e transformação de regiões,core,2,R1,spec-first,planejada
@@ -10,7 +10,7 @@ spec_id,slug,titulo,area,fase,release,rigor,estado
 009,vector-paths,"Paths, Bézier, preenchimentos e transformação",core,3,R1,spec-first,planejada
 010,vector-shapes,"Formas, contornos e operações booleanas",core,3,R1,spec-first,planejada
 011,vector-text,Texto vetorial editável,core,3,R1,spec-first,planejada
-012,hybrid-composition,"Composição híbrida: grupos, ordem, pranchetas, não destrutivo, vetor para raster",core,4,R1,anchored,planejada
+012,rabisco-composition,"Composição híbrida: grupos, ordem, pranchetas, não destrutivo, vetor para raster",core,4,R1,anchored,planejada
 013,import-export,"Importação e exportação (PNG, JPEG, WebP, ORA, SVG, PDF)",core,4,R1,anchored,planejada
 014,basic-filters,Filtros e ajustes básicos,core,4,R1,spec-first,planejada
 015,color-pipeline,Pipeline de cor e perfis (ADR-013),core,1,R1,anchored,planejada

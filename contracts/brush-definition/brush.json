@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://hybrid-platform.dev/schemas/brush-definition/brush.json",
+  "$id": "https://rabisco.example/schemas/brush-definition/brush.json",
   "title": "Brush Definition Schema",
   "description": "Definição de pincel versionada",
   "type": "object",

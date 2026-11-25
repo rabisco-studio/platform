@@ -1,4 +1,4 @@
-# Constitution — Hybrid Digital Art Platform
+# Constitution — Rabisco
 
 > Princípios inegociáveis do projeto. Nenhuma spec, ADR ou PR pode contradizê-los.
 > Alterações exigem aprovação unânime dos arquitetos e do Product Owner.
@@ -31,7 +31,7 @@ Todo contrato público (API, eventos, formato do documento, plugin API) tem sche
 
 ### P-07 — Evolução controlada do formato
 
-Toda mudança no schema do `.hybrid` traz versão explícita, migração para frente e um arquivo no corpus de compatibilidade (`tests/compat/`). Nenhuma versão anterior do formato pode deixar de abrir.
+Toda mudança no schema do `.rbsc` traz versão explícita, migração para frente e um arquivo no corpus de compatibilidade (`tests/compat/`). Nenhuma versão anterior do formato pode deixar de abrir.
 
 ### P-08 — Composição no espaço declarado
 

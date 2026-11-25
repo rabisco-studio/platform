@@ -1,4 +1,4 @@
-# Product — Hybrid Digital Art Platform
+# Product — Rabisco
 
 ## Visão
 
@@ -83,7 +83,7 @@ O produto mínimo é um editor local que prova a viabilidade do motor híbrido:
 - Paths vetoriais com Bézier, formas geométricas e preenchimentos.
 - Composição híbrida com blend modes e grupos.
 - Undo/Redo com modelo de operações.
-- Formato `.hybrid` com autosave e recuperação.
+- Formato `.rbsc` com autosave e recuperação.
 - Importação de imagens raster; exportação PNG, JPEG, WebP, SVG.
 - Interface desktop adaptável.
 

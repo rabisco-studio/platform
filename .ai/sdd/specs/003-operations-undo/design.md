@@ -174,7 +174,7 @@ Quem orquestra é o `document-engine` (`Document::apply_and_commit`). Cada crate
 
 ## 4. Persistência e Aplicação de Operações
 
-**DDL:** a tabela `oplog` e seus índices pertencem à SPEC-002 (`contracts/document-format/hybrid-schema-v1.sql`). Esta spec não define DDL.
+**DDL:** a tabela `oplog` e seus índices pertencem à SPEC-002 (`contracts/document-format/rbsc-schema-v1.sql`). Esta spec não define DDL.
 
 **DTO de persistência (`core-domain::op_record`)**, que evita dependência de `file-engine` em `history-engine`:
 

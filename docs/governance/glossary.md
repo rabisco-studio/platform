@@ -14,7 +14,7 @@
 | Op / OpRecord | Operação imutável e idempotente registrada no oplog; undo é uma op inversa |
 | HLC | Hybrid Logical Clock: relógio lógico híbrido que ordena operações |
 | Oplog | Tabela/log de operações do documento |
-| `.hybrid` | Formato nativo de documento: SQLite em modo WAL + bundle |
+| `.rbsc` | Formato nativo de documento: SQLite em modo WAL + bundle |
 | Gate / portão | Aprovação humana que libera a fase seguinte; `*:draft` nunca libera |
 | Spec | Pasta `NNN-slug` com requirements, design, tasks e `.status` |
 | Spec-anchored | Rigor máximo (contratos, formatos, sync, segurança) |

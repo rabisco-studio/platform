@@ -20,7 +20,7 @@ Constituição, steering, templates, ADRs e contratos (feito nesta baseline) + c
 |---|---|---|
 | a Rust + wgpu | — | ADR-001, ADR-002 |
 | b Flutter + wgpu + caneta | a | ADR-003 |
-| c Formato `.hybrid` | — | ADR-007 |
+| c Formato `.rbsc` | — | ADR-007 |
 | d Pipeline de cor | — | ADR-013 |
 | e UI web | a | ADR-004 |
 
@@ -28,7 +28,7 @@ Constituição, steering, templates, ADRs e contratos (feito nesta baseline) + c
 
 | Fase | Specs |
 |---|---|
-| 1 | 001 Scene Graph · 002 Formato `.hybrid` · 003 Operações/Undo · 004 Render híbrido · 015 Pipeline de cor |
+| 1 | 001 Scene Graph · 002 Formato `.rbsc` · 003 Operações/Undo · 004 Render híbrido · 015 Pipeline de cor |
 | 2 | 005 Pincéis · 006 Tiles e memória · 007 Seleção · 008 Máscaras/alfa · 017 Mistura de cores |
 | 3 | 009 Paths · 010 Formas/booleanas · 011 Texto vetorial |
 | 4 | 012 Composição híbrida · 013 Import/export · 014 Filtros básicos · 016 UI desktop |

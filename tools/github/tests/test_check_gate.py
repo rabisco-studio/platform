@@ -128,6 +128,37 @@ class GateTests(unittest.TestCase):
         errors, _ = self.run_eval(head)
         self.assertTrue(any('009-nova' in e and 'começar' in e for e in errors), errors)
 
+    def test_new_spec_is_not_a_gate(self):
+        """make new-spec cria .status novo em requirements:draft: sem template de gate e sem checar autoria."""
+        self.r.write('.ai/sdd/specs/009-nova/.status', 'requirements:draft\n')
+        self.r.write('.ai/sdd/specs/009-nova/requirements.md', '# nova\n')
+        head = self.r.commit('SPEC-009: nova', author=BOB)
+        errors, _ = self.run_eval(head, body='')
+        self.assertEqual(errors, [])
+
+    def test_renamed_spec_folder_is_not_a_gate(self):
+        """Renomear a pasta (mesmo prefixo NNN, mesmo estágio) não é um gate, mesmo com requirements.md mudando."""
+        self.r.git('mv', f'.ai/sdd/specs/{SPEC}', '.ai/sdd/specs/001-renamed')
+        p = self.r.path / '.ai/sdd/specs/001-renamed/requirements.md'
+        p.write_text(p.read_text(encoding='utf-8') + '\ntexto novo\n', encoding='utf-8', newline='\n')
+        head = self.r.commit('GOV: renomeia', author=BOB)
+        errors, _ = self.run_eval(head, author='alice', body='')
+        self.assertEqual(errors, [])
+
+    def test_rename_plus_stage_change_is_still_a_gate(self):
+        self.r.git('mv', f'.ai/sdd/specs/{SPEC}', '.ai/sdd/specs/001-renamed')
+        self.r.write('.ai/sdd/specs/001-renamed/.status', 'design:approved\n')
+        head = self.r.commit('GOV: renomeia e avança', author=BOB)
+        errors, _ = self.run_eval(head, body='')
+        self.assertTrue(any(e.startswith('(a)') and 'pula' in e for e in errors), errors)
+        self.assertTrue(any(e.startswith('(d)') for e in errors), errors)
+
+    def test_deleted_status_is_ignored(self):
+        self.r.git('rm', '-q', '-r', f'.ai/sdd/specs/{SPEC}')
+        head = self.r.commit('GOV: remove spec', author=BOB)
+        errors, warns = self.run_eval(head, body='')
+        self.assertEqual(errors, [])
+        self.assertIn('não é um PR de gate', warns[0])
 
 if __name__ == '__main__':
     unittest.main()

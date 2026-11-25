@@ -12,14 +12,14 @@
 
 ## 1. Visão Geral
 
-Esta spec define a estrutura de dados que representa um documento gráfico híbrido (raster + vetor) em memória e no formato de persistência `.hybrid`. O Scene Graph é a árvore que modela a hierarquia de elementos visuais: documento, páginas (artboards), grupos, camadas raster, nós vetoriais e masks.
+Esta spec define a estrutura de dados que representa um documento gráfico híbrido (raster + vetor) em memória e no formato de persistência `.rbsc`. O Scene Graph é a árvore que modela a hierarquia de elementos visuais: documento, páginas (artboards), grupos, camadas raster, nós vetoriais e masks.
 
 ## 2. Goals
 
 - Representar documentos com elementos raster e vetoriais em uma hierarquia unificada.
 - Permitir composição, agrupamento, ordenação e transformações arbitrárias.
 - Servir como base para Undo/Redo (SPEC-003), renderização (SPEC futura) e sincronização (Fase 5).
-- Ser serializável no formato `.hybrid` (ADR-007) sem perda.
+- Ser serializável no formato `.rbsc` (ADR-007) sem perda.
 
 ## 3. Non-Goals
 
@@ -86,7 +86,7 @@ Cada Document DEVE declarar: `width`, `height` (pixels), `dpi`, `color_profile` 
 
 ### FR-005 (Must) [BEH]
 **Cobre:** RF-03.10, RNF-01.6
-RasterLayer DEVE referenciar tiles por coordenada (col, row) e hash de conteúdo. Tiles são 256×256 pixels, RGBA, alfa pré-multiplicado. O tamanho 256×256 é hipótese de engenharia; só pode mudar antes da aprovação do formato `.hybrid` v1.0.0 (spikes (a) e (c)) e, depois dela, apenas com novo `schema_version` maior e migração.
+RasterLayer DEVE referenciar tiles por coordenada (col, row) e hash de conteúdo. Tiles são 256×256 pixels, RGBA, alfa pré-multiplicado. O tamanho 256×256 é hipótese de engenharia; só pode mudar antes da aprovação do formato `.rbsc` v1.0.0 (spikes (a) e (c)) e, depois dela, apenas com novo `schema_version` maior e migração.
 
 ### FR-006 (Must) [BEH]
 **Cobre:** RF-04.1, RF-04.5

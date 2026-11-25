@@ -7,13 +7,13 @@
 
 ## 1. Resumo Executivo
 
-O `file-engine` gerencia o ciclo de vida do arquivo `.hybrid` (SQLite WAL). Cada operação do usuário resulta em uma transação atômica que persiste operação + tiles alterados. A abertura é progressiva: metadata e árvore primeiro, tiles do viewport sob demanda.
+O `file-engine` gerencia o ciclo de vida do arquivo `.rbsc` (SQLite WAL). Cada operação do usuário resulta em uma transação atômica que persiste operação + tiles alterados. A abertura é progressiva: metadata e árvore primeiro, tiles do viewport sob demanda.
 
 ## 2. Mapeamento de Requisitos
 
 | FR | Decisão de Design | Componente |
 |----|-------------------|------------|
-| FR-001 | `FileEngine::create(path, meta) -> Result<DocHandle>`; DDL em `hybrid-schema-v1.sql` | `file-engine` |
+| FR-001 | `FileEngine::create(path, meta) -> Result<DocHandle>`; DDL em `rbsc-schema-v1.sql` | `file-engine` |
 | FR-002 | `FileEngine::open(path) -> Result<(DocHandle, SceneRecords)>` com checks | `file-engine` |
 | FR-003 | WAL replay automático pelo SQLite + fallback de integrity check | `file-engine::recovery` |
 | FR-004 | `DocHandle::commit(batch: CommitBatch) -> Result<()>` em uma transação | `file-engine::commit` |
@@ -116,7 +116,7 @@ No Flutter, hook `AppLifecycleState.paused`:
 
 ## 4. Modelo de Dados
 
-O DDL completo e comentado está em **`contracts/document-format/hybrid-schema-v1.sql`** (fonte única; esta spec é a única dona de DDL). Resumo:
+O DDL completo e comentado está em **`contracts/document-format/rbsc-schema-v1.sql`** (fonte única; esta spec é a única dona de DDL). Resumo:
 
 | Tabela | Conteúdo | Origem dos dados |
 |--------|----------|------------------|
@@ -134,7 +134,7 @@ O DDL completo e comentado está em **`contracts/document-format/hybrid-schema-v
 
 | Contrato | Mudança |
 |----------|---------|
-| `contracts/document-format/hybrid-schema-v1.sql` | **Novo.** DDL do formato (fonte única). |
+| `contracts/document-format/rbsc-schema-v1.sql` | **Novo.** DDL do formato (fonte única). |
 | `contracts/document-format/bundle-manifest.json` | **Novo.** Schema do manifesto ZIP. |
 | `contracts/document-format/operation.json` | Sem mudança (SPEC-003 é a dona; esta spec apenas persiste). |
 | `contracts/document-format/scene.json` | Sem mudança (SPEC-001). |

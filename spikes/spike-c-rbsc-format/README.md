@@ -1,4 +1,4 @@
-# Spike (c) — Formato .hybrid (SQLite + bundle)
+# Spike (c) — Formato .rbsc (SQLite + bundle)
 
 **Hipótese:** SQLite com WAL atende os requisitos de atomicidade, carga parcial e resistência a queda.
 

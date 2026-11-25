@@ -1,4 +1,4 @@
-# SPEC-002: Formato `.hybrid` e Ciclo de Vida do Documento — Tasks
+# SPEC-002: Formato `.rbsc` e Ciclo de Vida do Documento — Tasks
 
 **Status:** tasks:draft (rascunho antecipado; não vinculante até design:approved)
 **Requisitos:** `requirements.md`
@@ -40,12 +40,12 @@
 **Dependências:** SPEC-001 T-004 (DocumentMetaRecord), SPEC-001 T-009 (registros)
 **Checklist:**
 - [ ] Criar crate `file-engine` em `core/file-engine/`
-- [ ] Versionar `contracts/document-format/hybrid-schema-v1.sql` (já rascunhado no repositório) e embuti-lo no crate (`include_str!`)
+- [ ] Versionar `contracts/document-format/rbsc-schema-v1.sql` (já rascunhado no repositório) e embuti-lo no crate (`include_str!`)
 - [ ] `FileEngine::create(path, meta) -> Result<DocHandle>`
 - [ ] Inicializar SQLite com `PRAGMA journal_mode=WAL` e `foreign_keys=ON`
 - [ ] Inserir `document_meta`, a árvore mínima (Document + Artboard + RasterLayer, via `scene-engine`) e `file_meta` (schema_version, doc_id)
 **AC:** Arquivo criado, abrível, schema idêntico ao `.sql`, 1 camada raster.
-**Arquivos:** `core/file-engine/src/lib.rs`, `core/file-engine/src/schema.rs`, `contracts/document-format/hybrid-schema-v1.sql`
+**Arquivos:** `core/file-engine/src/lib.rs`, `core/file-engine/src/schema.rs`, `contracts/document-format/rbsc-schema-v1.sql`
 **Verificação:** `cargo test -p file-engine -- --test create`
 
 ### T-002 — Abrir documento existente (file-engine::open)
@@ -157,7 +157,7 @@
 **Dependências:** T-002
 **Checklist:**
 - [ ] `MigrationRegistry`: funções `vN -> vN+1` registradas por versão semântica
-- [ ] Antes de migrar: cópia de segurança `<nome>.pre-migration-<versão>.hybrid`
+- [ ] Antes de migrar: cópia de segurança `<nome>.pre-migration-<versão>.rbsc`
 - [ ] Executar a cadeia de migrações em uma transação; falha preserva o arquivo original
 - [ ] Corpus `tests/compat/`: um arquivo por versão publicada do formato (na 1.0.0, o próprio arquivo de referência)
 - [ ] Teste: abrir todo o corpus a cada build (P-07)
