@@ -124,7 +124,8 @@ emit('docs/adr/README.md', '\n'.join(a) + '\n')
 
 if CHECK:
     if STALE:
-        print('desatualizados: ' + ', '.join(STALE))
+        print('arquivos gerados desatualizados: ' + ', '.join(STALE))
+        print('rode `make docs` e faça commit')
         sys.exit(1)
 else:
     print('gerados: traceability.csv, coverage.md, INDEX.md, adr/README.md')

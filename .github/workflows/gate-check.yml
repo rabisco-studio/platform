@@ -1,0 +1,27 @@
+name: gate-check
+# Valida PRs que alteram .ai/sdd/specs/*/.status (tools/github/check_gate.py).
+# O segredo ORG_READ_TOKEN é opcional: sem ele, a checagem de equipe vira aviso.
+on:
+  pull_request:
+    paths:
+      - '.ai/sdd/specs/*/.status'
+
+permissions: {}
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Verificar o gate
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          ORG_READ_TOKEN: ${{ secrets.ORG_READ_TOKEN }}
+        run: python3 tools/github/check_gate.py

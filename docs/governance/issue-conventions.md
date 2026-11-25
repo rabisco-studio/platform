@@ -28,7 +28,7 @@ Issues não substituem os documentos: **a spec é a fonte da verdade**; a issue 
 ## 3. Labels
 | Grupo | Labels |
 |---|---|
-| Tipo | `task`, `gate`, `spike`, `question`, `defect`, `change-request`, `adr` |
+| Tipo | `task`, `gate`, `spike`, `question`, `defect`, `change-request`, `adr`, `status-report` (relatório semanal automático) |
 | Área | `area:core`, `area:backend`, `area:clients`, `area:platform` |
 | Rigor | `rigor:anchored`, `rigor:spec-first` |
 | Estado | `bloqueado` |

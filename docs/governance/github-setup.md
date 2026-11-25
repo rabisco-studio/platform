@@ -117,7 +117,7 @@ Criar 1 card por spec do [catálogo](../requirements/spec-catalog.csv) (37). As 
 
 ## 5. Milestones e labels (2 min)
 - Milestones: `Fase 0 Spikes`, `R1 Local Studio`, `R2 Cloud`, `R3 Collab`, `R4 Everywhere`, `R5 Pro` (sem data de entrega).
-- Labels: `task`, `gate`, `spike`, `question`, `defect`, `change-request`, `adr`, `area:core`, `area:backend`, `area:clients`, `area:platform`, `rigor:anchored`, `rigor:spec-first`, `bloqueado` (detalhes em [issue-conventions](issue-conventions.md)). Os formulários de issue usam esses labels; crie-os antes de abrir a primeira issue.
+- Labels: `task`, `gate`, `spike`, `question`, `defect`, `change-request`, `adr`, `area:core`, `area:backend`, `area:clients`, `area:platform`, `rigor:anchored`, `rigor:spec-first`, `bloqueado`, `status-report` (detalhes em [issue-conventions](issue-conventions.md)). Os formulários de issue usam esses labels; crie-os antes de abrir a primeira issue.
 
 ### 5.1 Criar tudo por script
 Em vez de criar à mão, rode [`tools/github/setup-labels-milestones.py`](../../tools/github/setup-labels-milestones.py). Requer Python 3 e a CLI `gh` autenticada (`gh auth login`) por uma conta com permissão de triagem ou escrita no repositório.
@@ -149,3 +149,28 @@ python3 tools/github/setup-labels-milestones.py --repo ORG/REPO
 
 ## 8. Verificação final
 Abrir um PR de teste que altere um arquivo gerado à mão: o CI deve falhar. Abrir outro, de uma conta sem acesso de Code Owner à pasta: o merge deve ficar bloqueado. Se ambos acontecerem, a configuração está correta.
+
+## 9. Segredos e variáveis dos workflows
+Os workflows de [automação](team-workflow.md) funcionam sem nenhum segredo, mas dois recursos ficam em modo "só avisa" até que você os cadastre. **Nunca coloque valores no repositório**: segredos só são cadastrados na interface do GitHub.
+
+| Nome | Tipo | Para quê | Obrigatório? |
+|---|---|---|---|
+| `PROJECT_TOKEN` | Secret | `move-card`: mover o card da spec no quadro | Não (sem ele, só avisa) |
+| `ORG_READ_TOKEN` | Secret | `gate-check`: confirmar que o autor do PR de gate pertence à equipe aprovadora | Não (sem ele, só avisa) |
+| `PROJECT_NUMBER` | Variable | `move-card`: número do quadro (hoje o projeto nº 1); se omitida, procura pelo título | Não |
+
+### 9.1 Criar o PROJECT_TOKEN
+O `GITHUB_TOKEN` automático **não** acessa Projects da organização; é preciso um token próprio. Prefira uma conta de serviço da organização a uma pessoa, para o token não depender de quem sair da equipe.
+1. **PAT clássico** (caminho simples): conta com acesso ao quadro → foto do perfil → **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)** → **Generate new token (classic)** → escopos **`project`** e **`read:org`** → defina uma validade → **Generate token** → copie (aparece uma vez só).
+2. **Alternativa: GitHub App.** Organização → **Settings** → **Developer settings** → **GitHub Apps** → **New GitHub App** → permissões *Organization → Projects: Read and write* e *Organization → Members: Read-only* → instale na organização. O workflow então gera o token da instalação (action `actions/create-github-app-token`, fixada por SHA) em vez de ler o secret; essa troca exige um PR nos workflows.
+
+### 9.2 Criar o ORG_READ_TOKEN (opcional)
+Mesmo procedimento do PAT clássico, só com o escopo **`read:org`** (ou a permissão *Members: Read-only* no GitHub App). Ele apenas lê a participação em equipes.
+
+### 9.3 Onde cadastrar
+Repositório `rabisco-studio/platform` → **Settings** → **Secrets and variables** → **Actions** → aba **Secrets** → **New repository secret** → *Name*: `PROJECT_TOKEN` (ou `ORG_READ_TOKEN`) → *Secret*: cole o token → **Add secret**. Para `PROJECT_NUMBER`: aba **Variables** → **New repository variable**.
+Secrets não são entregues a workflows de PRs de forks; por isso os workflows detectam a ausência e só avisam.
+
+### 9.4 Ajustes recomendados em Actions (Settings → Actions → General)
+- *Workflow permissions*: **Read repository contents and packages permissions** (cada workflow já pede só o que precisa).
+- *Fork pull request workflows*: exigir aprovação para contribuidores de fora (**Require approval for all outside collaborators**).
