@@ -19,6 +19,7 @@ import math
 import pathlib
 import re
 import sys
+import time
 
 import ghlib as G
 import sddlib as L
@@ -27,6 +28,10 @@ CATALOG = 'docs/requirements/spec-catalog.csv'
 MILESTONES = {'R1': 'R1 Local Studio', 'R2': 'R2 Cloud', 'R3': 'R3 Collab', 'R4': 'R4 Everywhere', 'R5': 'R5 Pro'}
 AREA_LABEL = {'core': 'area:core', 'backend': 'area:backend', 'clients': 'area:clients',
               'platform': 'area:platform', 'contracts': 'area:platform'}
+# A listagem de issues do GitHub é eventualmente consistente: logo após criar, as issues novas podem
+# demorar alguns segundos para aparecer. Sem esperar, um segundo --apply seguido duplicaria as últimas.
+WAIT_TRIES = 12
+WAIT_SECONDS = 5
 MARKER = '<!-- task:{spec}:{task} -->'
 MARKER_RE = re.compile(r'<!-- task:(SPEC-\d{3}):(T-\d{3}) -->')
 TASK_RE = re.compile(r'^### (T-\d{3})\s*[—–-]?\s*(.*)$\n((?:.*\n)*?)(?=^### |^## |\Z)', flags=re.M)
@@ -115,6 +120,18 @@ def existing_markers(repo):
         page += 1
 
 
+def wait_visible(repo, wanted):
+    """Espera as issues recém-criadas aparecerem na listagem; devolve as que continuam invisíveis."""
+    missing = set(wanted)
+    for attempt in range(WAIT_TRIES):
+        missing = set(wanted) - existing_markers(repo)
+        if not missing:
+            break
+        if attempt < WAIT_TRIES - 1:
+            time.sleep(WAIT_SECONDS)
+    return missing
+
+
 def plan(spec_id, row, tasks, existing):
     """[(ação, tarefa, título, corpo, labels, milestone)]; ação = criar | ignorar."""
     rows = []
@@ -173,6 +190,13 @@ def main(argv):
             print(f'ERRO ao criar {tid}: {(err or out).strip()[:300]}', file=sys.stderr)
             return 3
         print(f'criada: {out.strip()}')
+    try:
+        missing = wait_visible(repo, {(spec_id, r[1]) for r in todo})
+    except RuntimeError:
+        missing = {(spec_id, r[1]) for r in todo}
+    if missing:
+        print('AVISO: ainda não aparecem na listagem: ' + ', '.join(sorted(t for _, t in missing)) +
+              '. Aguarde alguns minutos antes de rodar --apply de novo, para não duplicar.', file=sys.stderr)
     return 0
 
 

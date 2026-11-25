@@ -64,6 +64,7 @@ class TasksToIssuesTests(unittest.TestCase):
     def run_main(self, *args, gh=None):
         out, err = io.StringIO(), io.StringIO()
         patches = [contextlib.redirect_stdout(out), contextlib.redirect_stderr(err)]
+        patches.append(mock.patch.object(T, 'WAIT_SECONDS', 0))
         if gh:
             patches.append(mock.patch.object(G, 'gh', gh))
         with contextlib.ExitStack() as st:
@@ -131,6 +132,35 @@ class TasksToIssuesTests(unittest.TestCase):
         self.assertEqual(len(created), 1)
         self.assertIn('[SPEC-099 T-002] Tarefa comum', created[0])
         self.assertIn('R2 Cloud', created[0])
+
+    def test_apply_waits_until_created_issues_are_listed(self):
+        listed = []  # a listagem só passa a mostrar T-002 na terceira consulta (consistência eventual)
+
+        def gh(args, payload=None, token=None):
+            if args[0] == 'api' and '/issues?' in args[1]:
+                listed.append(1)
+                body = '<!-- task:SPEC-099:T-001 -->' + ('<!-- task:SPEC-099:T-002 -->' if len(listed) >= 3 else '')
+                return 0, json.dumps([{'body': body}]), ''
+            if args[0] == 'api' and '/milestones' in args[1]:
+                return 0, json.dumps([{'title': 'R2 Cloud'}]), ''
+            if args[:2] == ['issue', 'create']:
+                return 0, 'https://github.com/x/y/issues/9', ''
+            raise AssertionError(args)
+        code, out, err = self.run_main('099', '--apply', gh=gh)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(len(listed), 3)
+        self.assertNotIn('AVISO', err)
+
+    def test_apply_warns_when_created_issues_never_show_up(self):
+        def gh(args, payload=None, token=None):
+            if args[0] == 'api' and '/issues?' in args[1]:
+                return 0, '[]', ''
+            if args[0] == 'api' and '/milestones' in args[1]:
+                return 0, json.dumps([{'title': 'R2 Cloud'}]), ''
+            return 0, 'https://github.com/x/y/issues/9', ''
+        code, _, err = self.run_main('099', '--apply', gh=gh)
+        self.assertEqual(code, 0)
+        self.assertIn('AVISO: ainda não aparecem', err)
 
     def test_apply_stops_without_milestone(self):
         def gh(args, payload=None, token=None):
