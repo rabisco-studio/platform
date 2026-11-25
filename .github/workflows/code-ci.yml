@@ -26,9 +26,11 @@ jobs:
           # backend/ e clients/ só contam com algum arquivo além de .gitkeep/README
           [ -n "$(find backend -type f ! -name '.gitkeep' ! -name 'README*' 2>/dev/null | head -1)" ] && backend=true
           [ -n "$(find clients -type f ! -name '.gitkeep' ! -name 'README*' 2>/dev/null | head -1)" ] && clients=true
-          echo "core=$core" >> "$GITHUB_OUTPUT"
-          echo "backend=$backend" >> "$GITHUB_OUTPUT"
-          echo "clients=$clients" >> "$GITHUB_OUTPUT"
+          {
+            echo "core=$core"
+            echo "backend=$backend"
+            echo "clients=$clients"
+          } >> "$GITHUB_OUTPUT"
           if [ "$core" = false ] && [ "$backend" = false ] && [ "$clients" = false ]; then
             echo "sem código ainda"
           fi
