@@ -1,0 +1,102 @@
+name: code-ci
+# CI do código de produto. Hoje o repositório não tem código: o workflow termina com sucesso e
+# a mensagem "sem código ainda". Os jobs só rodam quando existirem core/Cargo.toml, backend/ ou clients/.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      core: ${{ steps.d.outputs.core }}
+      backend: ${{ steps.d.outputs.backend }}
+      clients: ${{ steps.d.outputs.clients }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - id: d
+        run: |
+          core=false; backend=false; clients=false
+          [ -f core/Cargo.toml ] && core=true
+          # backend/ e clients/ só contam com algum arquivo além de .gitkeep/README
+          [ -n "$(find backend -type f ! -name '.gitkeep' ! -name 'README*' 2>/dev/null | head -1)" ] && backend=true
+          [ -n "$(find clients -type f ! -name '.gitkeep' ! -name 'README*' 2>/dev/null | head -1)" ] && clients=true
+          echo "core=$core" >> "$GITHUB_OUTPUT"
+          echo "backend=$backend" >> "$GITHUB_OUTPUT"
+          echo "clients=$clients" >> "$GITHUB_OUTPUT"
+          if [ "$core" = false ] && [ "$backend" = false ] && [ "$clients" = false ]; then
+            echo "sem código ainda"
+          fi
+
+  core:
+    needs: detect
+    if: needs.detect.outputs.core == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: core
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Rust estável (rustfmt e clippy já vêm no runner)
+        run: rustup update stable && rustup component add rustfmt clippy
+      - name: cargo fmt --check
+        run: cargo fmt --all --check
+      - name: cargo clippy -D warnings
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: cargo test
+        run: cargo test --workspace
+      - name: Dependências entre crates (P-01, docs/architecture/crates.toml)
+        working-directory: .
+        run: python3 tools/sdd/check_crate_deps.py
+
+  # TODO (SPEC-022, backend): quando a spec definir a fundação do backend (Java + Spring Boot), ativar:
+  # backend:
+  #   needs: detect
+  #   if: needs.detect.outputs.backend == 'true'
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #   steps:
+  #     - uses: actions/checkout@<SHA>
+  #     - run: ./mvnw -B verify   # ajustar ao build definido pela SPEC-022
+
+  # TODO (SPEC-016, clientes): quando a spec definir a UI desktop (Flutter), ativar:
+  # clients:
+  #   needs: detect
+  #   if: needs.detect.outputs.clients == 'true'
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #   steps:
+  #     - uses: actions/checkout@<SHA>
+  #     - run: flutter analyze && flutter test   # ajustar ao que a SPEC-016 definir
+
+  resumo:
+    needs: [detect, core]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Resultado
+        env:
+          CORE: ${{ needs.core.result }}
+          HAS_CORE: ${{ needs.detect.outputs.core }}
+          HAS_BACKEND: ${{ needs.detect.outputs.backend }}
+          HAS_CLIENTS: ${{ needs.detect.outputs.clients }}
+        run: |
+          if [ "$HAS_CORE" != true ] && [ "$HAS_BACKEND" != true ] && [ "$HAS_CLIENTS" != true ]; then
+            echo "sem código ainda"
+            exit 0
+          fi
+          if [ "$CORE" = failure ] || [ "$CORE" = cancelled ]; then
+            echo "::error::CI do core falhou"
+            exit 1
+          fi
+          echo "CI de código concluído (core: $CORE)"

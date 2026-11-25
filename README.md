@@ -412,6 +412,7 @@ O [índice de templates](docs/templates/README.md) diz, para cada um, **quando u
 | `make docs`   | Só regenera os arquivos gerados                                                                        |
 | `make check`  | Só valida (erros falham, avisos não)                                                                   |
 | `make strict` | Valida e falha também com avisos (padrão para criar uma baseline)                                      |
+| `make new-spec N=018` | Cria a pasta de uma spec planejada a partir dos templates (veja a seção 15)                          |
 | `make test-tools` | Roda os testes dos scripts de automação (`tools/github/tests`); já faz parte do `make verify` |
 
 Requer apenas **Python 3** (e `git`, para os testes dos scripts). O CI (workflow `sdd-check`, job `verify`) roda em todo PR e em todo push na `main`. Se um arquivo gerado estiver desatualizado, a falha diz: **rode `make docs` e faça commit**.
@@ -441,13 +442,23 @@ Requer apenas **Python 3** (e `git`, para os testes dos scripts). O CI (workflow
 
 Todos declaram `permissions:` mínimas, usam `pull_request` (nunca `pull_request_target`), fixam as actions por SHA e passam dados do PR por variáveis de ambiente. Detalhes e limitações: [team-workflow.md](docs/governance/team-workflow.md), seção 7; segredos: [github-setup.md](docs/governance/github-setup.md), seção 9.
 
+**Automações da Camada 3 (criam coisas; por isso vêm em ensaio ou exigem ação explícita):**
+
+| Automação | Gatilho | O que faz | Flag para aplicar | Se der errado |
+|---|---|---|---|---|
+| `make new-spec N=018` (`tools/sdd/new_spec.py`) | Manual | Cria `.ai/sdd/specs/NNN-slug/` com os 3 templates (cabeçalhos do catálogo), `.status` em `requirements:draft`, marca a spec como "escrita" no catálogo e roda o gerador | Nenhuma: cria na hora; recusa spec inexistente, já escrita ou com pasta existente, sem alterar nada | Apague a pasta e restaure `spec-catalog.csv` (`git checkout -- docs/requirements/spec-catalog.csv`); rode `make docs` |
+| `tools/github/tasks_to_issues.py NNN` | Manual | Gera as issues de tarefa a partir do `tasks.md`; só com `.status` em `tasks:approved` ou posterior; marcador oculto evita duplicar | `--apply` (o padrão é ENSAIO) | Rodar de novo não duplica. Issue criada por engano: feche e apague pela interface. Falta milestone: `setup-labels-milestones.py --apply` |
+| `baseline-release` (`baseline_notes.py`) | Push de tag `baseline-R<n>-v<n>` | Valida a tag, roda `make strict`, monta as notas pelo template e cria um GitHub Release **pre-release** | A própria tag é a ação (só o PMO a cria, depois do `make strict`) | Tag inválida ou `make strict` falho: o workflow para sem criar release. Para refazer: `gh release delete TAG` e `git push --delete origin TAG`, corrija e crie a tag de novo |
+| `pages` (`tools/sdd/build_site.py`) | Push na `main` e manual | Gera e publica a página de pré-visualização no GitHub Pages | Variável `PAGES_ENABLED=true` e Pages com Source "GitHub Actions" (github-setup.md, seção 10) | Sem a variável, só avisa. Com o Pages desabilitado, o deploy falha: habilite o Pages ou ponha `PAGES_ENABLED=false` |
+| `code-ci` (`check_crate_deps.py`) | PR e push na `main` | Sem código: termina com sucesso ("sem código ainda"). Com `core/Cargo.toml`: `cargo fmt --check`, `clippy -D warnings`, `test` e as arestas de `crates.toml` | Automático | Falha de aresta: ajuste a dependência ou, se a mudança for de arquitetura, abra PR em `crates.toml` (aprovação dos arquitetos) |
+
 ---
 
 ## 15. Receitas: "como eu faço…?"
 
 | Quero…                                               | Faça                                                                                                                                                                                                                                  |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Escrever uma spec nova**                           | Confirme a spec em `spec-catalog.csv`; crie a pasta `.ai/sdd/specs/NNN-slug/` com os templates de requisitos, design e tarefas e o arquivo `.status` contendo `requirements:draft`; rode `make docs`; abra PR com `?template=spec.md` |
+| **Escrever uma spec nova**                           | Rode `make new-spec N=018` (cria a pasta, os 3 documentos e o `.status`, atualiza o catálogo e roda o gerador); preencha `Depende de`, `Tags` e os FRs; `make verify`; abra PR com `?template=spec.md` |
 | **Mudar uma spec ainda em rascunho**                 | Branch `spec/NNN-slug/assunto`, edite, `make verify`, PR (`spec.md`)                                                                                                                                                                  |
 | **Mudar uma spec já aprovada**                       | Abra uma **Change Request** primeiro (seção 11). O PR reabre o `.status`                                                                                                                                                              |
 | **Pedir aprovação de um gate**                       | Issue "Pedido de aprovação de gate". O aprovador faz o PR de `.status` (`gate.md`)                                                                                                                                                    |
@@ -458,6 +469,8 @@ Todos declaram `permissions:` mínimas, usam `pull_request` (nunca `pull_request
 | **Registrar um risco**                               | Linha em `risk-register.md`; se a exposição for 12 ou mais, use o template detalhado                                                                                                                                                  |
 | **Executar um spike**                                | Issue "Spike"; relatório pelo [template](docs/templates/spike-report-template.md) em `spikes/`; atualize as ADRs resolvidas                                                                                                           |
 | **Reportar um erro**                                 | Issue "Defeito"                                                                                                                                                                                                                       |
+| **Criar as issues de tarefa de uma spec**            | Só depois do G3: `python3 tools/github/tasks_to_issues.py NNN` (ensaio), confira a saída e rode de novo com `--apply`                                                                                                                  |
+| **Criar uma baseline**                               | Com `make strict` verde, crie a tag `baseline-R<n>-v<n>` e envie (`git push origin TAG`): o workflow cria um pre-release com as notas; revise e assine                                                                                  |
 | **Pegar uma tarefa**                                 | Issue de tarefa (`T-xxx`) atribuída a você, que só existe após o G3; branch `feat/NNN-T-xxx`; PR (`code.md`)                                                                                                                          |
 | **Passar um trabalho para outra pessoa**             | [Passagem de bastão](docs/templates/handover-template.md)                                                                                                                                                                             |
 | **Receber uma pessoa nova**                          | [Checklist de onboarding](docs/templates/onboarding-checklist-template.md)                                                                                                                                                            |
