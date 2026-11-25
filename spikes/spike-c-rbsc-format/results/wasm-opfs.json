@@ -1,0 +1,66 @@
+[
+  {
+    "label": "VFS opfs (COOP/COEP)",
+    "write": {
+      "phase": "write",
+      "vfs": "opfs",
+      "sqlite": "3.54.1",
+      "crossOriginIsolated": true,
+      "sharedArrayBuffer": true,
+      "opfsVfsAvailable": false,
+      "journalMode": "delete",
+      "writeMs": 2956,
+      "tilesWritten": 600,
+      "mibWritten": 37.5,
+      "finalJournalMode": "delete",
+      "ok": true
+    },
+    "read": {
+      "phase": "read",
+      "vfs": "opfs",
+      "sqlite": "3.54.1",
+      "crossOriginIsolated": true,
+      "sharedArrayBuffer": true,
+      "opfsVfsAvailable": false,
+      "journalMode": "delete",
+      "tilesFound": 600,
+      "readMs": 914,
+      "hashMismatches": 0,
+      "integrity": "ok",
+      "finalJournalMode": "delete",
+      "ok": true
+    }
+  },
+  {
+    "label": "VFS opfs-sahpool (sem COOP/COEP)",
+    "write": {
+      "phase": "write",
+      "vfs": "sah",
+      "sqlite": "3.54.1",
+      "crossOriginIsolated": false,
+      "sharedArrayBuffer": false,
+      "sahCapacity": 6,
+      "journalMode": "delete",
+      "writeMs": 818,
+      "tilesWritten": 600,
+      "mibWritten": 37.5,
+      "finalJournalMode": "delete",
+      "ok": true
+    },
+    "read": {
+      "phase": "read",
+      "vfs": "sah",
+      "sqlite": "3.54.1",
+      "crossOriginIsolated": false,
+      "sharedArrayBuffer": false,
+      "sahCapacity": 6,
+      "journalMode": "delete",
+      "tilesFound": 600,
+      "readMs": 282,
+      "hashMismatches": 0,
+      "integrity": "ok",
+      "finalJournalMode": "delete",
+      "ok": true
+    }
+  }
+]
