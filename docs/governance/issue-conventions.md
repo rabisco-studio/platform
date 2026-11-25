@@ -38,7 +38,8 @@ Release é um **milestone** (`R1 Local Studio` … `R5 Pro`, `Fase 0 Spikes`), n
 ## 4. Quadro e ciclo de vida
 Colunas: `Ideia → Requisitos → Design → Tarefas → Implementação → Revisão → Feito`.
 - O **card de uma spec** muda de coluna junto com o PR que altera o `.status` (um gate aprovado = card avança).
-- Issues de **tarefa** ficam na coluna da spec; fecham quando o PR é mesclado e a verificação do `tasks.md` foi cumprida.
+- Só as issues de **tarefa** (`task`) entram no quadro, automaticamente e já em **Implementação**; fecham quando o PR é mesclado e a verificação do `tasks.md` foi cumprida (fechar leva a **Feito**).
+- Perguntas, defeitos, Change Requests e pedidos de gate **não entram no quadro**; acompanhe-os na aba Issues.
 - Issue `bloqueado` deve citar o bloqueio (outra issue, Q- ou DEC-) e o responsável por destravar.
 
 ## 5. Exemplo de título

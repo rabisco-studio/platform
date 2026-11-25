@@ -275,7 +275,7 @@ Exemplos de título: `[SPEC-001 T-004] DocumentMeta e perfil de cor` · `[SPEC-0
 
 ## 7. O quadro (GitHub Projects)
 
-O quadro **"Rabisco Platform"** fica na organização (aba **Projects** de `rabisco-studio`). Cada **card representa uma spec** (existem 37, de SPEC-001 a SPEC-037, tirados do [catálogo](docs/requirements/spec-catalog.csv)). Os cards são **rascunhos do quadro**, não issues: servem para acompanhar o andamento. O trabalho em si (tarefas, pedidos, perguntas) vive em **issues**, que também podem ser adicionadas ao quadro.
+O quadro **"Rabisco Platform"** fica na organização (aba **Projects** de `rabisco-studio`). Cada **card representa uma spec** (existem 37, de SPEC-001 a SPEC-037, tirados do [catálogo](docs/requirements/spec-catalog.csv)). Os cards são **rascunhos do quadro**, não issues: servem para acompanhar o andamento. O trabalho em si vive em **issues**. Só as **issues de tarefa** (label `task`, após o G3) entram no quadro, sozinhas e já em **Implementação**. Perguntas, defeitos, Change Requests e pedidos de gate **não entram no quadro**: são acompanhados na aba **Issues**. As automações do quadro (que só se configuram na interface) estão em [github-setup.md](docs/governance/github-setup.md), seção 4.3.
 
 ### Colunas (campo Status), na ordem
 
@@ -303,7 +303,7 @@ O quadro **"Rabisco Platform"** fica na organização (aba **Projects** de `rabi
 
 ### Visões úteis
 
-Por release (agrupado por Release, ordenado por Fase), **meus cards** (filtro `assignee:@me`) e **gates pendentes**. As descrições de cada opção de campo estão no guia [github-setup.md](docs/governance/github-setup.md).
+Por release (agrupado por Release, ordenado por Fase), **meus cards** (filtro `assignee:@me`). Os **gates pendentes** ficam na aba Issues (`is:open label:gate`). As descrições de cada opção de campo estão no guia [github-setup.md](docs/governance/github-setup.md).
 
 ---
 
