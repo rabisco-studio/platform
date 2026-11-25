@@ -26,6 +26,8 @@
 
 A definir após os spikes. Os spikes devem registrar as versões usadas.
 
+O que instalar por papel, as versões usadas até agora e as armadilhas de instalação: [dev-environment.md](../../docs/governance/dev-environment.md).
+
 ## Regras
 
 1. **Nenhuma biblioteca entra sem verificação de licença.** Código GPL não pode ser copiado para um core proprietário. Manter lista de dependências com licença verificada no CI.
