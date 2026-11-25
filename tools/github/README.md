@@ -12,6 +12,8 @@ Scripts de apoio à configuração do GitHub (labels, milestones e quadro). Só 
 | [`overdue.py`](overdue.py) | Lista decisões e perguntas abertas vencidas ou sem data | Workflow `weekly` |
 | [`weekly_report.py`](weekly_report.py) | Rascunho do relatório semanal e issue da semana | Workflow `weekly` |
 | [`nudge_blocked.py`](nudge_blocked.py) | Cobra issues `bloqueado` há mais de 7 dias | Workflow `weekly` |
+| [`tasks_to_issues.py`](tasks_to_issues.py) | Gera as issues de tarefa de uma spec a partir do `tasks.md` (só após o G3; ensaio por padrão, `--apply` cria) | Manual |
+| [`baseline_notes.py`](baseline_notes.py) | Valida a tag `baseline-R<n>-v<n>` e monta as notas da baseline | Workflow `baseline-release` |
 | [`ghlib.py`](ghlib.py) | Funções comuns (git, gh, anotações do Actions) | Biblioteca |
 | `create-board-cards.py` | Cria os cards das specs no quadro "Rabisco Platform" | Entregue à parte; ainda não está nesta pasta |
 
@@ -47,3 +49,15 @@ As automações embutidas do Project (Item added, Item closed, Pull request merg
 
 ## Workflows
 Gatilhos, segredos e o que acontece sem eles: [team-workflow.md](../../docs/governance/team-workflow.md), seção 7. Como criar `PROJECT_TOKEN` e `ORG_READ_TOKEN`: [github-setup.md](../../docs/governance/github-setup.md), seção 9.
+
+## Camada 3
+Scripts que criam coisas no GitHub têm **ensaio por padrão** e só agem com `--apply`:
+
+```bash
+python3 tools/github/tasks_to_issues.py 001                  # ensaio: mostra as issues que criaria
+python3 tools/github/tasks_to_issues.py 001 --check-existing # ensaio que também consulta o GitHub (marca o que seria ignorado)
+python3 tools/github/tasks_to_issues.py 001 --apply          # cria (só se o .status for tasks:approved ou posterior)
+python3 tools/github/baseline_notes.py --notes baseline-R1-v1  # imprime as notas, sem criar tag nem release
+```
+
+Tabela de todas as automações da Camada 3 (gatilho, flag, o que fazer se der errado): [team-workflow.md](../../docs/governance/team-workflow.md), seção 8. Em `tools/sdd/`: `new_spec.py`, `build_site.py` e `check_crate_deps.py`, também com testes (`tools/sdd/tests`).

@@ -1,0 +1,36 @@
+name: baseline-release
+# Push de tag `baseline-R<n>-v<n>`: valida o formato, roda `make strict`, monta as notas pelo template
+# e cria um GitHub Release marcado como PRE-RELEASE para o PMO revisar (tools/github/baseline_notes.py).
+# Não cria a tag: quem cria é o PMO, depois que `make strict` passa (README, seção 10).
+on:
+  push:
+    tags:
+      - 'baseline-*'
+
+permissions: {}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # criar o Release
+    env:
+      TAG: ${{ github.ref_name }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Validar o formato da tag
+        run: python3 tools/github/baseline_notes.py --validate "$TAG"
+      - name: make strict (avisos também falham)
+        run: make strict
+      - name: Montar as notas
+        run: python3 tools/github/baseline_notes.py --notes "$TAG" --strict-ok > notas.md
+      - name: Criar o pre-release (se ainda não existir)
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "O release $TAG já existe; nada a criar."
+          else
+            gh release create "$TAG" --prerelease --title "Baseline ${TAG#baseline-} (rascunho para revisão do PMO)" --notes-file notas.md
+          fi

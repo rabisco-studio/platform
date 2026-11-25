@@ -21,7 +21,7 @@ def csv_rows(rel):
 
 
 def header_field(text, name):
-    m = re.search(r'^\*\*%s:\*\*\s*(.*)$' % re.escape(name), text, flags=re.M)
+    m = re.search(r'^\*\*%s:\*\*[ \t]*(.*)$' % re.escape(name), text, flags=re.M)
     return m.group(1).strip() if m else None
 
 

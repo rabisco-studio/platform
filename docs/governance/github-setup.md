@@ -174,3 +174,13 @@ Secrets não são entregues a workflows de PRs de forks; por isso os workflows d
 ### 9.4 Ajustes recomendados em Actions (Settings → Actions → General)
 - *Workflow permissions*: **Read repository contents and packages permissions** (cada workflow já pede só o que precisa).
 - *Fork pull request workflows*: exigir aprovação para contribuidores de fora (**Require approval for all outside collaborators**).
+
+## 10. GitHub Pages (site de pré-visualização)
+O workflow `pages` publica a página gerada por `tools/sdd/build_site.py`. **Ele não habilita o Pages**: isso é um clique seu, e o conteúdo fica **público** (o repositório é público).
+1. Repositório `rabisco-studio/platform` → **Settings** → **Pages** → *Build and deployment* → **Source: GitHub Actions**.
+2. Repositório → **Settings** → **Secrets and variables** → **Actions** → aba **Variables** → **New repository variable** → *Name*: `PAGES_ENABLED`, *Value*: `true`. (Pode ser variável da organização, liberada para o repositório.)
+3. **Actions** → workflow `pages` → **Run workflow** (ramo `main`) para a primeira publicação. A URL aparece no job `deploy`.
+Sem a variável, o workflow só emite um aviso e não publica. Para desligar: `PAGES_ENABLED=false` (a página já publicada continua no ar até você desabilitar o Pages em Settings → Pages).
+
+## 11. Tags de baseline
+O workflow `baseline-release` dispara em `baseline-R<n>-v<n>` e cria um **pre-release** com as notas. Só o PMO cria a tag, depois de `make strict` verde (README, seção 10). Para testar sem poluir o repositório oficial, use um repositório de sandbox (veja a lista de testes do PR da Camada 3).
