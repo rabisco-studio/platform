@@ -6,15 +6,15 @@ Gerado a partir de `requirements-catalog.csv`, `spec-catalog.csv` e das specs es
 
 ## Resumo
 
-- Requisitos catalogados: **132** (81 RF + 51 RNF)
+- Requisitos catalogados: **133** (81 RF + 52 RNF)
 - Specs no plano: **37**; escritas: **4**; planejadas: **33**
-- Requisitos com cobertura em spec escrita: **42** de 132
+- Requisitos com cobertura em spec escrita: **42** de 133
 
 ## Por release
 
 | Release | Requisitos | Cobertos por spec escrita | Specs no plano | Specs escritas |
 |---|---|---|---|---|
-| R1 | 78 | 41 | 17 | 4 |
+| R1 | 79 | 41 | 17 | 4 |
 | R2 | 32 | 1 | 5 | 0 |
 | R3 | 10 | 0 | 3 | 0 |
 | R4 | 10 | 0 | 5 | 0 |
@@ -83,5 +83,6 @@ Gerado a partir de `requirements-catalog.csv`, `spec-catalog.csv` e das specs es
 | RNF-03.1 | SPEC-016 | Versões para Windows, macOS e Linux |
 | RNF-03.5 | SPEC-016 | Adaptar a interface às características de cada dispositivo |
 | RNF-03.6 | SPEC-005 | Suportar mouse, touchscreen e canetas digitais |
+| RNF-03.7 | SPEC-005 | Suportar mesas digitalizadoras e canetas das principais marcas pelas APIs de ent |
 | RNF-06.1 | SPEC-016 | Adaptar a interface a diferentes tamanhos de tela |
 | RNF-06.3 | SPEC-016 | Navegação por teclado |
