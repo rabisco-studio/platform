@@ -55,3 +55,32 @@ Resumo; a matriz completa está em [ownership-matrix.md](../architecture/ownersh
 
 ## 6. Verificações automáticas (`make verify`)
 Catálogos válidos; specs bem-formadas; `.status` coerente com cabeçalhos; todo FR com `Cobre:`, mapeado no design e coberto por tarefa; tarefas de 1–4 h; dependências acíclicas; ADRs/P-/SPEC- citados existem; crates citados existem em `crates.toml`; caminhos citados existem; links; arquivos gerados atualizados; arquivos de governança presentes.
+
+## 7. Automações
+Os workflows ficam em [`.github/workflows/`](../../.github/workflows/) e os scripts em [`tools/github/`](../../tools/github/README.md) (só biblioteca padrão do Python 3; testados por `make test-tools`).
+
+| Workflow | Gatilho | O que faz | Segredo necessário | Sem o segredo ou sem permissão |
+|---|---|---|---|---|
+| `sdd-check` | PR e push na `main` | `make verify`; falha com "rode `make docs` e faça commit" se os gerados estiverem velhos | nenhum | — |
+| `labeler` | PR (aberto, atualizado, reaberto) | Aplica labels por pasta (`.github/labeler.yml`) | nenhum (`GITHUB_TOKEN`) | PR de fork: aviso, sem labels |
+| `pr-title` | PR (inclui edição do título) | Valida o prefixo: `SPEC-NNN:`, `ADR-NNN:`, `GOV:`, `contracts:`, `feat NNN T-xxx:` ou `feat/NNN-T-xxx` | nenhum | — |
+| `gate-check` | PR que altera `.ai/sdd/specs/*/.status` | Transição válida, autor ≠ quem escreveu a spec, cabeçalhos coerentes, template de gate; opcionalmente confere a equipe aprovadora | `ORG_READ_TOKEN` (opcional) | Aviso: a checagem de equipe fica manual; o resto roda |
+| `impact-comment` | PR em specs, ADRs, contratos ou catálogos | Comenta (e atualiza) requisitos, specs e dependentes afetados | nenhum (`GITHUB_TOKEN`) | PR de fork: aviso, relatório só no resumo do job |
+| `move-card` | Push na `main` que altera um `.status` (o merge do PR) | Move o card da spec para a coluna do novo estado | `PROJECT_TOKEN` | Aviso e imprime o que faria; sucesso |
+| `weekly` | Segunda 12:00 UTC e manual | Itens vencidos, relatório semanal (1 issue `status-report` por semana) e cobrança de `bloqueado` | nenhum (`GITHUB_TOKEN`) | Sem permissão: aviso; sucesso |
+
+Todos declaram `permissions:` mínimas, usam `pull_request` (nunca `pull_request_target`), fixam as actions por SHA e passam dados do PR por variáveis de ambiente. Segredos: [github-setup.md](github-setup.md), seção 9.
+
+### Como cada automação decide
+- **Label por pasta:** `contracts/` e `docs/architecture/` → `area:platform` + `rigor:anchored`; `core/`, `backend/`, `clients/` → `area:core`, `area:backend`, `area:clients`; `docs/adr/` → `adr`; `.github/`, `tools/`, `Makefile` → `area:platform`; `spikes/` → `spike`; `.ai/sdd/specs/**` não recebe label (a spec define o próprio rigor). Labels nunca são removidos.
+- **Título do PR:** os prefixos aceitos são os da seção 3. O erro mostra exemplos válidos.
+- **Gate:** (a) `.status` avança no máximo uma etapa em `STAGES` (ou volta, por reabertura); (b) o autor do PR não pode ter escrito `requirements.md`, `design.md` ou `tasks.md` da spec (conferido pelo `git log` da base) e o PR só pode mudar a linha `**Status:**` desses documentos; (c) `sdd_check` verde; (d) corpo com "## Gate" e "## Registro da revisão" (template `gate.md`). O autor é reconhecido pelo login, pelo nome ou pelo e-mail do commit (inclusive o e-mail `noreply` do GitHub); para outros e-mails da mesma pessoa, defina `GATE_AUTHOR_ALIASES` no workflow.
+- **Equipe aprovadora (opcional):** G1 `product` ou `tech-leads`; G2 `architects`; G3 `tech-leads`; G4 `tech-leads` ou `qa`; G5 `product`. Só é checada com `ORG_READ_TOKEN`.
+- **Impacto:** lista requisitos pelo `traceability.csv` e specs dependentes (transitivamente) pelas dependências dos `tasks.md`; ADRs e contratos alterados apontam para as specs que os citam.
+- **Card:** a coluna vem da tabela do [README](../../README.md), seção 7. Dispara no push à `main` (resultado do merge) e não em `pull_request`, para o segredo nunca chegar a código de PR.
+- **Semanal:** "vencido" é prazo em data ISO (AAAA-MM-DD) anterior a hoje; "sem data" é item aberto sem data ISO. A issue da semana tem o título "Relatório de status — semana de <segunda-feira>" e não é duplicada. A cobrança de `bloqueado` comenta uma vez a cada 7 dias, marcando o responsável.
+
+### Limites conhecidos
+- Os checks de título e de gate rodam o código do próprio PR (evento `pull_request`). Isso é seguro (sem segredos de escrita), mas um PR que altere o script poderia afrouxar o próprio check. Mudanças em `tools/` e `.github/` exigem aprovação do PMO e dos arquitetos (CODEOWNERS).
+- O nome do quadro no GitHub hoje é "Rabisco Studio" (projeto nº 1); o `move_card.py` aceita esse nome e "Rabisco Platform", ou a variável `PROJECT_NUMBER`.
+- Os checks `gate-check`, `pr-title` e `impact-comment` **não são obrigatórios** na regra da `main` (só `verify`). Torná-los obrigatórios é decisão de governança e exige PR no ruleset.

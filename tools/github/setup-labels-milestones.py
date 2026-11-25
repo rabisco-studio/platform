@@ -49,6 +49,7 @@ LABELS = [
     ('area:platform', 'c5def5', 'Plataforma, CI e tooling'),
     ('rigor:anchored', 'b60205', 'Rigor máximo: contratos, formato, sync, segurança'),
     ('rigor:spec-first', 'bfdadc', 'Rigor menor: UI, ferramentas, pincéis, filtros'),
+    ('status-report', 'fef2c0', 'Relatório de status semanal (gerado pela rotina semanal)'),
     ('bloqueado', '000000', 'Aguardando outra issue, Q- ou DEC-'),
 ]
 

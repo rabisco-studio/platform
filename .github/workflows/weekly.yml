@@ -1,0 +1,27 @@
+name: weekly
+# Rotina semanal: relatório de status (1 issue por semana) e cobrança de issues `bloqueado`.
+on:
+  schedule:
+    - cron: '0 12 * * 1'   # segunda-feira, 12:00 UTC
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Itens vencidos e sem data
+        run: python3 tools/github/overdue.py
+      - name: Relatório semanal (uma issue por semana)
+        run: python3 tools/github/weekly_report.py --issue
+      - name: Cobrar issues bloqueadas há mais de 7 dias
+        run: python3 tools/github/nudge_blocked.py

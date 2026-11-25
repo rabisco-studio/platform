@@ -315,7 +315,7 @@ Para criar ou atualizar todos de uma vez: [`tools/github/setup-labels-milestones
 
 | Grupo  | Labels                                                                 | Quando usar                                                                                          |
 | ------ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Tipo   | `task`, `gate`, `spike`, `question`, `defect`, `change-request`, `adr` | Aplicado automaticamente pelo formulário                                                             |
+| Tipo   | `task`, `gate`, `spike`, `question`, `defect`, `change-request`, `adr`, `status-report` | Aplicado automaticamente pelo formulário                                                             |
 | Área   | `area:core`, `area:backend`, `area:clients`, `area:platform`           | Onde o trabalho acontece                                                                             |
 | Rigor  | `rigor:anchored`, `rigor:spec-first`                                   | Nível de formalidade da spec                                                                         |
 | Estado | `bloqueado`                                                            | Aguardando outra issue, pergunta (Q-) ou decisão (DEC-). **Cite o que bloqueia e quem desbloqueia.** |
@@ -412,8 +412,9 @@ O [índice de templates](docs/templates/README.md) diz, para cada um, **quando u
 | `make docs`   | Só regenera os arquivos gerados                                                                        |
 | `make check`  | Só valida (erros falham, avisos não)                                                                   |
 | `make strict` | Valida e falha também com avisos (padrão para criar uma baseline)                                      |
+| `make test-tools` | Roda os testes dos scripts de automação (`tools/github/tests`); já faz parte do `make verify` |
 
-Requer apenas **Python 3**. O CI (workflow `sdd-check`, job `verify`) roda em todo PR e em todo push na `main`.
+Requer apenas **Python 3** (e `git`, para os testes dos scripts). O CI (workflow `sdd-check`, job `verify`) roda em todo PR e em todo push na `main`. Se um arquivo gerado estiver desatualizado, a falha diz: **rode `make docs` e faça commit**.
 
 **O `sdd-check` verifica, entre outras coisas:**
 
@@ -425,6 +426,20 @@ Requer apenas **Python 3**. O CI (workflow `sdd-check`, job `verify`) roda em to
 - caminhos e links existem;
 - arquivos gerados atualizados;
 - arquivos de governança, templates e regras presentes.
+
+**Workflows do GitHub Actions:**
+
+| Workflow | Gatilho | O que faz | Segredo necessário | Sem o segredo ou sem permissão |
+|---|---|---|---|---|
+| `sdd-check` | PR e push na `main` | `make verify`; falha com "rode `make docs` e faça commit" se os gerados estiverem velhos | nenhum | — |
+| `labeler` | PR (aberto, atualizado, reaberto) | Aplica labels por pasta (`.github/labeler.yml`) | nenhum (`GITHUB_TOKEN`) | PR de fork: aviso, sem labels |
+| `pr-title` | PR (inclui edição do título) | Valida o prefixo: `SPEC-NNN:`, `ADR-NNN:`, `GOV:`, `contracts:`, `feat NNN T-xxx:` ou `feat/NNN-T-xxx` | nenhum | — |
+| `gate-check` | PR que altera `.ai/sdd/specs/*/.status` | Transição válida, autor ≠ quem escreveu a spec, cabeçalhos coerentes, template de gate; opcionalmente confere a equipe aprovadora | `ORG_READ_TOKEN` (opcional) | Aviso: a checagem de equipe fica manual; o resto roda |
+| `impact-comment` | PR em specs, ADRs, contratos ou catálogos | Comenta (e atualiza) requisitos, specs e dependentes afetados | nenhum (`GITHUB_TOKEN`) | PR de fork: aviso, relatório só no resumo do job |
+| `move-card` | Push na `main` que altera um `.status` (o merge do PR) | Move o card da spec para a coluna do novo estado | `PROJECT_TOKEN` | Aviso e imprime o que faria; sucesso |
+| `weekly` | Segunda 12:00 UTC e manual | Itens vencidos, relatório semanal (1 issue `status-report` por semana) e cobrança de `bloqueado` | nenhum (`GITHUB_TOKEN`) | Sem permissão: aviso; sucesso |
+
+Todos declaram `permissions:` mínimas, usam `pull_request` (nunca `pull_request_target`), fixam as actions por SHA e passam dados do PR por variáveis de ambiente. Detalhes e limitações: [team-workflow.md](docs/governance/team-workflow.md), seção 7; segredos: [github-setup.md](docs/governance/github-setup.md), seção 9.
 
 ---
 

@@ -1,0 +1,24 @@
+name: labeler
+# Aplica labels por pasta (.github/labeler.yml). Usa `pull_request` (nunca pull_request_target).
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Aviso para PR de fork
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        run: echo '::warning::PR de fork recebe token somente leitura; os labels por pasta não foram aplicados. Um mantenedor pode aplicá-los à mão.'
+      - uses: actions/labeler@8558fd74291d67161a8a78ce36a881fa63b766a9 # v5
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        continue-on-error: true
+        with:
+          configuration-path: .github/labeler.yml
+          sync-labels: false

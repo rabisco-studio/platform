@@ -1,0 +1,28 @@
+name: move-card
+# Move o card da spec no quadro quando um .status muda na main (tools/github/move_card.py).
+# Dispara no push à main (resultado do merge do PR), e não em pull_request: assim o segredo
+# nunca chega a código de PR. Sem PROJECT_TOKEN, só avisa o que faria.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.ai/sdd/specs/*/.status'
+
+permissions: {}
+
+jobs:
+  move:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 2
+      - name: Mover o card
+        env:
+          BASE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+          PROJECT_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+          PROJECT_NUMBER: ${{ vars.PROJECT_NUMBER }}
+        run: python3 tools/github/move_card.py

@@ -1,0 +1,19 @@
+name: pr-title
+# Valida o prefixo do título do PR (tools/github/check_pr_title.py). Não precisa de escrita nem de segredo.
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  title:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Validar título
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: python3 tools/github/check_pr_title.py

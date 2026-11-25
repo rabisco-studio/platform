@@ -1,0 +1,37 @@
+# Label por pasta (actions/labeler v5). Cada chave é um label; vale se algum arquivo do PR casar.
+# .ai/sdd/specs/** não rotula de propósito: a spec define o próprio rigor.
+
+area:platform:
+  - changed-files:
+      - any-glob-to-any-file:
+          - contracts/**
+          - docs/architecture/**
+          - .github/**
+          - tools/**
+          - Makefile
+
+rigor:anchored:
+  - changed-files:
+      - any-glob-to-any-file:
+          - contracts/**
+          - docs/architecture/**
+
+area:core:
+  - changed-files:
+      - any-glob-to-any-file: core/**
+
+area:backend:
+  - changed-files:
+      - any-glob-to-any-file: backend/**
+
+area:clients:
+  - changed-files:
+      - any-glob-to-any-file: clients/**
+
+adr:
+  - changed-files:
+      - any-glob-to-any-file: docs/adr/**
+
+spike:
+  - changed-files:
+      - any-glob-to-any-file: spikes/**

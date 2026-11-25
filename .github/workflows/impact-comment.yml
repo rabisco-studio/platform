@@ -1,0 +1,32 @@
+name: impact-comment
+# Comenta o impacto em PRs que mexem em specs, ADRs, contratos ou catálogos
+# (tools/github/impact_comment.py). Em PR de fork o token é somente leitura:
+# o script avisa, grava o relatório no resumo do job e termina com sucesso.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '.ai/sdd/specs/**'
+      - 'docs/adr/**'
+      - 'contracts/**'
+      - 'docs/requirements/**'
+
+permissions: {}
+
+jobs:
+  impact:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Comentar impacto
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/github/impact_comment.py
